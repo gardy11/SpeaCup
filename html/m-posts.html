@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SpeaCup有話直說</title>
+  <link rel="icon" type="image/x-icon" href="assets/fav.ico" />
+  <link href="css/style.css" rel="stylesheet" />
+  <script src="JS/scripts.js"></script>
+  <script src="js/jquery-3.6.0.js"></script>
+
+  <!-- 外部匯入樣式 -->
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="https://kit.fontawesome.com/993da95711.js" crossorigin="anonymous"></script>
+  <script
+    language="javascript">function changeImageString(TargetID, FildAddres) { document.images[TargetID].src = FildAddres; }</script>
+</head>
+
+
+<body class="body">
+  <!-- navbar -->
+  <nav class="navbar fixed-top navbar-expand-lg navbar-dark mr-1">
+    <a class="navbar-brand" href="index.html">
+      <img src="assets/img/有話 直說 (1).png" width="60" height="60" class="d-inline-block align-top" alt="">
+      <img src="assets/img/SpeaCup.png" width="250" height="60" class="d-inline-block align-top" alt="">
+    </a>
+
+    <button class="navbar-toggler navbar-left" type="button" data-toggle="collapse"
+      data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+      aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="nav-navbar collapse navbar-collapse navbar-right " id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto pl-1">
+        <form class="form-inline">
+          <input class="form-control mr-sm-1" type="search" placeholder="SpeaCup" aria-label="Search">
+          <button class="btn btn-outline-danger my-2 my-sm-0 " type="submit"><i
+              class="fa-solid fa-magnifying-glass"></i></button>
+        </form>
+        <li class="nav-item pl-5 mr-5">
+        <li><a href="login.html"><i class="fa-regular fa-bell">&ensp;通知&ensp;</i></a></li>
+        <li><a href="login.html" target="_blank"><i class="fa-regular fa-user">&ensp;登入</i></a></li>
+        </li>
+    </div>
+
+
+  </nav>
+
+  <div id="siderbarleft">
+    <ul class="nav flex-column ind ">
+      <li class="nav-item">
+        <a class="nav-link " aria-current="page" href="index.html"><i class="fa-solid fa-bell">&ensp;首頁</i></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="cate1.html"><i class="fa-solid fa-bell">&ensp;類別一</i></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link active" href="cate2.html"><i class="fa-solid fa-bell">&ensp;類別二</i></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="cate3.html"><i class="fa-solid fa-bell">&ensp;類別三</i></a>
+      </li>
+    </ul>
+  </div>
+
+
+  <div id="siderbarindex">
+    <div class="hotnew"style="border: solid 2px orange; width: 50%;">
+  
+        <div class="row">
+          <img src="assets/img/bell.png " class="col-2"width="100%" >
+          
+          <p class="col-10">黃色皮卡丘</p>
+        </div>
+        <from class="row" style="width:95%; margin: 3%;">
+          <input type="text"  style="word-wrap:break-word;" class="col-12" placeholder="編輯標題">
+           
+          </input>
+          <div class="col-12">&nbsp</div>
+          
+          <textarea type="text" style="word-wrap:break-word;" class="col-12" >編輯內文
+          </textarea> 
+          
+        
+        
+          </br></br>
+          <div class="row" style="margin: 20px;">
+          <div class="col-2"></div>
+          <button type="submit" class="col-4">
+                送出發文
+    
+          </button>
+          <div class="col-1"></div>
+          <button  class="col-4">
+                取消發文
+          </button>
+          <div class="col-1"></div>
+        </from>
+    </div>
+  </div>
+
+
+  <div id="siderbarright1">
+    廣告
+  </div>
+
+  <div id="siderbarright2">
+    聊天
+  </div>
+
+  <!-- 回到頂部小蝴蝶 -->
+  <button class="js-back-to-top back-to-top" title="回到頂部"><i class="fa-solid fa-up-to-line"></i></button>
+
+</body>
+
+
+<script>
+  // 回到頂端樣式
+  $(function () {
+    var $win = $(window);
+    var $backToTop = $('.js-back-to-top');
+
+    $win.scroll(function () {
+      if ($win.scrollTop() > 100) { $backToTop.show(); }
+      else { $backToTop.hide(); }
+    });
+
+
+    $backToTop.click(function () { $('html, body').animate({ scrollTop: 0 }, 200); });
+  });
+
+
+
+</script>
+
+</html>
