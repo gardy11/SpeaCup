@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (isset($_SESSION['unique_id'])) {
-      header("location: index.php");
+  header("location: index.php");
 }
 ?>
 <!DOCTYPE html>
@@ -24,8 +24,11 @@ if (isset($_SESSION['unique_id'])) {
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <script src="https://kit.fontawesome.com/993da95711.js" crossorigin="anonymous"></script>
-  <script
-    language="javascript">function changeImageString(TargetID, FildAddres) { document.images[TargetID].src = FildAddres; }</script>
+  <script language="javascript">
+    function changeImageString(TargetID, FildAddres) {
+      document.images[TargetID].src = FildAddres;
+    }
+  </script>
 </head>
 
 
@@ -57,71 +60,77 @@ if (isset($_SESSION['unique_id'])) {
   </nav>
 
   <div id="siderbarindex">
-   <section class="form signup">
+    <section class="form signup">
       <div id="register" class="mr-3 ml-3 mb-3">
         <h1 class="ml-5 text-dark display-5">會員註冊</h1>
       </div>
       <hr class="hr">
 
       <form action="#" enctype="multipart/form-data" autocomplete="off">
-      <div class="error-txt"></div>
+        <div class="error-txt"></div>
 
-      <div id="r-email" class="m-3 field input">
-        <h4 class="ml-5 text-muted">信箱</h4>
-        <input type="email" name="email" class="form-control ml-5" id="r-email" placeholder="輸入電子信箱" require/>
-      </div>
-
-      <div id="r-account" class="m-3">
-        <h4 class="ml-5 text-muted">帳號</h4>
-        <div class="col-auto row field input">
-          <input type="text" name="account" id="inputPassword6" class="form-control ml-5 col-5" placeholder="輸入帳號" aria-describedby="passwordHelpInline" require/>
-          <span id="passwordHelpInline" class="form-text mt-2 pr-5 col-6">&ensp;帳號長度為8-20字，且不能更改。</span>
+        <div id="r-email" class="m-3 field input">
+          <h4 class="ml-5 ">信箱</h4>
+          <input type="email" name="email" class="form-control ml-5" id="r-email" placeholder="輸入電子信箱" require />
         </div>
-      </div>
 
-      <div id="r-password" class="m-4 field input">
-        <h4 class="ml-4 text-muted">密碼</h4>
-        <div class="col-auto row field input">
-          <input type="password" name="password" id="inputPassword6" class="form-control ml-4 col-5" placeholder="輸入密碼" aria-describedby="passwordHelpInline" require/>
-          <span id="passwordHelpInline" class="form-text mt-2 pr-5 col-4">&ensp;密碼長度為8-20字。</span>
+        <div id="r-account" class="m-3">
+          <div class="row">
+            <h4 class="ml-5 col-3">帳號</h4>
+            <span id="passwordHelpInline" class="form-text mt-2 pr-5 col-6 text-muted" >&ensp;帳號長度為8-20字。</span>
+          </div>
+          <div class="col-auto row field input">
+            <input type="text" name="account" id="inputPassword6" class="form-control ml-5 " placeholder="輸入帳號" aria-describedby="passwordHelpInline" require />
+          </div>
         </div>
-      </div>
 
-      <div class="name-details">
-         <div class="field input">
-         <h4 class="ml-5 text-muted">暱稱:</h4>
-         <input type="text" name="fname" class="form-control ml-5" placeholder="請輸入暱稱" required />
-         </div>
-      </div>
+        <div id="r-password" class="m-3 field input">
+          <div class="row">
+            <h4 class="ml-5 col-3">密碼</h4>
+            <span id="passwordHelpInline" class="form-text mt-2 pr-5 col-6 text-muted">&ensp;密碼長度為8-20字。</span>
+          </div>
+          <div class="col-auto row field input">
+            <input type="password" name="password" id="inputPassword6" class="form-control ml-5 " placeholder="輸入密碼" aria-describedby="passwordHelpInline" require />
+          </div>
+        </div>
 
-      <div id="r-bd" class="m-4 ">
-        <h4 class="ml-4 text-muted">生日</h4>
-        <!-- <form> -->
-          <div id="r-bd-r" class="ml-4 field">
-            <input type="date" name="birth" id="r-bd"  pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" required/>
+        <div class="name-details" >
+          <div class="m-3 field input">
+            <h4 class="ml-5 ">暱稱:</h4>
+            <input type="text" name="fname" class="form-control ml-5" placeholder="請輸入暱稱" required />
+          </div>
+        </div>
+
+        <div id="r-bd" class="m-3 ">
+          <h4 class="ml-5 ">生日</h4>
+          <!-- <form> -->
+          <div id="r-bd-r" class="ml-5 field">
+            <input type="date" name="birth" id="r-bd" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" required />
             <span class="validity"></span>
           </div>
-        <!-- </form> -->
-      </div>
+          <!-- </form> -->
+        </div>
 
-      <div class="gender"> <h4 class="ml-5 text-muted">性別:</4>
-          <input type="radio" name="gender" value="男" checked="checked" required /><label>男</label>
-          <input type="radio" name="gender" value="女" required /><label>女</label>
-      </div>
+        <div class="gender m-3 mt-2">
+          <h4 class="ml-5 ">性別:</4>
+            <input type="radio" name="gender" value="男" checked="checked" required /><label>男</label>
+            <input type="radio" name="gender" value="女" required /><label>女</label>
+        </div>
 
-      <div class="field image">
-      <h4 class="ml-5 text-muted">頭像:</4>
-          <input type="file" name="image" required />
-      </div>
+        <div class="field image m-3">
+          <h4 class="ml-5 ">頭像:</4>
+            <input type="file" name="image" required />
+        </div>
 
-      <div id="r-register" class="m-3 pl-5 field button">
-        <input type="submit" id="l-login-l"class="btn btn-outline-warning ml-5 col-2" value="會員註冊" />
-      </div>
+        <div id="r-register" class="m-3 pl-5 field button row">
+          <input type="submit" id="l-login-l" class="btn btn-outline-warning ml-5 col-3" value="會員註冊" />
+          <div class="link col-5 mt-2">已經註冊了嗎?<a href="login.php"> 馬上登入</a></div>
+        </div>
 
       </form>
-    <div class="link">已經註冊了嗎?<a href="login.php"> 馬上登入</a></div>
+      
     </section>
-    
+
 
   </div>
 
