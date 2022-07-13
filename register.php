@@ -71,33 +71,40 @@ if (isset($_SESSION['unique_id'])) {
 
         <div id="r-email" class="m-3 field input">
           <h4 class="ml-5 ">信箱</h4>
-          <input type="email" name="email" class="form-control ml-5" id="r-email" placeholder="輸入電子信箱" require />
+          <input type="email" name="email" class="form-control ml-5" id="r-email" 
+                 placeholder="輸入電子信箱" maxlength="20" require 
+                 pattern="[a-z0-9._]+@[a-z0-9._]+\.[a-z]{2,4}$"/>
         </div>
 
         <div id="r-account" class="m-3">
           <div class="row">
             <h4 class="ml-5 col-3">帳號</h4>
-            <span id="passwordHelpInline" class="form-text mt-2 pr-5 col-6 text-muted" >&ensp;帳號長度為8-20字。</span>
+            <span id="passwordHelpInline" class="form-text mt-2 pr-5 col-6 text-muted" >&ensp;帳號長度為大小寫英數字8-20字。</span>
           </div>
           <div class="col-auto row field input">
-            <input type="text" name="account" id="inputPassword6" class="form-control ml-5 " placeholder="輸入帳號" aria-describedby="passwordHelpInline" require />
+            <input type="text" name="account" id="inputAccount6" class="form-control ml-5 " 
+                   placeholder="輸入帳號" aria-describedby="passwordHelpInline"  
+                   pattern="^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z0-9]{8,20}$" />
           </div>
         </div>
 
         <div id="r-password" class="m-3 field input">
           <div class="row">
             <h4 class="ml-5 col-3">密碼</h4>
-            <span id="passwordHelpInline" class="form-text mt-2 pr-5 col-6 text-muted">&ensp;密碼長度為8-20字。</span>
+            <span id="passwordHelpInline" class="form-text mt-2 pr-5 col-6 text-muted">&ensp;密碼長度為大小寫英數字8-20字。</span>
           </div>
           <div class="col-auto row field input">
-            <input type="password" name="password" id="inputPassword6" class="form-control ml-5 " placeholder="輸入密碼" aria-describedby="passwordHelpInline" require />
+            <input type="password" name="password" id="inputPassword6" class="form-control ml-5 " 
+                   placeholder="輸入密碼" aria-describedby="passwordHelpInline" 
+                   pattern="^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z0-9]{8,20}$" require />
+            <i class="fa fa-eye col-2 mt-3"></i>
           </div>
         </div>
 
         <div class="name-details" >
           <div class="m-3 field input">
             <h4 class="ml-5 ">暱稱:</h4>
-            <input type="text" name="fname" class="form-control ml-5" placeholder="請輸入暱稱" required />
+            <input type="text" name="fname" class="form-control ml-5" placeholder="請輸入暱稱" maxlength="20" required />
           </div>
         </div>
 
@@ -105,7 +112,9 @@ if (isset($_SESSION['unique_id'])) {
           <h4 class="ml-5 ">生日</h4>
           <!-- <form> -->
           <div id="r-bd-r" class="ml-5 field">
-            <input type="date" name="birth" id="r-bd" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" required />
+            <input type="date" name="birth" id="r-bd" 
+                   pattern="[0-9]{3}/[0-9]{2}/[0-9]{2}$" 
+                   required />
             <span class="validity"></span>
           </div>
           <!-- </form> -->
@@ -118,8 +127,9 @@ if (isset($_SESSION['unique_id'])) {
         </div>
 
         <div class="field image m-3">
-          <h4 class="ml-5 ">頭像:</4>
-            <input type="file" name="image" required />
+          <h4 class="ml-5 ">頭貼:</4>
+          <img id="preview_img" src="php/images/review.png" width="200px" height="200px" />  
+          <input type="file" name="image" id="src_img" required />
         </div>
 
         <div id="r-register" class="m-3 pl-5 field button row">
@@ -136,6 +146,7 @@ if (isset($_SESSION['unique_id'])) {
 
   <script src="./JS/pass-show-hide.js"></script>
   <script src="./JS/signup.js"></script>
+  <script src="./JS/chk_userInfo.js"></script>
 </body>
 
 
@@ -160,6 +171,29 @@ if (isset($_SESSION['unique_id'])) {
       }
     }
   }
+</script>
+
+<script>
+  //選擇大頭貼預覽
+
+  function readURL(input) {
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();
+      reader.onload = function(e) {
+        if (input.files[0]) {
+
+        }
+        $("#preview_img").attr('src', e.target.result);
+      }
+      reader.readAsDataURL(input.files[0]);
+    }
+  }
+
+  $("#src_img").change(function() {
+
+    readURL(this);
+
+  });
 </script>
 
 </html>

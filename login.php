@@ -81,7 +81,7 @@ if (isset($_SESSION['unique_id'])) {
         <div id="l-email" class="mb-3 ml-3 field input">
           <label for="l-email" class="form-label h4 ml-5">信箱/帳號</label>
           <div class="row">
-          <input type="text" name="email_account" class="form-control ml-5 mt-2 col-5" id="l-email" placeholder="輸入信箱">
+          <input type="text" name="email_account" class="form-control ml-5 mt-2 col-5" id="l-email" placeholder="輸入信箱或帳號">
           <p class="col-2 mt-2"></p>
         </div>
         </div>

@@ -178,6 +178,20 @@ nav.navbar{
   background-size: 100%; 
 }
 
+/* 註冊、登入、會員資訊頁提示訊息 */
+.error-txt {  
+  color: #721c24;
+  width: 80%;
+  padding: 8px 10px;
+  text-align: center;
+  border-radius: 5px;
+  background: #f8d7da;
+  border: 1px solid #f5c6cb;
+  margin: 0% auto;
+  margin-bottom: 10px;
+  display: none;
+}
+
 
 
 

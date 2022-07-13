@@ -1,5 +1,5 @@
-const pswrField = document.querySelector( '.form input[type="password"]' ),
-      toggleBtn = document.querySelector( ".form .field i" );
+const pswrField = document.querySelector( '.form input[type="password"] #m-password2 m-password3'),
+      toggleBtn = document.querySelectorAll( ".form .field i" );
 
 toggleBtn.onclick = () =>
 {

@@ -1,6 +1,6 @@
-const form = document.querySelector( '.signup form' ),
+const form = document.querySelector( '.update_pw form' );
       // @ts-ignore
-      continueBtn = form.querySelector( '.button input' ),
+      continueBtn = form.querySelector( '.button input' );
       // @ts-ignore
       errorTexT = form.querySelector( '.error-txt' );
 
@@ -15,7 +15,7 @@ form.onsubmit = ( e ) =>
 continueBtn.onclick = () =>
 {
       let xhr = new XMLHttpRequest();
-      xhr.open( "POST", "php/signup.php", true );
+      xhr.open( "POST", "php/up_pswd.php", true );
       xhr.onload = () =>
       {
             if ( xhr.readyState === XMLHttpRequest.DONE )
@@ -25,11 +25,10 @@ continueBtn.onclick = () =>
                         let data = xhr.response;
                         if ( data == "OK" )
                         {
-                              alert ("註冊成功已登入!!");
-                              location.href = "index.php";
+                              alert ("會員密碼修改成功!");
+                              location.href = "member.php";
                         } else
                         {
-                              // @ts-ignore
                               errorTexT.textContent = data;
                               // @ts-ignore
                               errorTexT.style.display = "block";

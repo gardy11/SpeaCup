@@ -47,7 +47,7 @@
         </form>
         <li class="nav-item pl-5 mr-5">
         <li><a href=""><i class="fa-solid fa-bell">&ensp;&ensp;</i></a></li>
-        <li><a href="login.php" title="會員中心"><i class="fa-solid fa-user">&ensp;&ensp;</i></a></li>
+        <li><a href="member.php" title="會員中心"><i class="fa-solid fa-user">&ensp;&ensp;</i></a></li>
         </li>
     </div>
 

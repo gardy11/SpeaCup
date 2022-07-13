@@ -94,83 +94,62 @@ if (mysqli_num_rows($sql) > 0) {
   </div>
 
   <div id="siderbarindex">
-    <section class="form update">
-      <form method="POST" action="#" enctype="multipart/form-data" autocomplete="off">
-        <div id="m-inform" class="mr-3 ml-3 mb-3">
-          <h1 class="ml-5 text-dark display-5">基本資料</h1>
-          <p class="ml-5">(暫放)狀態：<?php echo $row['status']; ?>
-            <a href="php/logout.php?logout_id=<?php echo $row['unique_id']; ?>" class="logout">登出</a>
-          </p>
-          <hr class="hr">
-        </div>
-        <div id="m-nickname" class="m-3">
-          <h4 class="ml-5 text-muted">帳號</h4>
-          <p id="m-nickname-n" class="ml-5">@<?php echo $row['account']; ?></p>
-          <hr class="hr">
-        </div>
-        <div id="m-nickname" class="m-3 field input">
-          <h4 class="ml-5 text-muted">暱稱</h4>
-          <input type="text" name="fname" value="<?php echo $row['nickname']; ?>" id="m-nickname-n" class="ml-5" required />
+    <section class="form update_pw">
+      <form method="POST" action="#" enctype="text/plain" autocomplete="off">
+        <div id="m-inform" class="m-3">
+          <h1 class="ml-5 text-dark display-4">修改密碼</h1>
+
           <hr class="hr">
         </div>
 
-        <div id="m-password" class="m-3">
-          <h4 class="ml-5 text-muted">密碼</h4>
+
+
+        <div id="m-password" class="m-3 field input">
+          <label class="ml-5 text-muted">請輸入舊密碼</label>
           <div class="row ">
-            <button class="btn btn-outline-warning ml-5 col-2" onclick="location.href='update_pw.php'">更改密碼</button>
-            
+            <input type="password" name="old_pswd" class="form-control ml-5" 
+                   id="m-password" placeholder="輸入舊密碼" />
+            <i class="fa fa-eye"></i>
           </div>
           <hr class="hr">
         </div>
 
-        <div id="m-img " class="m-3 ">
-          <h4 class="ml-5 text-muted">頭貼</h4>
-          <div class="row">
-            
-              <input type="hidden" name="old_img" value="/<?php echo $row['img']; ?>" />
-              
-              <img src="php/images/<?php echo $row['img']; ?>" width="200px" height="200px" class="ml-5 col-3 rounded" alt="大頭貼">
-            
-            <div class="col" style="padding-left:10%">
-                <div class="input-group mb-1 pb-5 col-7 field image" width="200px">
-                  <img id="preview_img" src="php/images/review.png" width="200px" height="200px" style="padding-bottom:2%"/>
-                  <input type="file" name="image" accept="image/*,.jpeg, .png, .jpg" class="form-control " id="inputGroupFile02" width="200px">
-                </div>
-            </div>
+        <div id="m-password2" class="m-3 field input">
+          <label class="ml-5 text-muted">請輸入新密碼    密碼長度為大小寫英數字8-20字。</label>
+          <div class="row ">
+            <input type="password" name="new_pswd" class="form-control ml-5" 
+                   id="m-password2" placeholder="輸入新密碼"
+                   pattern="^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z0-9]{8,20}$" />
+            <i class="fa fa-eye"></i>
+          </div>
+          <hr class="hr">
+        </div>
 
+        <div id="m-password3" class="m-3 field input">
+          <label class="ml-5 text-muted">確認新密碼</label>
+          <div class="row ">
+            <input type="password" name="ch_pswd" class="form-control ml-5" 
+                   id="m-password3" placeholder="再次輸入新密碼" 
+                   pattern="^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z0-9]{8,20}$" />
+            <i class="fa fa-eye"></i>
           </div>
           <hr class="hr">
         </div>
 
 
-        <div id="m-bd" class="m-3">
-          <h4 class="ml-5 text-muted">生日</h4>
-          <label id="m-bd-b" class="ml-5"><?php echo $row['birth']; ?></label>
-          <hr class="hr">
-        </div>
-        <div id="m-bd" class="m-3">
-          <h4 class="ml-5 text-muted">性別：</h4>
-          <label id="m-bd-b" class="ml-5"><?php echo $row['gender']; ?></label>
-          <hr class="hr">
-        </div>
-        <div id="m-email" class="m-3 field input">
-          <h4 class="ml-5 text-muted">綁定信箱</h4>
-          <input type="email" name="email" value="<?php echo $row['email']; ?>" id="m-email-e" class="ml-5 " required />
-        </div>
-        <div id="m-bd" class="m-3">
-          <h4 class="ml-5 text-muted">註冊日期：</h4>
-          <label id="m-bd-b" class="ml-5"><?php echo substr($row['register'], 0, 10); ?></label>
-          <hr class="hr">
-        </div>
+
+
 
         <div class="error-txt"></div>
-        <div id="m-c" class="m-3 field button">
-          <input type="submit" name="submit2" class="btn btn-outline-warning  m-3 ml-5 mb-5" value="儲存修改">
+        <div class="m-3 pl-5 field button">
+          <input type="submit" name="submit3" value="儲存修改">
         </div>
-
+        
 
       </form>
     </section>
+
+
   </div>
 
 
@@ -182,8 +161,10 @@ if (mysqli_num_rows($sql) > 0) {
     
   </div>
 
-  
-  <script src="./Js/user_update.js"></script>
+
+  <script src="./Js/pass-show-hide.js"></script>
+  <script src="./Js/up_pswd.js"></script>
+  <script src="./JS/chk_userInfo.js"></script>
 
 </body>
 
@@ -208,29 +189,6 @@ if (mysqli_num_rows($sql) > 0) {
         scrollTop: 0
       }, 200);
     });
-  });
-</script>
-
-<script>
-  //選擇大頭貼預覽
-
-  function readURL(input) {
-    if (input.files && input.files[0]) {
-      var reader = new FileReader();
-      reader.onload = function(e) {
-        if (input.files[0]) {
-
-        }
-        $("#preview_img").attr('src', e.target.result);
-      }
-      reader.readAsDataURL(input.files[0]);
-    }
-  }
-
-  $("#inputGroupFile02").change(function() {
-
-    readURL(this);
-
   });
 </script>
 
