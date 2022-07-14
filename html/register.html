@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SpeaCup有話直說</title>
+  <link rel="icon" type="image/x-icon" href="assets/fav.ico" />
+  <link href="css/style.css" rel="stylesheet" />
+  <script src="JS/scripts.js"></script>
+  <script src="js/jquery-3.6.0.js"></script>
+
+  <!-- 外部匯入樣式 -->
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="https://kit.fontawesome.com/993da95711.js" crossorigin="anonymous"></script>
+  <script
+    language="javascript">function changeImageString(TargetID, FildAddres) { document.images[TargetID].src = FildAddres; }</script>
+</head>
+
+
+<body class="body">
+  <!-- navbar -->
+  <nav class="navbar fixed-top navbar-expand-lg navbar-dark mr-1">
+    <div clss="col-3">
+      <a class="navbar-brand" href="index.html">
+        <img src="assets/img/有話 直說 (1).png" width="60" height="60" class="d-inline-block align-top" alt="">
+        <img src="assets/img/SpeaCup.png" width="250" height="60" class="d-inline-block align-top" alt="">
+      </a>
+    </div>
+    <button class="navbar-toggler navbar-left" type="button" data-toggle="collapse"
+      data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+      aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="nav-navbar collapse navbar-collapse navbar-right " id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto pl-1">
+        <form class="form-inline">
+          <input class="form-control mr-sm-1" type="search" placeholder="SpeaCup" aria-label="Search">
+          <button class="btn btn-outline-danger my-2 my-sm-0 " type="submit"><i
+              class="fa-solid fa-magnifying-glass"></i></button>
+        </form>
+        <li class="nav-item pl-5 mr-5">
+        <li><a href="login.html"><i class="fa-regular fa-bell">&ensp;通知&ensp;</i></a></li>
+        <li><a href="login.html" target="_blank"><i class="fa-regular fa-user">&ensp;登入</i></a></li>
+        </li>
+    </div>
+
+
+  </nav>
+
+
+
+
+  <div id="siderbarindex">
+    <div id="register" class="m-3">
+      <h1 class="ml-5 text-dark display-4">會員註冊</h1>
+    </div>
+    <hr class="hr">
+
+    <div id="r-email" class="m-3">
+      <h4 class="ml-5 text-muted">信箱</h4>
+      <input type="text" class="form-control ml-5" id="r-email" placeholder="輸入電子信箱">
+    </div>
+
+    <div id="r-account" class="m-3">
+      <h4 class="ml-5 text-muted">帳號</h4>
+      <div class="col-auto row">
+        <input type="password" id="inputPassword6" class="form-control ml-5 col-5" aria-describedby="passwordHelpInline">
+        <span id="passwordHelpInline" class="form-text mt-2 pr-5 col-6">&ensp;帳號長度為8-20字，且不能更改。</span>
+      </div>
+
+
+    <div id="r-password" class="m-4 ">
+      <h4 class="ml-4 text-muted">密碼</h4>
+      <div class="col-auto row">
+        <input type="password" id="inputPassword6" class="form-control ml-4 col-5" aria-describedby="passwordHelpInline">
+        <span id="passwordHelpInline" class="form-text mt-2 pr-5 col-4">&ensp;密碼長度為8-20字。</span>
+      </div>
+    </div>
+
+    <div id="r-bd" class="m-4">
+      <h4 class="ml-4 text-muted">生日</h4>
+      <form>
+        <div id="r-bd-r" class="ml-4">
+          <input type="date" id="r-bd" required pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}">
+          <span class="validity"></span>
+        </div>
+      </form>
+    </div>
+
+    <div id="r-register" class="m-3 pl-5">
+      <button type="button" id="l-login-l"class="btn btn-outline-warning ml-5 col-2">會員註冊</button>
+    </div>
+
+    
+
+  </div>
+
+
+  <div id="siderbarright1">
+    廣告
+  </div>
+
+</body>
+
+
+<script>
+  export default {
+    data() {
+      const now = new Date()
+      const today = new Date(now.getFullYear(), now.getMonth(), now.getDate())
+      // 15th two months prior
+      const minDate = new Date(today)
+      minDate.setMonth(minDate.getMonth() - 2)
+      minDate.setDate(15)
+      // 15th in two months
+      const maxDate = new Date(today)
+      maxDate.setMonth(maxDate.getMonth() + 2)
+      maxDate.setDate(15)
+
+      return {
+        value: '',
+        min: minDate,
+        max: maxDate
+      }
+    }
+  }
+</script>
+
+</html>
+
+
+
