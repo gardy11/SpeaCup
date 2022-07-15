@@ -73,6 +73,18 @@
   </div>
 
 
+
+  <!-- 最新與熱門 -->
+<!--最新與熱門連資料庫和query-->
+<?php
+
+$mysqli = new mysqli('localhost','root','','speacup',3306);
+
+$sql="SELECT * FROM `posts` WHERE 1";
+$result=$mysqli->query($sql);
+
+?>
+<!--最新與熱門html-->
   <div id="siderbarindex">
     <div class="w3-container hotnew" style="width: 100%">
       <div class="w3-bar w3-black row">
@@ -82,39 +94,57 @@
 
       
       <div id="ihot" class="article">
-        <div class="row" style="border: solid 2px orange; width: 100%;">
-          <div class="col-12">
-            <form class="row">
-              <img src="assets/img/bell.png " class="col-2" width="70px" height="70px">
-              <div class="col-2 mt-4" style=" text-align:center; font-size: 20px;">類別一</div>
-              <p class="col-4 mt-4" style=" text-align:center; font-size: 20px;">黃色皮卡丘</p>
-            </form>
-            <div class="col-12" style=" text-align:center;font-size: 30px;">
-              <p>大標題就決定字體20px了</p>
-            </div>
-            <div class="col-12">
-              <p>比例列</p>
-            </div>
-          </div>
-        </div>
+      <?php
+
+for ( $i = 0 ; $i<4 ; $i++ ){ 
+  $row = $result->fetch_object();
+  echo 
+  '<div class="row" style="border: solid 2px orange; width: 100%;">'.
+    '<div class="col-12">'.
+      '<form class="row">'.
+            '<img src="assets/img/bell.png " class="col-2" width="70px" height="70px">'.
+            '<div class="col-2 mt-4" style=" text-align:center; font-size: 20px;">'.
+            '類別一'.
+            '</div>'.
+            '<p class="col-4 mt-4" style=" text-align:center; font-size: 20px;">'. $row->aid . '</p>'.
+      '</form>'.
+      '<div class="col-12" style=" text-align:center;font-size: 30px;">'.
+            '<p>'.$row->title. '</p>'.
+      '</div>'.
+      '<div class="col-12">'.
+            '<p>比例列</p>'.
+      '</div>'.
+    '</div>'.
+  '</div>';
+}
+?>
       </div>
 
       <div id="inew" class="article" style="display:none">
-        <div class="row" style="border: solid 2px orange; width: 100%;">
-          <div class="col-12">
-            <form class="row">
-              <img src="assets/img/bell.png " class="col-2" width="70px" height="70px">
-              <div class="col-2 mt-4" style=" text-align:center; font-size: 20px;">類別一</div>
-              <p class="col-2 mt-4" style=" text-align:center; font-size: 20px;">黃色皮卡丘</p>
-            </form>
-            <div class="col-12" style=" text-align:center;font-size: 30px;">
-              <p>這是最新發表的文章喔</p>
-            </div>
-            <div class="col-12">
-              <p>比例列</p>
-            </div>
-          </div>
-        </div>
+      <?php
+
+for ( $i = 0 ; $i<4 ; $i++ ){ 
+  $row = $result->fetch_object();
+  echo 
+  '<div class="row" style="border: solid 2px orange; width: 100%;">'.
+    '<div class="col-12">'.
+      '<form class="row">'.
+            '<img src="assets/img/bell.png " class="col-2" width="70px" height="70px">'.
+            '<div class="col-2 mt-4" style=" text-align:center; font-size: 20px;">'.
+            '類別一'.
+            '</div>'.
+            '<p class="col-4 mt-4" style=" text-align:center; font-size: 20px;">'. $row->aid . '</p>'.
+      '</form>'.
+      '<div class="col-12" style=" text-align:center;font-size: 30px;">'.
+            '<p>'.$row->title. '</p>'.
+      '</div>'.
+      '<div class="col-12">'.
+            '<p>比例列</p>'.
+      '</div>'.
+    '</div>'.
+  '</div>';
+}
+?>
       </div>
     </div>
 
