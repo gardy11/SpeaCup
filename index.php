@@ -109,7 +109,7 @@ for ( $i = 0 ; $i<4 ; $i++ ){
             '<p class="col-4 mt-4" style=" text-align:center; font-size: 20px;">'. $row->aid . '</p>'.
       '</form>'.
       '<div class="col-12" style=" text-align:center;font-size: 30px;">'.
-            '<p>'.$row->title. '</p>'.
+            '<p style="overflow-wrap: break-word;">>'.$row->title. '</p>'.
       '</div>'.
       '<div class="col-12">'.
             '<p>比例列</p>'.
@@ -133,10 +133,10 @@ for ( $i = 0 ; $i<4 ; $i++ ){
             '<div class="col-2 mt-4" style=" text-align:center; font-size: 20px;">'.
             '類別一'.
             '</div>'.
-            '<p class="col-4 mt-4" style=" text-align:center; font-size: 20px;">'. $row->aid . '</p>'.
+            '<p class="col-4 mt-4" style=" word-wrap:break-word; text-align:center; font-size: 20px;">'. $row->aid . '</p>'.
       '</form>'.
-      '<div class="col-12" style=" text-align:center;font-size: 30px;">'.
-            '<p>'.$row->title. '</p>'.
+      '<div class="col-12" style="  text-align:center;font-size: 30px;">'.
+            '<p style="overflow-wrap: break-word;">'.$row->title.'</p>'.
       '</div>'.
       '<div class="col-12">'.
             '<p>比例列</p>'.
