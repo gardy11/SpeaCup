@@ -107,16 +107,19 @@ if (mysqli_num_rows($sql) > 0) {
         <div id="m-password" class="m-3 field input">
           <label class="ml-5 text-muted">請輸入舊密碼</label>
           <div class="row ">
-            <input type="password" name="old_pswd" class="form-control ml-5" id="m-password" placeholder="輸入舊密碼">
+            <input type="password" name="old_pswd" class="form-control ml-5" 
+                   id="m-password" placeholder="輸入舊密碼" />
             <i class="fa fa-eye"></i>
           </div>
           <hr class="hr">
         </div>
 
         <div id="m-password2" class="m-3 field input">
-          <label class="ml-5 text-muted">請輸入新密碼</label>
+          <label class="ml-5 text-muted">請輸入新密碼    密碼長度為大小寫英數字8-20字。</label>
           <div class="row ">
-            <input type="password" name="new_pswd" class="form-control ml-5" id="m-password2" placeholder="輸入新密碼">
+            <input type="password" name="new_pswd" class="form-control ml-5" 
+                   id="m-password2" placeholder="輸入新密碼"
+                   pattern="^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z0-9]{8,20}$" />
             <i class="fa fa-eye"></i>
           </div>
           <hr class="hr">
@@ -125,7 +128,9 @@ if (mysqli_num_rows($sql) > 0) {
         <div id="m-password3" class="m-3 field input">
           <label class="ml-5 text-muted">確認新密碼</label>
           <div class="row ">
-            <input type="password" name="ch_pswd" class="form-control ml-5" id="m-password3" placeholder="再次輸入新密碼">
+            <input type="password" name="ch_pswd" class="form-control ml-5" 
+                   id="m-password3" placeholder="再次輸入新密碼" 
+                   pattern="^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z0-9]{8,20}$" />
             <i class="fa fa-eye"></i>
           </div>
           <hr class="hr">
@@ -159,6 +164,7 @@ if (mysqli_num_rows($sql) > 0) {
 
   <script src="./Js/pass-show-hide.js"></script>
   <script src="./Js/up_pswd.js"></script>
+  <script src="./JS/chk_userInfo.js"></script>
 
 </body>
 

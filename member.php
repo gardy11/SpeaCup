@@ -157,6 +157,7 @@ if (mysqli_num_rows($sql) > 0) {
           <h4 class="ml-5 text-muted">綁定信箱</h4>
           <input type="email" name="email" value="<?php echo $row['email']; ?>" id="m-email-e" class="ml-5 " required />
         </div>
+        <hr class="hr">
         <div id="m-bd" class="m-3">
           <h4 class="ml-5 text-muted">註冊日期：</h4>
           <label id="m-bd-b" class="ml-5"><?php echo substr($row['register'], 0, 10); ?></label>
