@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -79,13 +80,17 @@
   </div>
 
 
-  <div id="siderbarindex">
+  <!-- <div id="siderbarindex">
     <div id="posts" class="m-3">
       <h1 class="ml-5 display-4">發表過文章</h1>
     </div>
-    <hr class="hr">
+    <hr class="hr"> -->
 
-    <div id="p1" class="m-3 mb-3">
+    <?php 
+      include_once "myposts.php"; 
+    ?>
+
+    <!-- <div id="p1" class="m-3 mb-3">
       <div id="p1" class="row mb-2 ml-5 ">
         <img src="" class="" width="40px" height="40px"></img>
         <h5 class="ml-5">類別二</h5>
@@ -123,7 +128,7 @@
       </div>
     </div>
 
-  </div>
+  </div> -->
 
 
   <div id="siderbarright1">
