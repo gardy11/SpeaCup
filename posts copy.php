@@ -1,7 +1,8 @@
-<?php 
-include_once "myheader.php";  
-  session_start();
-?>
+
+<!DOCTYPE html>
+<html lang="en">
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -61,77 +62,72 @@ include_once "myheader.php";
   <div id="siderbarleft">
     <ul class="nav flex-column ind ">
       <li class="nav-item">
-        <a class="nav-link " aria-current="page" href="index.php"><i class="fa-solid fa-mug-hot">&ensp;首頁</i></a>
+        <a class="nav-link " aria-current="page" href="member.php"><i class="fa-solid fa-bell">&ensp;基本資料</i></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="cate1.php"><i class="fa-solid fa-mug-hot">&ensp;類別一</i></a>
+        <a class="nav-link" href="posts.php"><i class="fa-solid fa-bell">&ensp;發表過文章</i></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link active" href="cate2.php"><i class="fa-solid fa-mug-hot">&ensp;類別二</i></a>
+        <a class="nav-link active" href="collections.php"><i class="fa-solid fa-bell">&ensp;收藏文章</i></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="cate3.php"><i class="fa-solid fa-mug-hot">&ensp;類別三</i></a>
-      </li>
-
-    </ul>
-  </div>    </div>
-
-
-  </nav>
-
-  <div id="siderbarleft">
-    <ul class="nav flex-column ind ">
-      <li class="nav-item">
-        <a class="nav-link " aria-current="page" href="index.html"><i class="fa-solid fa-bell">&ensp;首頁</i></a>
+        <a class="nav-link" href="friends.php"><i class="fa-solid fa-bell">&ensp;好友列表</i></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="cate1.html"><i class="fa-solid fa-bell">&ensp;類別一</i></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link active" href="cate2.html"><i class="fa-solid fa-bell">&ensp;類別二</i></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="cate3.html"><i class="fa-solid fa-bell">&ensp;類別三</i></a>
+        <a class="nav-link" href="apply.php"><i class="fa-solid fa-bell">&ensp;申請好友</i></a>
       </li>
     </ul>
   </div>
-<br><br><br><br><br>
-  <?php 
-  include_once "newpost.php"; 
-?>
+
+
   <!-- <div id="siderbarindex">
-    <div class="hotnew"style="border: solid 2px orange; width: 50%;">
-  
-        <div class="row">
-          <img src="assets/img/bell.png " class="col-2"width="100%" >
-          
-          <p class="col-10">黃色皮卡丘</p>
-        </div>
-        <from class="row" style="width:95%; margin: 3%;">
-          <input type="text"  style="word-wrap:break-word;" class="col-12" placeholder="編輯標題">
-           
-          </input>
-          <div class="col-12">&nbsp</div>
-          
-          <textarea type="text" style="word-wrap:break-word;" class="col-12" >編輯內文
-          </textarea> 
-          
-        
-        
-          </br></br>
-          <div class="row" style="margin: 20px;">
-          <div class="col-2"></div>
-          <button type="submit" class="col-4">
-                送出發文
-    
-          </button>
-          <div class="col-1"></div>
-          <button  class="col-4">
-                取消發文
-          </button>
-          <div class="col-1"></div>
-        </from>
+    <div id="posts" class="m-3">
+      <h1 class="ml-5 display-4">發表過文章</h1>
     </div>
+    <hr class="hr"> -->
+
+    <?php 
+      include_once "myposts.php"; 
+    ?>
+
+    <!-- <div id="p1" class="m-3 mb-3">
+      <div id="p1" class="row mb-2 ml-5 ">
+        <img src="" class="" width="40px" height="40px"></img>
+        <h5 class="ml-5">類別二</h5>
+        <h5 class="ml-5">黃色的皮卡丘</h5>
+      </div>
+      <div id="p1" class="row mt-4 ml-5">
+        <h3 class="">一個大標題1</h3>
+        <p class="ml-5">2022/01/13</p>
+      </div>
+    </div>
+    <hr class="hr">
+
+    <div id="p2" class="m-3 mb-3">
+      <div id="p2" class="row mb-2 ml-5 ">
+        <img src="" class="" width="40px" height="40px"></img>
+        <h5 class="ml-5">類別二</h5>
+        <h5 class="ml-5">黃色的皮卡丘</h5>
+      </div>
+      <div id="p2" class="row mt-4 ml-5">
+        <h3 class="">一個大標題1</h3>
+        <p class="ml-5">2022/01/13</p>
+      </div>
+    </div>
+    <hr class="hr"
+    >
+    <div id="p3" class="m-3 mb-3">
+      <div id="p3" class="row mb-2 ml-5 ">
+        <img src="" class="" width="40px" height="40px"></img>
+        <h5 class="ml-5">類別二</h5>
+        <h5 class="ml-5">黃色的皮卡丘</h5>
+      </div>
+      <div id="p3" class="row mt-4 ml-5">
+        <h3 class="">一個大標題1</h3>
+        <p class="ml-5">2022/01/13</p>
+      </div>
+    </div>
+
   </div> -->
 
 
@@ -143,28 +139,13 @@ include_once "myheader.php";
     聊天
   </div>
 
-  <!-- 回到頂部小蝴蝶 -->
-  <button class="js-back-to-top back-to-top" title="回到頂部"><i class="fa-solid fa-up-to-line"></i></button>
+
+
 
 </body>
 
 
 <script>
-  // 回到頂端樣式
-  $(function () {
-    var $win = $(window);
-    var $backToTop = $('.js-back-to-top');
-
-    $win.scroll(function () {
-      if ($win.scrollTop() > 100) { $backToTop.show(); }
-      else { $backToTop.hide(); }
-    });
-
-
-    $backToTop.click(function () { $('html, body').animate({ scrollTop: 0 }, 200); });
-  });
-
-
 
 </script>
 
