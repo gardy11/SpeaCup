@@ -79,26 +79,14 @@ include_once "myheader.php";
 
   </nav>
 
-  <div id="siderbarleft">
-    <ul class="nav flex-column ind ">
-      <li class="nav-item">
-        <a class="nav-link " aria-current="page" href="index.html"><i class="fa-solid fa-bell">&ensp;首頁</i></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="cate1.html"><i class="fa-solid fa-bell">&ensp;類別一</i></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link active" href="cate2.html"><i class="fa-solid fa-bell">&ensp;類別二</i></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="cate3.html"><i class="fa-solid fa-bell">&ensp;類別三</i></a>
-      </li>
-    </ul>
-  </div>
-<br><br><br><br><br>
+  
+
+<div style="width: 50%;
+  height:10%;">
   <?php 
   include_once "newpost.php"; 
 ?>
+</div>
   <!-- <div id="siderbarindex">
     <div class="hotnew"style="border: solid 2px orange; width: 50%;">
   
