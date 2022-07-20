@@ -60,7 +60,7 @@
         <a class="nav-link " aria-current="page" href="index.php"><i class="fa-solid fa-mug-hot">&ensp;首頁</i></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="cate1.php"><i class="fa-solid fa-mug-hot">&ensp;類別一</i></a>
+        <a class="nav-link" href="cate1.php"><i class="fa-solid fa-mug-hot">&ensp;類別一1</i></a>
       </li>
       <li class="nav-item">
         <a class="nav-link active" href="cate2.php"><i class="fa-solid fa-mug-hot">&ensp;類別二</i></a>
