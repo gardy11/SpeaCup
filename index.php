@@ -50,12 +50,72 @@
         </form>
         <li class="nav-item pl-5 mr-5">
         <li><a href=""><i class="fa-solid fa-bell">&ensp;&ensp;</i></a></li>
-        <li><a href="login.php" title="會員中心"><i class="fa-solid fa-user">&ensp;&ensp;</i></a></li>
+        <li><a class="fa-solid fa-user" onclick="doAnimateShow();">&ensp;&ensp;</a></li>
         </li>
     </div>
 
 
   </nav>
+
+<!-- 會員圖案click後的box -->
+<div class="box" id="box">
+		
+		<a href="member.php" class="h2">會員中心</a>
+		<a href="php/dereout.php" class="h2">登出</a>
+    
+	</div>
+  
+  <!-- /* m-box */ -->
+  <style>
+.box {
+	position: fixed;
+	top: -200px;
+	left: 70%;
+  height: 200px;
+	width: 350px;
+	background-color: #fff;
+	color: #7F7F7F;
+	padding: 20px;
+	border: 2px solid #ccc;
+	-moz-border-radius: 20px;
+	-webkit-border-radius: 20px;
+	-khtml-border-radius: 20px;
+	-moz-box-shadow: 0 1px 5px #333;
+	-webkit-box-shadow: 0 1px 5px #333;
+	z-index: 101;
+	
+	
+}
+
+.nopadding {
+   padding: 0 !important;
+   margin: 0 !important;
+}
+
+
+</style>
+  <script>
+		function doAnimateShow() {
+			document.getElementById("box").style.top= "90px";
+			event.cancelBubble = true;
+		}
+
+		function doAnimateHide() {
+			document.getElementById("box").style.top = "-200px";
+			
+		}
+		
+		window.onclick = function(ev){
+    if( ev.target.nodeName !== 'A' ){
+      doAnimateHide();
+    }
+    };
+
+		
+		
+		
+	</script>
+
 
   <div id="siderbarleft" class="siderbarleft">
     <div id="sidebar">
@@ -87,9 +147,14 @@
 
   $mysqli = new mysqli('localhost', 'root', '', 'speacup', 3306);
 
-  $sql = "SELECT * FROM `posts` WHERE 1";
-  $result = $mysqli->query($sql);
-
+  $sqlIndexHot = "SELECT * ,
+  (likes+angry) as total 
+  from posts ORDER BY total DESC;";
+  $resultIndexHot = $mysqli->query($sqlIndexHot);
+  $sqlIndexNew = "SELECT * ,
+  (likes+angry) as total  
+  from posts ORDER BY created;";
+  $resultIndexNew = $mysqli->query($sqlIndexNew);
   ?>
   <!--最新與熱門html-->
   <div id="siderbarindex">
@@ -104,7 +169,7 @@
         <?php
 
         for ($i = 0; $i < 4; $i++) {
-          $row = $result->fetch_object();
+          $rowIndexHot = $resultIndexHot->fetch_object();
           echo
           '<div class="row" style="border: solid 2px orange; width: 100%;">' .
             '<div class="col-12">' .
@@ -113,14 +178,17 @@
             '<div class="col-2 mt-4" style=" text-align:center; font-size: 20px;">' .
             '類別一' .
             '</div>' .
-            '<p class="col-4 mt-4" style=" text-align:center; font-size: 20px;">' . $row->aid . '</p>' .
+            '<p class="col-4 mt-4" style=" text-align:center; font-size: 20px;">' . $rowIndexHot->aid . '</p>' .
             '</form>' .
             '<div class="col-12" style=" text-align:center;font-size: 30px;">' .
-            '<p style="overflow-wrap: break-word;">>' . $row->title . '</p>' .
+            '<p style="overflow-wrap: break-word;">>' . $rowIndexHot->title . '</p>' .
             '</div>' .
-            '<div class="col-12">' .
-            '<p>比例列</p>' .
-            '</div>' .
+            '<div class="col-12 nopadding" style="height:12%;background:yellow;">'.
+                      '<div style="background:red;height:100%; width: calc(100% * ('.$rowIndexHot->likes.'/'.$rowIndexHot->total.'));"></div>'.
+                '</div>'.
+                '<div class="col-12 nopadding" style="height:10%;">'.
+                      '<p>&nbsp</P>'.
+                '</div>'.
             '</div>' .
             '</div>';
         }
@@ -131,23 +199,26 @@
         <?php
 
         for ($i = 0; $i < 4; $i++) {
-          $row = $result->fetch_object();
+          $rowIndexNew = $resultIndexNew->fetch_object();
           echo
-          '<div class="row" style="border: solid 2px orange; width: 100%;">' .
+          '<div class="row" style="border: solid 2px orange ; width: 100%;">' .
             '<div class="col-12">' .
             '<form class="row">' .
             '<img src="assets/img/bell.png " class="col-2" width="70px" height="70px">' .
             '<div class="col-2 mt-4" style=" text-align:center; font-size: 20px;">' .
             '類別一' .
             '</div>' .
-            '<p class="col-4 mt-4" style=" word-wrap:break-word; text-align:center; font-size: 20px;">' . $row->aid . '</p>' .
+            '<p class="col-4 mt-4" style=" word-wrap:break-word; text-align:center; font-size: 20px;">' . $rowIndexNew->aid . '</p>' .
             '</form>' .
             '<div class="col-12" style="  text-align:center;font-size: 30px;">' .
-            '<p style="overflow-wrap: break-word;">' . $row->title . '</p>' .
+            '<p style="overflow-wrap: break-word;">' . $rowIndexNew->title . '</p>' .
             '</div>' .
-            '<div class="col-12">' .
-            '<p>比例列</p>' .
-            '</div>' .
+            '<div class="col-12 nopadding" style="height:12%;background:yellow;">'.
+                      '<div style="background:red;height:100%; width: calc(100% * ('.$rowIndexNew->likes.' / '.$rowIndexNew->total.'));"></div>'.
+                '</div>'.
+                '<div class="col-12 nopadding" style="height:10%;">'.
+                      '<p>&nbsp</P>'.
+                '</div>'.
             '</div>' .
             '</div>';
         }

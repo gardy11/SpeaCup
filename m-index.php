@@ -1,3 +1,20 @@
+<?php
+session_start();
+include_once "php/config.php";
+
+if (!isset($_SESSION['unique_id'])) { //未登入時導向登入頁
+  header("location: login.php");
+}
+?>
+
+<?php //撈資料
+$sql = mysqli_query($conn, "SELECT * FROM users WHERE unique_id = {$_SESSION['unique_id']}");
+if (mysqli_num_rows($sql) > 0) {
+  $row = mysqli_fetch_assoc($sql);
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,7 +23,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SpeaCup有話直說</title>
-  <link href="CSS/style.css" rel="stylesheet" /><link rel="icon" type="image/x-icon" href="assets/fav.ico" />
+  <link href="CSS/style.css" rel="stylesheet" />
+  <link rel="icon" type="image/x-icon" href="assets/fav.ico" />
   <script src="JS/scripts.js"></script>
   <script src="js/jquery-3.6.0.js"></script>
 
@@ -17,8 +35,11 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <script src="https://kit.fontawesome.com/993da95711.js" crossorigin="anonymous"></script>
-  <script
-    language="javascript">function changeImageString(TargetID, FildAddres) { document.images[TargetID].src = FildAddres; }</script>
+  <script language="javascript">
+    function changeImageString(TargetID, FildAddres) {
+      document.images[TargetID].src = FildAddres;
+    }
+  </script>
 </head>
 
 
@@ -27,14 +48,12 @@
   <nav class="navbar fixed-top navbar-expand-md navbar-dark mr-1">
     <div clss="col-3">
       <a class="navbar-brand" href="index.php">
-        <img src="assets/img/有話 直說 (1).png" width="35" height="35" class="d-inline-block align-top" >
-        <img src="assets/img/SpeaCup.png" width="150" height="35" class="d-inline-block align-top" >
+        <img src="assets/img/有話 直說 (1).png" width="35" height="35" class="d-inline-block align-top">
+        <img src="assets/img/SpeaCup.png" width="150" height="35" class="d-inline-block align-top">
       </a>
     </div>
 
-    <button class="navbar-toggler navbar-left" type="button" data-toggle="collapse"
-      data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-      aria-label="Toggle navigation">
+    <button class="navbar-toggler navbar-left" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
@@ -42,8 +61,7 @@
       <ul class="navbar-nav ml-auto pl-1">
         <form class="form-inline">
           <input class="form-control mr-sm-1" type="search" placeholder="SpeaCup" aria-label="Search">
-          <button class="btn btn-outline-danger my-2 my-sm-0 " type="submit"><i
-              class="fa-solid fa-magnifying-glass"></i></button>
+          <button class="btn btn-outline-danger my-2 my-sm-0 " type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
         </form>
         <li class="nav-item pl-5 mr-5">
         <li><a href=""><i class="fa-solid fa-bell">&ensp;&ensp;</i></a></li>
@@ -81,35 +99,31 @@
 
 
   <div id="siderbarindex">
-    <div id="m-index-m" class="m-3">
-      <h1 class="ml-5 display-4">個人主頁</h1>
-    </div>
-    <hr class="hr">
-
-    <div id="m-img-m " class="m-3">
-      <h4 class="ml-5 text-muted">頭貼</h4>
-      <img src="assets/img/有話 直說 (1).png" width="200px" height="200px" class="ml-5  rounded">
-      <h4 class="ml-5 mt-5 text-muted">暱稱</h4>
-      <label id="m-bd-b" class="ml-5 ">黃色的皮卡丘</label>
- <hr class="hr">
-    </div>
-   
-
-    <div id="m-bd-m" class="m-3">
-      <h4 class="ml-5 text-muted">生日</h4>
-      <label id="m-bd-b" class="ml-5">1996/02/23</label>
+    <div id="m-inform" class="mr-3 ml-3 mb-3">
+    <h1 id="m-nickname-n" class="ml-5"><?php echo $row['nickname']; ?></h1><h1 class="ml-5 text-dark display-5">基本資料</h1>
       <hr class="hr">
     </div>
-    <div id="m-email-m" class="m-3">
-      <h4 class="ml-5 text-muted">綁定信箱</h4>
-      <label id="m-email-e" class="ml-5 ">pika@gmail.com</label>
+
+    <div id="m-img " class="m-3 ">
+      <h4 class="ml-5 text-muted">頭貼</h4>
+      <div class="row">
+        <input type="hidden" name="old_img" value="/<?php echo $row['img']; ?>" />
+        <img src="php/images/<?php echo $row['img']; ?>" width="200px" height="200px" class="ml-5 col-3 rounded" alt="大頭貼">
+        <hr class="hr">
+      </div>
+      <div id="m-bd" class="m-3">
+      <h4 class="ml-5 text-muted">生日</h4>
+      <label id="m-bd-b" class="ml-5"><?php echo $row['birth']; ?></label>
+      <hr class="hr">
     </div>
+    </div>
+
 
     <div id="m-index-p" class="m-3">
       <h1 class="ml-5 display-4">發表過文章</h1>
     </div>
     <hr class="hr">
-    
+
     <div id="p1" class="m-3 mb-3">
       <div id="p1" class="row mb-2 ml-5 ">
         <img src="" class="" width="40px" height="40px"></img>

@@ -188,6 +188,42 @@
     document.getElementById(articleName).style.display = "block";
     evt.currentTarget.className += " w3-red";
   }
+
+    //熱門最新選擇
+    function openArticle(evt, articleName) {
+    var i, x, tablinks;
+    x = document.getElementsByClassName("article");
+    for (i = 0; i < x.length; i++) {
+      x[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablink");
+    for (i = 0; i < x.length; i++) {
+      tablinks[i].className = tablinks[i].className.replace(" w3-red", "");
+    }
+    document.getElementById(articleName).style.display = "block";
+    evt.currentTarget.className += " w3-red";
+  }
+
+  // 回到頂端樣式
+  $(function() {
+    var $win = $(window);
+    var $backToTop = $('.js-back-to-top');
+
+    $win.scroll(function() {
+      if ($win.scrollTop() > 100) {
+        $backToTop.show();
+      } else {
+        $backToTop.hide();
+      }
+    });
+
+
+    $backToTop.click(function() {
+      $('html, body').animate({
+        scrollTop: 0
+      }, 200);
+    });
+  });
 </script>
 
 </html>
