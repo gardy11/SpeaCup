@@ -141,7 +141,6 @@
   </div>
 
 
-
   <!-- 最新與熱門 -->
   <!--最新與熱門連資料庫和query-->
   <?php
@@ -226,7 +225,7 @@
         ?>
       </div>
     </div>
-
+    <button class="js-back-to-top back-to-top" title="回到頂部"><i class="fa-solid fa-angles-up"></i></button>
     <div id="siderbarright1">
       廣告
     </div>
@@ -235,7 +234,12 @@
       聊天
     </div>
 
-
+    <!-- 回到頂部小蝴蝶 -->
+    <button class="js-back-to-top back-to-top" title="回到頂部"><i class="fa-solid fa-arrow-up"></i></button>
+    <!-- 前往發文介面 -->
+    <a href="m-posts.php" title="會員中心"><button class="go-posts" title="前往發文"  >
+    <i class="fa-solid fa-pen-to-square fa-xl"></i></a>
+    </button>
 
 
 </body>
