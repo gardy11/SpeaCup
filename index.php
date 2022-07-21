@@ -148,9 +148,14 @@
 
   $mysqli = new mysqli('localhost', 'root', '', 'speacup', 3306);
 
-  $sql = "SELECT * FROM `posts` WHERE 1";
-  $result = $mysqli->query($sql);
-
+  $sqlIndexHot = "SELECT * ,
+  (likes+angry) as total 
+  from posts ORDER BY total DESC;";
+  $resultIndexHot = $mysqli->query($sqlIndexHot);
+  $sqlIndexNew = "SELECT * ,
+  (likes+angry) as total  
+  from posts ORDER BY created;";
+  $resultIndexNew = $mysqli->query($sqlIndexNew);
   ?>
   <!--最新與熱門html-->
   <div id="siderbarindex">
@@ -165,7 +170,7 @@
         <?php
 
         for ($i = 0; $i < 4; $i++) {
-          $row = $result->fetch_object();
+          $rowIndexHot = $resultIndexHot->fetch_object();
           echo
           '<div class="row" style="border: solid 2px orange; width: 100%;">' .
             '<div class="col-12">' .
@@ -174,14 +179,17 @@
             '<div class="col-2 mt-4" style=" text-align:center; font-size: 20px;">' .
             '類別一' .
             '</div>' .
-            '<p class="col-4 mt-4" style=" text-align:center; font-size: 20px;">' . $row->aid . '</p>' .
+            '<p class="col-4 mt-4" style=" text-align:center; font-size: 20px;">' . $rowIndexHot->aid . '</p>' .
             '</form>' .
             '<div class="col-12" style=" text-align:center;font-size: 30px;">' .
-            '<p style="overflow-wrap: break-word;">>' . $row->title . '</p>' .
+            '<p style="overflow-wrap: break-word;">>' . $rowIndexHot->title . '</p>' .
             '</div>' .
-            '<div class="col-12">' .
-            '<p>比例列</p>' .
-            '</div>' .
+            '<div class="col-12 nopadding" style="height:12%;background:yellow;">'.
+                      '<div style="background:red;height:100%; width: calc(100% * ('.$rowIndexHot->likes.'/'.$rowIndexHot->total.'));"></div>'.
+                '</div>'.
+                '<div class="col-12 nopadding" style="height:10%;">'.
+                      '<p>&nbsp</P>'.
+                '</div>'.
             '</div>' .
             '</div>';
         }
@@ -192,7 +200,7 @@
         <?php
 
         for ($i = 0; $i < 4; $i++) {
-          $row = $result->fetch_object();
+          $rowIndexNew = $resultIndexNew->fetch_object();
           echo
           '<div class="row" style="border: solid 2px orange; width: 100%;">' .
             '<div class="col-12">' .
@@ -201,14 +209,17 @@
             '<div class="col-2 mt-4" style=" text-align:center; font-size: 20px;">' .
             '類別一' .
             '</div>' .
-            '<p class="col-4 mt-4" style=" word-wrap:break-word; text-align:center; font-size: 20px;">' . $row->aid . '</p>' .
+            '<p class="col-4 mt-4" style=" word-wrap:break-word; text-align:center; font-size: 20px;">' . $rowIndexNew->aid . '</p>' .
             '</form>' .
             '<div class="col-12" style="  text-align:center;font-size: 30px;">' .
-            '<p style="overflow-wrap: break-word;">' . $row->title . '</p>' .
+            '<p style="overflow-wrap: break-word;">' . $rowIndexNew->title . '</p>' .
             '</div>' .
-            '<div class="col-12">' .
-            '<p>比例列</p>' .
-            '</div>' .
+            '<div class="col-12 nopadding" style="height:12%;background:yellow;">'.
+                      '<div style="background:red;height:100%; width: calc(100% * ('.$rowIndexNew->likes.' / '.$rowIndexNew->total.'));"></div>'.
+                '</div>'.
+                '<div class="col-12 nopadding" style="height:10%;">'.
+                      '<p>&nbsp</P>'.
+                '</div>'.
             '</div>' .
             '</div>';
         }
