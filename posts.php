@@ -1,8 +1,3 @@
-
-<!DOCTYPE html>
-<html lang="en">
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,7 +10,7 @@
   <script src="JS/scripts.js"></script>
   <script src="js/jquery-3.6.0.js"></script>
 
-  <!-- 外部匯入樣式 -->
+  <!-- 外部匯入樣式 --> 
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -85,55 +80,38 @@
   </div>
 
 
-  <!-- <div id="siderbarindex">
-    <div id="posts" class="m-3">
-      <h1 class="ml-5 display-4">發表過文章</h1>
+  <div id="siderbarindex">
+    <div id="collections" class="m-3 ">
+      <h1 class="ml-5 display-4">收藏文章</h1>
+      <hr class="hr">
     </div>
-    <hr class="hr"> -->
-
-    <?php 
-      include_once "myposts.php"; 
-    ?>
-
-    <!-- <div id="p1" class="m-3 mb-3">
-      <div id="p1" class="row mb-2 ml-5 ">
+    <div id="c1" class="m-3 mb-3">
+      <div id="c1" class="row mb-2 ml-5 ">
         <img src="" class="" width="40px" height="40px"></img>
         <h5 class="ml-5">類別二</h5>
         <h5 class="ml-5">黃色的皮卡丘</h5>
       </div>
-      <div id="p1" class="row mt-4 ml-5">
+      <div id="c1" class="row mt-4 ml-5">
+        <h3 class="">一個大標題1</h3>
+        <p class="ml-5">2022/01/13</p>
+      </div>
+    </div>
+
+    <hr class="hr">
+    <div id="c2" class="m-3 mb-3">
+      <div id="c2" class="row mb-2 ml-5 ">
+        <img src="" class="" width="40px" height="40px"></img>
+        <h5 class="ml-5">類別二</h5>
+        <h5 class="ml-5">黃色的皮卡丘</h5>
+      </div>
+      <div id="c2" class="row mt-4 ml-5">
         <h3 class="">一個大標題1</h3>
         <p class="ml-5">2022/01/13</p>
       </div>
     </div>
     <hr class="hr">
 
-    <div id="p2" class="m-3 mb-3">
-      <div id="p2" class="row mb-2 ml-5 ">
-        <img src="" class="" width="40px" height="40px"></img>
-        <h5 class="ml-5">類別二</h5>
-        <h5 class="ml-5">黃色的皮卡丘</h5>
-      </div>
-      <div id="p2" class="row mt-4 ml-5">
-        <h3 class="">一個大標題1</h3>
-        <p class="ml-5">2022/01/13</p>
-      </div>
-    </div>
-    <hr class="hr"
-    >
-    <div id="p3" class="m-3 mb-3">
-      <div id="p3" class="row mb-2 ml-5 ">
-        <img src="" class="" width="40px" height="40px"></img>
-        <h5 class="ml-5">類別二</h5>
-        <h5 class="ml-5">黃色的皮卡丘</h5>
-      </div>
-      <div id="p3" class="row mt-4 ml-5">
-        <h3 class="">一個大標題1</h3>
-        <p class="ml-5">2022/01/13</p>
-      </div>
-    </div>
-
-  </div> -->
+  </div>
 
 
   <div id="siderbarright1">
@@ -144,13 +122,28 @@
     聊天
   </div>
 
-
+  <!-- 回到頂部小蝴蝶 -->
 
 
 </body>
 
 
 <script>
+  // 回到頂端樣式
+  $(function () {
+    var $win = $(window);
+    var $backToTop = $('.js-back-to-top');
+
+    $win.scroll(function () {
+      if ($win.scrollTop() > 300) { $backToTop.show(); }
+      else { $backToTop.hide(); }
+    });
+
+
+    $backToTop.click(function () { $('html, body').animate({ scrollTop: 0 }, 200); });
+  });
+
+
 
 </script>
 
