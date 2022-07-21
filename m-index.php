@@ -120,7 +120,7 @@ if (mysqli_num_rows($sql) > 0) {
 
 
     <div id="m-index-p" class="m-3">
-      <h1 class="ml-5 display-4">發表過文章</h1>
+      <h1 class="ml-5 display-4">發表過文章 !!</h1>
     </div>
     <hr class="hr">
 
