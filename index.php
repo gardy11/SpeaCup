@@ -81,7 +81,6 @@
   </div>
 
 
-
   <!-- 最新與熱門 -->
   <!--最新與熱門連資料庫和query-->
   <?php
@@ -155,7 +154,7 @@
         ?>
       </div>
     </div>
-
+    <button class="js-back-to-top back-to-top" title="回到頂部"><i class="fa-solid fa-angles-up"></i></button>
     <div id="siderbarright1">
       廣告
     </div>

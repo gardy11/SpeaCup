@@ -6,8 +6,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SpeaCup有話直說</title>
-  <link rel="icon" type="image/x-icon" href="assets/fav.ico" />
-  <link href="css/style.css" rel="stylesheet" />
+  <link href="CSS/style.css" rel="stylesheet" /><link rel="icon" type="image/x-icon" href="assets/fav.ico" />
   <script src="JS/scripts.js"></script>
   <script src="js/jquery-3.6.0.js"></script>
 
@@ -25,13 +24,14 @@
 
 <body class="body">
   <!-- navbar -->
-  <nav class="navbar fixed-top navbar-expand-lg navbar-dark mr-1">
+  <nav class="navbar fixed-top navbar-expand-md navbar-dark mr-1">
     <div clss="col-3">
-      <a class="navbar-brand" href="index.html">
-        <img src="assets/img/有話 直說 (1).png" width="60" height="60" class="d-inline-block align-top" alt="">
-        <img src="assets/img/SpeaCup.png" width="250" height="60" class="d-inline-block align-top" alt="">
+      <a class="navbar-brand" href="index.php">
+        <img src="assets/img/有話 直說 (1).png" width="35" height="35" class="d-inline-block align-top" >
+        <img src="assets/img/SpeaCup.png" width="150" height="35" class="d-inline-block align-top" >
       </a>
     </div>
+
     <button class="navbar-toggler navbar-left" type="button" data-toggle="collapse"
       data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
       aria-label="Toggle navigation">
@@ -46,32 +46,37 @@
               class="fa-solid fa-magnifying-glass"></i></button>
         </form>
         <li class="nav-item pl-5 mr-5">
-        <li><a href="login.html"><i class="fa-regular fa-bell">&ensp;通知&ensp;</i></a></li>
-        <li><a href="login.html" target="_blank"><i class="fa-regular fa-user">&ensp;登入</i></a></li>
+        <li><a href=""><i class="fa-solid fa-bell">&ensp;&ensp;</i></a></li>
+        <li><a href="login.php" title="會員中心"><i class="fa-solid fa-user">&ensp;&ensp;</i></a></li>
         </li>
     </div>
 
 
   </nav>
 
-  <div id="siderbarleft">
-    <ul class="nav flex-column ind ">
-      <li class="nav-item">
-        <a class="nav-link " aria-current="page" href="member.html"><i class="fa-solid fa-bell">&ensp;基本資料</i></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="posts.html"><i class="fa-solid fa-bell">&ensp;發表過文章</i></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link active" href="collections.html"><i class="fa-solid fa-bell">&ensp;收藏文章</i></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="friends.html"><i class="fa-solid fa-bell">&ensp;好友列表</i></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="apply.html"><i class="fa-solid fa-bell">&ensp;申請好友</i></a>
-      </li>
-    </ul>
+  <div id="siderbarleft" class="siderbarleft">
+    <div id="sidebar">
+      <button type="button" id="collapse" class="collapse-btn">
+        <i class="fas fa-align-left"></i>
+      </button>
+      <ul class="list-unstyled p-1 ">
+        <li>
+          <a href="member.php" calss="m-2">基本資料<i class="fas mt-1 fa-solid fa-user-check"></i></i> </a>
+        </li>
+        <li>
+          <a href="collections.php" calss="m-2">收藏文章<i class="fas mt-1 fa-solid fa-file-circle-plus"></i></i> </a>
+        </li>
+        <li>
+          <a href="posts.php" calss="p-2">發表過文章<i class="fas mt-1 fa-regular fa-pen-to-square"></i></i> </a>
+        </li>
+        <li>
+          <a href="friends.php" calss="m-2">好友列表<i class="fas mt-1  fa-solid fa-users"></i> </a>
+        </li>
+        <li>
+          <a href="apply.php" calss="m-2">好友申請<i class="fas mt-1 fa-solid fa-user-pen"></i></i> </a>
+        </li>
+      </ul>
+    </div>
   </div>
 
 
