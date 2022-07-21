@@ -116,6 +116,7 @@ if (mysqli_num_rows($sql) > 0) {
         <div id="m-nickname" class="m-3 field input">
           <h4 class="ml-5 text-muted">暱稱</h4>
           <input type="text" name="fname" value="<?php echo $row['nickname']; ?>" id="m-nickname-n" class="ml-5" required />
+          <p id="m-nickname-n" class="ml-5"><?php echo $row['nickname']; ?></p>
           <hr class="hr">
         </div>
 
