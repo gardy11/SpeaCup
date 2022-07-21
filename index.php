@@ -50,12 +50,72 @@
         </form>
         <li class="nav-item pl-5 mr-5">
         <li><a href=""><i class="fa-solid fa-bell">&ensp;&ensp;</i></a></li>
-        <li><a href="login.php" title="會員中心"><i class="fa-solid fa-user">&ensp;&ensp;</i></a></li>
+        <li><a class="fa-solid fa-user" onclick="doAnimateShow();">&ensp;&ensp;</a></li>
         </li>
     </div>
 
 
   </nav>
+
+<!-- 會員圖案click後的box -->
+<div class="box" id="box">
+		
+		<a href="member.php" class="h2">會員中心</a>
+		<a href="php/dereout.php" class="h2">登出</a>
+    
+	</div>
+  
+  <!-- /* m-box */ -->
+  <style>
+.box {
+	position: fixed;
+	top: -200px;
+	left: 70%;
+  height: 200px;
+	width: 350px;
+	background-color: #fff;
+	color: #7F7F7F;
+	padding: 20px;
+	border: 2px solid #ccc;
+	-moz-border-radius: 20px;
+	-webkit-border-radius: 20px;
+	-khtml-border-radius: 20px;
+	-moz-box-shadow: 0 1px 5px #333;
+	-webkit-box-shadow: 0 1px 5px #333;
+	z-index: 101;
+	
+	
+}
+
+.nopadding {
+   padding: 0 !important;
+   margin: 0 !important;
+}
+
+
+</style>
+  <script>
+		function doAnimateShow() {
+			document.getElementById("box").style.top= "90px";
+			event.cancelBubble = true;
+		}
+
+		function doAnimateHide() {
+			document.getElementById("box").style.top = "-200px";
+			
+		}
+		
+		window.onclick = function(ev){
+    if( ev.target.nodeName !== 'A' ){
+      doAnimateHide();
+    }
+    };
+
+		
+		
+		
+	</script>
+
 
   <div id="siderbarleft" class="siderbarleft">
     <div id="sidebar">
