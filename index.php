@@ -172,51 +172,32 @@
         for ($i = 0; $i < 4; $i++) {
           $rowIndexHot = $resultIndexHot->fetch_object();
           echo
-          '<div class="row" style="border: solid 2px orange; width: 100%;">' .
-            '<div class="col-12 row">' .
-              '<form class="row col-12">' .
-                '<img src="assets/img/bell.png " class="col-2" width="70px" height="70px">' .
-                '<div class="col-2 mt-4" style=" text-align:center; font-size: 20px;">' .
-                '類別一' .
-                '</div>' .
-                '<p class="col-4 mt-4" style=" text-align:center; font-size: 20px;">' . $rowIndexHot->aid . '</p>' .
-              '</form>' .
-              '<div class="col-12" style=" text-align:center;font-size: 30px;">' .
-                '<p style="overflow-wrap: break-word;">>' . $rowIndexHot->title . '</p>' .
-              '</div>' .
-              '<div class="col-1 material-symbols-outlined" style="color:red;">
-              thumb_up_off
-              </div>'.
-              '<div class="col-1">'.$rowIndexHot->likes.'</div>'.
-              '<div class="col-8 nopadding" style="height:12%;background:yellow;">'.
-                '<div style="background:red;height:100%; width: calc(100% * ('.$rowIndexHot->likes.'/'.$rowIndexHot->total.'));"></div>'.
-              '</div>'.
-              '<div class="col-1">'.$rowIndexHot->angry.'</div>'.
-              '<div class="col-1 material-symbols-outlined" style="color:red;">
-              thumb_down_off
-              </div>'.
-              '<div class="col-12 nopadding" style="height:10%;">'.
-                        '<p>&nbsp</P>'.
-              '</div>'.
+          '<div class="col-12 row">' .
+          '<form class="row col-12">' .
+            '<img src="assets/img/bell.png " class="col-2" width="70px" height="70px">' .
+            '<div class="col-2 mt-4" style=" text-align:center; font-size: 20px;">' .
+            '類別一' .
             '</div>' .
-
             '<p class="col-4 mt-4" style=" text-align:center; font-size: 20px;">' . $rowIndexHot->aid . '</p>' .
-            '</form>' .
-            '<div class="col-12" style=" text-align:center;font-size: 30px;">' .
+          '</form>' .
+          '<div class="col-12" style=" text-align:center;font-size: 30px;">' .
             '<p style="overflow-wrap: break-word;">>' . $rowIndexHot->title . '</p>' .
-            '</div>' .
-            '<div class="col-12 nopadding" style="height:12%;background:yellow;">'.
-                      '<div style="background:red;height:100%; width: calc(100% * ('.$rowIndexHot->likes.'/'.$rowIndexHot->total.'));"></div>'.
-                '</div>'.
-                '<div class="col-12 nopadding" style="height:10%;">'.
-                      '<p>&nbsp</P>'.
-                '</div>'.
-            '</div>' .
-            '</div>';
-
-          '</div>';
-
-        }
+          '</div>' .
+          '<div class="col-1 material-symbols-outlined" style="color:red;">
+          thumb_up_off
+          </div>'.
+          '<div class="col-1">'.$rowIndexHot->likes.'</div>'.
+          '<div class="col-8 nopadding" style="height:12%;background:yellow;">'.
+            '<div style="background:red;height:100%; width: calc(100% * ('.$rowIndexHot->likes.'/'.$rowIndexHot->total.'));"></div>'.
+          '</div>'.
+          '<div class="col-1">'.$rowIndexHot->angry.'</div>'.
+          '<div class="col-1 material-symbols-outlined" style="color:red;">
+          thumb_down_off
+          </div>'.
+          '<div class="col-12 nopadding" style="height:10%;">'.
+                    '<p>&nbsp</P>'.
+          '</div>'
+        
         ?>
       </div>
 
@@ -250,7 +231,10 @@
         ?>
       </div>
     </div>
-    <button class="js-back-to-top back-to-top" title="回到頂部"><i class="fa-solid fa-angles-up"></i></button>
+
+
+
+    
     <div id="siderbarright1">
       廣告
     </div>
