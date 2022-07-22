@@ -3,6 +3,7 @@ session_start();
 if (isset($_SESSION['unique_id'])) {
   header("location: index.php");
 }
+require_once './php/config.php';
 ?>
 
 <!DOCTYPE html>
@@ -35,8 +36,7 @@ if (isset($_SESSION['unique_id'])) {
 
 <body class="body">
   <div id="fb-root"></div>
-  <!-- FB登入按鈕樣式 Part1 -->
-  <script async defer crossorigin="anonymous" src="https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v14.0" nonce="IoRMsthI"></script>
+ 
   <!-- navbar -->
   <nav class="navbar fixed-top navbar-expand-md navbar-dark mr-1">
     <div clss="col-3">
@@ -94,15 +94,16 @@ if (isset($_SESSION['unique_id'])) {
           </div>
         </div>
         <hr class="hr">
-        <div id="l-login-l" class="row ml-3 mb-2 field button">
-          <input type="submit" id="l-login-l" class="btn btn-outline-warning ml-5 col-3" value="會員登入" />
+        <div id="l-login-l" class="row ml-4 mb-3 field button">
+          <input type="submit" id="l-login-l" class="btn btn-outline-warning ml-5 col-3 btn-lg" value="會員登入" />
+          <button onclick="location.href ='<?php echo $client->createAuthUrl() ?>'" 
+                  class="btn btn-outline-primary btn-lg ml-5 col-3"><i class="bi bi-google"></i>Google Login</button>
+
           <p class="col-6 mt-2">還沒有會員嗎?<a href="register.php">點我註冊</a></p>
         </div>
-        <!--FB登入按鈕本體-->
-        <div class="fb-login-button mr-3 ml-3 mb-3 " data-width="390px" data-size="large" data-button-type="login_with" data-layout="default" data-auto-logout-link="false" data-use-continue-as="true">
-        </div>
-  
-        <div class="mr-3 ml-3 mb-3"></div>目前測試狀態：<span id="FB_STATUS_1"></span>
+        
+      </form>
+      
     </section>
   </div>
 
@@ -113,67 +114,7 @@ if (isset($_SESSION['unique_id'])) {
   <script src="./Js/pass-show-hide.js"></script>
   <script src="./Js/login.js"></script>
 
-  <script>
-    //FB登入
-    window.fbAsyncInit = function() {
-      FB.init({
-        appId: '401761742003876', // 填入 FB APP ID
-        cookie: true,
-        xfbml: true,
-        version: 'v14.0'
-      });
-
-      FB.getLoginStatus(function(response) {
-        statusChangeCallback(response);
-      });
-    };
-
-    // 處理各種登入身份
-    function statusChangeCallback(response) {
-      console.log(response);
-      var target = document.getElementById("FB_STATUS_1"),
-        html = "";
-
-      // 登入 FB 且已加入會員
-      if (response.status === 'connected') {
-        html = "已登入 FB，並進入Speacup<br/>";
-
-
-        FB.api('/me?fields=id,name,email', function(response) {
-          console.log(response);
-          html += "會員暱稱：" + response.name + "<br/>";
-          html += "會員 email：" + response.email;
-          target.innerHTML = html;
-        });
-      }
-
-      // 登入 FB, 未偵測到加入會員
-      else if (response.status === "not_authorized") {
-        target.innerHTML = "已登入 FB，但未進入Speacup";
-      }
-
-      // 未登入 FB
-      else {
-        target.innerHTML = "未登入 FB";
-      }
-    }
-
-    function checkLoginState() {
-      FB.getLoginStatus(function(response) {
-        statusChangeCallback(response);
-      });
-    }
-
-    // 載入 FB SDK
-    (function(d, s, id) {
-      var js, fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) return;
-      js = d.createElement(s);
-      js.id = id;
-      js.src = "https://connect.facebook.net/zh_TW/sdk.js";
-      fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
-  </script>
+  
 
 </body>
 

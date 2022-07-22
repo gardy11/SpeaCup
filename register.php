@@ -66,7 +66,7 @@ if (isset($_SESSION['unique_id'])) {
       </div>
       <hr class="hr">
 
-      <form action="#" enctype="multipart/form-data" autocomplete="off" class="register">
+      <form action="#" enctype="multipart/form-data" autocomplete="off">
         <div class="error-txt"></div>
 
         <div id="r-email" class="m-3 field input">
@@ -75,20 +75,17 @@ if (isset($_SESSION['unique_id'])) {
                  placeholder="輸入電子信箱" maxlength="20" require 
                  pattern="[a-z0-9._]+@[a-z0-9._]+\.[a-z]{2,4}$"/>
         </div>
-      
+
         <div id="r-account" class="m-3">
           <div class="row">
             <h4 class="ml-5 col-3">帳號</h4>
             <span id="passwordHelpInline" class="form-text mt-2 pr-5 col-6 text-muted" >&ensp;帳號長度為大小寫英數字8-20字。</span>
           </div>
           <div class="col-auto row field input">
-            <input type="text" name="account" id="inputAccount6" class="form-control ml-5 account" 
+            <input type="text" name="account" id="inputAccount6" class="form-control ml-5 " 
                    placeholder="輸入帳號" aria-describedby="passwordHelpInline"  
-                   pattern="^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z0-9]{8,20}$" require/>
-                   
-                    
+                   pattern="^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z0-9]{8,20}$" />
           </div>
-
         </div>
 
         <div id="r-password" class="m-3 field input">
@@ -97,12 +94,10 @@ if (isset($_SESSION['unique_id'])) {
             <span id="passwordHelpInline" class="form-text mt-2 pr-5 col-6 text-muted">&ensp;密碼長度為大小寫英數字8-20字。</span>
           </div>
           <div class="col-auto row field input">
-            <input type="password" name="password" id="inputPassword6" class="form-control ml-5 password" 
+            <input type="password" name="password" id="inputPassword6" class="form-control ml-5 " 
                    placeholder="輸入密碼" aria-describedby="passwordHelpInline" 
                    pattern="^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z0-9]{8,20}$" require />
-                   
             <i class="fa fa-eye col-2 mt-3"></i>
-            
           </div>
         </div>
 
@@ -118,7 +113,7 @@ if (isset($_SESSION['unique_id'])) {
           <!-- 限制日期只可選取不可自行輸入 -->
           <div id="r-bd-r" class="ml-5 field">
             <input type="date" name="birth" id="r-bd" 
-                   onkeydown="return false"    
+                   onkeydown="return false" 
                    required />
             <span class="validity"></span>
           </div>
@@ -127,8 +122,8 @@ if (isset($_SESSION['unique_id'])) {
 
         <div class="gender m-3 mt-2">
           <h4 class="ml-5 ">性別:</4>
-            <input type="radio" name="gender" value="男" checked="checked" required /><label>男</label>
-            <input type="radio" name="gender" value="女" required /><label>女</label>
+            <input id ="g1" type="radio" name="gender" value="男" checked="checked" required /><label for="g1">男</label>
+            <input id ="g2" type="radio" name="gender" value="女" required /><label for="g2">女</label>
         </div>
 
         <div class="field image m-3">
@@ -142,9 +137,6 @@ if (isset($_SESSION['unique_id'])) {
           <div class="link col-5 mt-2">已經註冊了嗎?<a href="login.php"> 馬上登入</a></div>
         </div>
 
-        
-        
-
       </form>
       
     </section>
@@ -153,9 +145,8 @@ if (isset($_SESSION['unique_id'])) {
   </div>
 
   <script src="./JS/pass-show-hide.js"></script>
-  <script src="./JS/chk_userInfo.js"></script>
   <script src="./JS/signup.js"></script>
-  
+  <script src="./JS/chk_userInfo.js"></script>
 </body>
 
 
