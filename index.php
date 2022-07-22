@@ -196,8 +196,8 @@
           </div>'.
           '<div class="col-12 nopadding" style="height:10%;">'.
                     '<p>&nbsp</P>'.
-          '</div>'
-        
+          '</div>';
+        }
         ?>
       </div>
 
