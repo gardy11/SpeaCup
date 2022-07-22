@@ -8,8 +8,11 @@
 
 2.安裝完成後在speacup資料夾會出現vendor資料夾、composer.json、composer.lock 3個檔案，放著就好。
 
+  (安裝完如登出後出現錯誤畫面，去分支Wang-0714下載壓縮檔，覆蓋這3個檔案並執行 composer update)
+
 3.如果出現 "composer' 不是內部或外部命令、可執行的程式或批次檔。" 請先安裝composer。  
   官網：https://getcomposer.org/download/
+  
   
 4.google憑證及config.php 有設定絕對路徑，speacup資料夾一定要直接放在htdocs資料夾第一層=> htdocs／speacup　
   
