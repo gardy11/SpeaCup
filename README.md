@@ -10,5 +10,8 @@
 
 3.如果出現 "composer' 不是內部或外部命令、可執行的程式或批次檔。" 請先安裝composer。  
   官網：https://getcomposer.org/download/
+  
+4.google憑證及config.php 有設定絕對路徑，speacup資料夾一定要直接放在htdocs資料夾第一層=> htdocs／speacup　
+  瀏覽器路徑：http://localhost/speacup
 
 4.註冊頁的我不是機器人先拿掉，後面有空檔再繼續做。
