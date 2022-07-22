@@ -8,6 +8,7 @@
 
 2.安裝完成後在speacup資料夾會出現vendor資料夾、composer.json、composer.lock 3個檔案，放著就好。
 
-3.如果出現 "composer' 不是內部或外部命令、可執行的程式或批次檔。" 請先安裝composer。  官網：https://getcomposer.org/download/
+3.如果出現 "composer' 不是內部或外部命令、可執行的程式或批次檔。" 請先安裝composer。  
+  官網：https://getcomposer.org/download/
 
 4.註冊頁的我不是機器人先拿掉，後面有空檔再繼續做。
