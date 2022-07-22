@@ -25,7 +25,8 @@ continueBtn.onclick = () =>
                         let data = xhr.response;
                         if ( data == "OK" )
                         {
-                              location.href = "index.php"
+                              alert ("登入成功!!");
+                              location.href = "index.php";
                         } else
                         {
                               // @ts-ignore
