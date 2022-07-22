@@ -1,3 +1,13 @@
+<?php
+session_start();
+include_once "php/config.php";
+
+if (!isset($_SESSION['unique_id'])) { //未登入時導向登入頁
+  header("location: login.php");
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
