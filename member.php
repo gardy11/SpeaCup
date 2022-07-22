@@ -16,7 +16,7 @@ if (mysqli_num_rows($sql) > 0) {
 ?>
 
 
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="en">
 
 
@@ -73,24 +73,29 @@ if (mysqli_num_rows($sql) > 0) {
 
   </nav>
 
-  <div id="siderbarleft">
-    <ul class="nav flex-column ind ">
-      <li class="nav-item">
-        <a class="nav-link " aria-current="page" href="member.php"><i class="fa-solid fa-bell">&ensp;基本資料</i></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="posts.php"><i class="fa-solid fa-bell">&ensp;發表過文章</i></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link active" href="collections.php"><i class="fa-solid fa-bell">&ensp;收藏文章</i></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="friends.php"><i class="fa-solid fa-bell">&ensp;好友列表</i></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="apply.php"><i class="fa-solid fa-bell">&ensp;申請好友</i></a>
-      </li>
-    </ul>
+  <div id="siderbarleft" class="siderbarleft">
+    <div id="sidebar">
+      <button type="button" id="collapse" class="collapse-btn">
+        <i class="fas fa-align-left"></i>
+      </button>
+      <ul class="list-unstyled p-1 ">
+        <li>
+          <a href="member.php" calss="m-2">基本資料<i class="fas mt-1 fa-solid fa-user-check"></i></i> </a>
+        </li>
+        <li>
+          <a href="collections.php" calss="m-2">收藏文章<i class="fas mt-1 fa-solid fa-file-circle-plus"></i></i> </a>
+        </li>
+        <li>
+          <a href="posts.php" calss="p-2">發表過文章<i class="fas mt-1 fa-regular fa-pen-to-square"></i></i> </a>
+        </li>
+        <li>
+          <a href="friends.php" calss="m-2">好友列表<i class="fas mt-1  fa-solid fa-users"></i> </a>
+        </li>
+        <li>
+          <a href="apply.php" calss="m-2">好友申請<i class="fas mt-1 fa-solid fa-user-pen"></i></i> </a>
+        </li>
+      </ul>
+    </div>
   </div>
 
   <div id="siderbarindex">
@@ -111,8 +116,7 @@ if (mysqli_num_rows($sql) > 0) {
         <div id="m-nickname" class="m-3 field input">
           <h4 class="ml-5 text-muted">暱稱</h4>
           <input type="text" name="fname" value="<?php echo $row['nickname']; ?>" id="m-nickname-n" class="ml-5" required />
-          <p id="m-nickname-n" class="ml-5"><?php echo $row['nickname']; ?></p>
-          <hr class="hr">
+                  <hr class="hr">
         </div>
 
         <div id="m-password" class="m-3">

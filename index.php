@@ -1,3 +1,19 @@
+<?php
+session_start();
+include_once "php/config.php";
+
+if (!isset($_SESSION['unique_id'])) { //未登入時導向登入頁
+  header("location: login.php");
+}
+?>
+
+<?php //撈資料
+$sql = mysqli_query($conn, "SELECT * FROM users WHERE unique_id = {$_SESSION['unique_id']}");
+if (mysqli_num_rows($sql) > 0) {
+  $row = mysqli_fetch_assoc($sql);
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -55,68 +71,20 @@
         </li>
     </div>
 
-
+    <!-- 會員圖案click後的box -->
+    <div class="box" id="box">
+      <div class="row">
+        <p class="h5">&ensp;&ensp;HI!&ensp;&ensp;</p>
+        <p class="h5 text-primary"><?php echo $row['nickname']; ?></p>
+      </div>
+      <a href="member.php" class="link-secondary">
+        <p class="h5">會員中心</p>
+      </a>
+      <a href="php/dereout.php" class="link-secondary">
+        <p class="h5">登出</p>
+      </a>
+    </div>
   </nav>
-
-<!-- 會員圖案click後的box -->
-<div class="box" id="box">
-		
-		<a href="member.php" class="h2">會員中心</a>
-		<a href="php/dereout.php" class="h2">登出</a>
-    
-	</div>
-  
-  <!-- /* m-box */ -->
-  <style>
-.box {
-	position: fixed;
-	top: -200px;
-	left: 70%;
-  height: 200px;
-	width: 350px;
-	background-color: #fff;
-	color: #7F7F7F;
-	padding: 20px;
-	border: 2px solid #ccc;
-	-moz-border-radius: 20px;
-	-webkit-border-radius: 20px;
-	-khtml-border-radius: 20px;
-	-moz-box-shadow: 0 1px 5px #333;
-	-webkit-box-shadow: 0 1px 5px #333;
-	z-index: 101;
-	
-	
-}
-
-.nopadding {
-   padding: 0 !important;
-   margin: 0 !important;
-}
-
-
-</style>
-  <script>
-		function doAnimateShow() {
-			document.getElementById("box").style.top= "90px";
-			event.cancelBubble = true;
-		}
-
-		function doAnimateHide() {
-			document.getElementById("box").style.top = "-200px";
-			
-		}
-		
-		window.onclick = function(ev){
-    if( ev.target.nodeName !== 'A' ){
-      doAnimateHide();
-    }
-    };
-
-		
-		
-		
-	</script>
-
 
   <div id="siderbarleft" class="siderbarleft">
     <div id="sidebar">
@@ -125,7 +93,7 @@
       </button>
       <ul class="list-unstyled p-1 ">
         <li>
-          <a href="cate1.php" calss="m-2">首頁<i class="fas mt-1 fa-solid fa-home"></i></i> </a>
+          <a href="index.php" calss="m-2">首頁<i class="fas mt-1 fa-solid fa-home"></i></i> </a>
         </li>
         <li>
           <a href="cate1.php" calss="m-2">時事<i class="fas mt-1 fa-solid fa-newspaper"></i></i> </a>
@@ -172,31 +140,34 @@
         for ($i = 0; $i < 4; $i++) {
           $rowIndexHot = $resultIndexHot->fetch_object();
           echo
-          '<div class="col-12 row">' .
-          '<form class="row col-12">' .
+          '<div class="row" style="border: solid 2px orange; width: 100%;">' .
+            '<div class="col-12 row">' .
+            '<form class="row col-12">' .
             '<img src="assets/img/bell.png " class="col-2" width="70px" height="70px">' .
             '<div class="col-2 mt-4" style=" text-align:center; font-size: 20px;">' .
             '類別一' .
             '</div>' .
             '<p class="col-4 mt-4" style=" text-align:center; font-size: 20px;">' . $rowIndexHot->aid . '</p>' .
-          '</form>' .
-          '<div class="col-12" style=" text-align:center;font-size: 30px;">' .
+            '</form>' .
+            '<div class="col-12" style=" text-align:center;font-size: 30px;">' .
             '<p style="overflow-wrap: break-word;">>' . $rowIndexHot->title . '</p>' .
-          '</div>' .
-          '<div class="col-1 material-symbols-outlined" style="color:red;">
-          thumb_up_off
-          </div>'.
-          '<div class="col-1">'.$rowIndexHot->likes.'</div>'.
-          '<div class="col-8 nopadding" style="height:12%;background:yellow;">'.
-            '<div style="background:red;height:100%; width: calc(100% * ('.$rowIndexHot->likes.'/'.$rowIndexHot->total.'));"></div>'.
-          '</div>'.
-          '<div class="col-1">'.$rowIndexHot->angry.'</div>'.
-          '<div class="col-1 material-symbols-outlined" style="color:red;">
-          thumb_down_off
-          </div>'.
-          '<div class="col-12 nopadding" style="height:10%;">'.
-                    '<p>&nbsp</P>'.
-          '</div>';
+            '</div>' .
+            '<div class="col-1 material-symbols-outlined" style="color:red;">
+              thumb_up_off
+              </div>' .
+            '<div class="col-1">' . $rowIndexHot->likes . '</div>' .
+            '<div class="col-8 nopadding" style="height:12%;background:yellow;">' .
+            '<div style="background:red;height:100%; width: calc(100% * (' . $rowIndexHot->likes . '/' . $rowIndexHot->total . '));"></div>' .
+            '</div>' .
+            '<div class="col-1">' . $rowIndexHot->angry . '</div>' .
+            '<div class="col-1 material-symbols-outlined" style="color:red;">
+              thumb_down_off
+              </div>' .
+            '<div class="col-12 nopadding" style="height:10%;">' .
+            '<p>&nbsp</P>' .
+            '</div>' .
+            '</div>' .
+            '</div>';
         }
         ?>
       </div>
@@ -207,7 +178,7 @@
         for ($i = 0; $i < 4; $i++) {
           $rowIndexNew = $resultIndexNew->fetch_object();
           echo
-          '<div class="row" style="border: solid 2px orange ; width: 100%;">' .
+          '<div class="row" style="border: solid 2px orange; width: 100%;">' .
             '<div class="col-12">' .
             '<form class="row">' .
             '<img src="assets/img/bell.png " class="col-2" width="70px" height="70px">' .
@@ -219,21 +190,18 @@
             '<div class="col-12" style="  text-align:center;font-size: 30px;">' .
             '<p style="overflow-wrap: break-word;">' . $rowIndexNew->title . '</p>' .
             '</div>' .
-            '<div class="col-12 nopadding" style="height:12%;background:yellow;">'.
-                      '<div style="background:red;height:100%; width: calc(100% * ('.$rowIndexNew->likes.' / '.$rowIndexNew->total.'));"></div>'.
-                '</div>'.
-                '<div class="col-12 nopadding" style="height:10%;">'.
-                      '<p>&nbsp</P>'.
-                '</div>'.
+            '<div class="col-12 nopadding" style="height:12%;background:yellow;">' .
+            '<div style="background:red;height:100%; width: calc(100% * (' . $rowIndexNew->likes . ' / ' . $rowIndexNew->total . '));"></div>' .
+            '</div>' .
+            '<div class="col-12 nopadding" style="height:10%;">' .
+            '<p>&nbsp</P>' .
+            '</div>' .
             '</div>' .
             '</div>';
         }
         ?>
       </div>
     </div>
-
-
-
     
     <div id="siderbarright1">
       廣告
@@ -243,11 +211,11 @@
       聊天
     </div>
 
-    <!-- 回到頂部小蝴蝶 -->
+    <!-- 回到頂部 -->
     <button class="js-back-to-top back-to-top" title="回到頂部"><i class="fa-solid fa-arrow-up"></i></button>
     <!-- 前往發文介面 -->
-    <a href="m-posts.php" title="會員中心"><button class="go-posts" title="前往發文"  >
-    <i class="fa-solid fa-pen-to-square fa-xl"></i></a>
+    <a href="m-posts.php" title="會員中心"><button class="go-posts" title="前往發文">
+        <i class="fa-solid fa-pen-to-square fa-xl" style=color:red></i></a>
     </button>
 
 
@@ -268,6 +236,22 @@
     document.getElementById(articleName).style.display = "block";
     evt.currentTarget.className += " w3-red";
   }
+
+  function doAnimateShow() {
+    document.getElementById("box").style.top = "90px";
+    event.cancelBubble = true;
+  }
+
+  function doAnimateHide() {
+    document.getElementById("box").style.top = "-200px";
+
+  }
+
+  window.onclick = function(ev) {
+    if (ev.target.nodeName !== 'A') {
+      doAnimateHide();
+    }
+  };
 </script>
 
 </html>

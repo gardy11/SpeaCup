@@ -82,7 +82,7 @@
 
   <div id="siderbarindex">
     <div id="collections" class="m-3 ">
-      <h1 class="ml-5 display-4">收藏文章</h1>
+      <h1 class="ml-5 display-4">發表過文章</h1>
       <hr class="hr">
     </div>
     <div id="c1" class="m-3 mb-3">
@@ -122,7 +122,7 @@
     聊天
   </div>
 
-  <!-- 回到頂部小蝴蝶 -->
+
 
 
 </body>

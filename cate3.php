@@ -64,7 +64,7 @@
       </button>
       <ul class="list-unstyled p-1 ">
         <li>
-          <a href="cate1.php" calss="m-2">首頁<i class="fas mt-1 fa-solid fa-home"></i></i> </a>
+          <a href="index.php" calss="m-2">首頁<i class="fas mt-1 fa-solid fa-home"></i></i> </a>
         </li>
         <li>
           <a href="cate1.php" calss="m-2">時事<i class="fas mt-1 fa-solid fa-newspaper"></i></i> </a>
@@ -162,12 +162,11 @@
     <div id="siderbarright2">
       聊天
     </div>
-
-    <!-- 回到頂部小蝴蝶 -->
-    <button class="js-back-to-top back-to-top" title="回到頂部"><i class="fa-solid fa-arrow-up"></i></button>
+   <!-- 回到頂部 -->
+   <button class="js-back-to-top back-to-top" title="回到頂部"><i class="fa-solid fa-arrow-up"></i></button>
     <!-- 前往發文介面 -->
-    <a href="m-posts.php" title="會員中心"><button class="go-posts" title="前往發文"  >
-    <i class="fa-solid fa-pen-to-square fa-xl"></i></a>
+    <a href="m-posts.php" title="會員中心"><button class="go-posts" title="前往發文">
+        <i class="fa-solid fa-pen-to-square fa-xl" style=color:red></i></a>
     </button>
 
 
