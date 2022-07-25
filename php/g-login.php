@@ -32,8 +32,9 @@ if (isset($_GET['code'])) {
     $sql2 = mysqli_query($conn, "UPDATE users SET status = '{$status}' WHERE unique_id = {$userinfo['unique_id']}");
     if ($sql2) {
       $_SESSION['unique_id'] = $userinfo['unique_id'];
-      //echo "OK";
-      header("location: ../member.php");
+      $message = "成功登入!";
+      echo "<script type='text/javascript'>alert('$message');window.location.href='../member.php'</script>";
+      //header("location: ../member.php");
     } else {
       echo "怪怪的!請再嘗試一次!";
     }
@@ -53,8 +54,13 @@ if (isset($_GET['code'])) {
         if (mysqli_num_rows($select_sql2) > 0) {
           $result2 = mysqli_fetch_assoc($select_sql2);
           $_SESSION['unique_id'] = $result2['unique_id']; //使用此 session 搭配其他php
-          //echo "OK";
-          header("location: ../member.php");
+          
+          $message = "成功登入!";
+          echo "<script type='text/javascript'>alert('$message');window.location.href='../member.php'</script>";
+          
+          //header("location: ../member.php");
+
+
         } else {
           echo "此email不存在";
         }
