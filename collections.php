@@ -7,6 +7,15 @@ if (!isset($_SESSION['unique_id'])) { //未登入時導向登入頁
 }
 ?>
 
+<?php //撈資料
+$sql = mysqli_query($conn, "SELECT * FROM users WHERE unique_id = {$_SESSION['unique_id']}");
+if (mysqli_num_rows($sql) > 0) {
+  $row = mysqli_fetch_assoc($sql);
+}
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -69,6 +78,7 @@ if (!isset($_SESSION['unique_id'])) { //未登入時導向登入頁
         <i class="fas fa-align-left"></i>
       </button>
       <ul class="list-unstyled p-1 ">
+        
         <li>
           <a href="member.php" calss="m-2">基本資料<i class="fas mt-1 fa-solid fa-user-check"></i></i> </a>
         </li>
@@ -84,6 +94,7 @@ if (!isset($_SESSION['unique_id'])) { //未登入時導向登入頁
         <li>
           <a href="apply.php" calss="m-2">好友申請<i class="fas mt-1 fa-solid fa-user-pen"></i></i> </a>
         </li>
+        
       </ul>
     </div>
   </div>
@@ -94,31 +105,8 @@ if (!isset($_SESSION['unique_id'])) { //未登入時導向登入頁
       <h1 class="ml-5 display-4">收藏文章</h1>
       <hr class="hr">
     </div>
-    <div id="c1" class="m-3 mb-3">
-      <div id="c1" class="row mb-2 ml-5 ">
-        <img src="" class="" width="40px" height="40px"></img>
-        <h5 class="ml-5">類別二</h5>
-        <h5 class="ml-5">黃色的皮卡丘</h5>
-      </div>
-      <div id="c1" class="row mt-4 ml-5">
-        <h3 class="">一個大標題1</h3>
-        <p class="ml-5">2022/01/13</p>
-      </div>
-    </div>
 
-    <hr class="hr">
-    <div id="c2" class="m-3 mb-3">
-      <div id="c2" class="row mb-2 ml-5 ">
-        <img src="" class="" width="40px" height="40px"></img>
-        <h5 class="ml-5">類別二</h5>
-        <h5 class="ml-5">黃色的皮卡丘</h5>
-      </div>
-      <div id="c2" class="row mt-4 ml-5">
-        <h3 class="">一個大標題1</h3>
-        <p class="ml-5">2022/01/13</p>
-      </div>
-    </div>
-    <hr class="hr">
+    <?php include_once "php/cn_posts.php"; ?>
 
   </div>
 

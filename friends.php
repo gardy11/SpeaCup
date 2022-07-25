@@ -6,6 +6,15 @@ if (!isset($_SESSION['unique_id'])) { //未登入時導向登入頁
   header("location: login.php");
 }
 ?>
+
+<?php //撈資料
+$sql = mysqli_query($conn, "SELECT * FROM users WHERE unique_id = {$_SESSION['unique_id']}");
+if (mysqli_num_rows($sql) > 0) {
+  $row = mysqli_fetch_assoc($sql);
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -68,6 +77,7 @@ if (!isset($_SESSION['unique_id'])) { //未登入時導向登入頁
         <i class="fas fa-align-left"></i>
       </button>
       <ul class="list-unstyled p-1 ">
+        
         <li>
           <a href="member.php" calss="m-2">基本資料<i class="fas mt-1 fa-solid fa-user-check"></i></i> </a>
         </li>
@@ -94,35 +104,15 @@ if (!isset($_SESSION['unique_id'])) { //未登入時導向登入頁
     </div>
     <hr class="hr">
 
-    <div id="f-friends" class="row ml-5 m-3">
+    <?php include_once "php/user_frid.php"; ?>
+    <!-- <div id="f-friends" class="row ml-5 m-3">
       <img src="assets/img/有話 直說 (1).png" width="70px" height="70px" class="ml-3 col-2">
       <h3 class="ml-3 col-5 mt-3">噴火龍怕火</h3>     
       <button id="f-inform"class="btn ml-3 col-2" title="好友資訊"><i class="fa-solid fa-address-card fa-2x "></i></button>
     </div>
-    <hr class="hr">
+    <hr class="hr"> -->
 
-    <div id="f-friends" class="row ml-5 m-3">
-      <img src="assets/img/有話 直說 (1).png" width="70px" height="70px" class="ml-3 col-2">
-      <h3  class="ml-3 col-5 mt-3">傑尼龜借你錢</h3>     
-      <button id="f-inform"class="btn ml-3 col-2" title="好友資訊"><i class="fa-solid fa-address-card fa-2x "></i></button>
-    </div>
-    <hr class="hr">
-
-    <div id="f-friends" class="row ml-5 m-3">
-      <img src="assets/img/有話 直說 (1).png" width="70px" height="70px" class="ml-3 col-2">
-      <h3  class="ml-3 col-5 mt-3">老婆莎奈朵</h3>     
-      <button id="f-inform"class="btn ml-3 col-2" title="好友資訊"><i class="fa-solid fa-address-card fa-2x "></i></button>
-    </div>
-    <hr class="hr">
-
-    <div id="f-friends" class="row ml-5 m-3">
-      <img src="assets/img/有話 直說 (1).png" width="70px" height="70px" class="ml-3 col-2">
-      <h3  class="ml-3 col-5 mt-3">聰明的呆呆獸</h3>     
-      <button id="f-inform"class="btn ml-3 col-2" title="好友資訊"><i class="fa-solid fa-address-card fa-2x "></i></button>
-    </div>
-    <hr class="hr">
-
- 
+    
 
 
 

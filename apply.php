@@ -6,6 +6,42 @@ if (!isset($_SESSION['unique_id'])) { //未登入時導向登入頁
   header("location: login.php");
 }
 ?>
+
+<?php //撈資料
+$sql = mysqli_query($conn, "SELECT * FROM users WHERE unique_id = {$_SESSION['unique_id']}");
+if (mysqli_num_rows($sql) > 0) {
+  $row = mysqli_fetch_assoc($sql);
+}
+
+?>
+
+<?php
+  $sql = "SELECT * FROM users  WHERE unique_id != {$_SESSION['unique_id']} ORDER BY uid DESC";
+
+
+  $query = mysqli_query($conn, $sql);
+  $output = "";
+  if (mysqli_num_rows($query) == 0) {
+        $output .= "還沒有其他使用者喔!";
+  } elseif (mysqli_num_rows($query) > 0) {
+    while ($row2 = mysqli_fetch_assoc($query)) {
+      $output .= '<div id="f-friends" class="row ml-5 m-3">
+                  <img src="php/images/' . $row2['img'] . '" width="70px" height="70px" class="ml-3 col-2">
+                  <h3 class="ml-3 col-5 mt-3">' . $row2['nickname'] . '</h3>
+                      
+                  <a style="text-decoration:none" href="m-index.php?unique_id=' . $row2['unique_id'] . '">
+                  <button id="f-inform"class="btn ml-3 col-2" title="好友資訊"><i class="fa-solid fa-address-card fa-2x "></i></button>
+                  </div>
+                  </a>   
+                      
+                     <hr class="hr">';
+   }
+  }
+ 
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -68,6 +104,7 @@ if (!isset($_SESSION['unique_id'])) { //未登入時導向登入頁
         <i class="fas fa-align-left"></i>
       </button>
       <ul class="list-unstyled p-1 ">
+        
         <li>
           <a href="member.php" calss="m-2">基本資料<i class="fas mt-1 fa-solid fa-user-check"></i></i> </a>
         </li>
@@ -93,35 +130,10 @@ if (!isset($_SESSION['unique_id'])) { //未登入時導向登入頁
         <h1 class="ml-5 display-4">申請好友</h1>
       </div>
       <hr class="hr"> 
-
-      <div id="a-apply" class="row ml-5 m-3">
-        <img src="assets/img/有話 直說 (1).png" width="70px" height="70px" class="ml-3 col-2">
-        <h3  class="ml-3 col-6 mt-3">超吉利吉利蛋</h3>     
-        <button id="a-inform"class="btn ml-3 col-2" title="好友資訊"><i class="fa-solid fa-address-card fa-2x "></i></button>
-      </div>
-      <hr class="hr">
-  
-      <div id="f-friends" class="row ml-5 m-3">
-        <img src="assets/img/有話 直說 (1).png" width="70px" height="70px" class="ml-3 col-2">
-        <h3  class="ml-3 col-6 mt-3">袋獸媽媽</h3>       
-        <button id="a-inform"class="btn ml-3 col-2" title="好友資訊"><i class="fa-solid fa-address-card fa-2x "></i></button>
-      </div>
-      <hr class="hr">
-  
-      <div id="f-friends" class="row ml-5 m-3">
-        <img src="assets/img/有話 直說 (1).png" width="70px" height="70px" class="ml-3 col-2">
-        <h3  class="ml-3 col-6 mt-3">乘風破浪的成龍</h3>       
-        <button id="a-inform"class="btn ml-3 col-2" title="好友資訊"><i class="fa-solid fa-address-card fa-2x "></i></button>
-      </div>
-      <hr class="hr">
-  
-      <div id="f-friends" class="row ml-5 m-3">
-        <img src="assets/img/有話 直說 (1).png" width="70px" height="70px" class="ml-3 col-2">
-        <h3 class="ml-3 col-6 mt-3">世界第一超夢</h3>       
-        <button id="a-inform"class="btn ml-3 col-2" title="好友資訊"><i class="fa-solid fa-address-card fa-2x "></i></button>
-      </div>
-      <hr class="hr">
-  
+      <?php 
+          echo $output;
+       ?>
+      
   
 
 

@@ -2,17 +2,15 @@
 session_start();
 include_once "php/config.php";
 
-if (!isset($_SESSION['unique_id'])) { //未登入時導向登入頁
-  header("location: login.php");
-}
 ?>
 
-<?php //撈資料
-$sql = mysqli_query($conn, "SELECT * FROM users WHERE unique_id = {$_SESSION['unique_id']}");
-if (mysqli_num_rows($sql) > 0) {
-  $row = mysqli_fetch_assoc($sql);
-}
 
+<?php //撈資料
+$sql = "SELECT * FROM users ORDER BY  uid DESC";
+$query = mysqli_query($conn, $sql);
+while ($row = mysqli_fetch_assoc($query)) {
+  $apply = mysqli_fetch_all($query, MYSQLI_ASSOC);
+}
 ?>
 
 <!DOCTYPE html>
@@ -43,7 +41,100 @@ if (mysqli_num_rows($sql) > 0) {
 </head>
 
 
+
+
 <body class="body">
+  <header>
+    <?php
+    //個人資料
+    $unique_id = mysqli_real_escape_string($conn, $_GET['unique_id']); //抓取連結過來的unique_id以取得對應資料
+    $sql = mysqli_query($conn, "SELECT * FROM users WHERE unique_id =  $unique_id ORDER BY  uid DESC");
+    if ($$unique_id === "") {
+      header("location: login.php");
+    }
+    if (mysqli_num_rows($sql) > 0) {
+      $row = mysqli_fetch_assoc($sql);
+    } else {
+      header("location: apply.php");
+    }
+
+    //已發表文章
+    $sql5 = "SELECT * FROM users INNER JOIN posts ON posts.unique_id = users.unique_id  WHERE posts.unique_id = $unique_id ORDER BY aid DESC";
+    $query1 = mysqli_query($conn, $sql5);
+    $output = "";
+    if (mysqli_num_rows($query1) == 0) {
+      $output .= "<p class=\"ml-5\">還沒有文章喔!</p>";
+    } elseif (mysqli_num_rows($query1) > 0) {
+      while ($row5 = mysqli_fetch_assoc($query1)) {
+
+        $title_result = $row5['title'];
+        (strlen($title_result) > 40) ? $title =  mb_substr($title_result, 0, 40, 'utf-8') . '...' : $title = $title_result;
+     
+        $content_result = $row5['content'];
+        //(strlen($content_result) > 70) ? $content =  substr($content_result, 0, 100) . '...' : $content = $content_result;
+        (strlen($content_result) > 32) ? $content =  mb_substr($content_result, 0, 32, 'utf-8') . '...' : $content = $content_result;
+     
+        $sql2 = "SELECT board_name FROM posts INNER JOIN board_Categories ON posts.cid = board_Categories.cid WHERE aid = '$row5[aid]'";
+        $query2 = mysqli_query($conn, $sql2);
+        $row2 = mysqli_fetch_assoc($query2);
+     
+        $sql3 = "SELECT COUNT(*) AS likes FROM like_dislike 
+             WHERE post_id = '$row5[aid]' AND rating_action='like'";
+        $query3 = mysqli_query($conn, $sql3);
+        $row3 = mysqli_fetch_assoc($query3);
+     
+        $sql4 = "SELECT COUNT(*) AS dislikes FROM like_dislike 
+             WHERE post_id = '$row5[aid]' AND rating_action='dislike'";
+        $query4 = mysqli_query($conn, $sql4);
+        $row4 = mysqli_fetch_assoc($query4);
+     
+        //文章內容&格式
+        $output .= '  
+                        
+                         <div id="c1" class="m-3 mb-3">
+                            <div id="c1" class="row mb-2 ml-5 ">
+                               <span style="font-size:20px;">' . $row2['board_name'] . '</span>
+                               <img src="php/images/' . $row5['img'] . '"  alt=""  width="6%" height="6%" ">
+                          
+                                <span style="font-size:20px;">' . $row5['nickname'] . '</span>
+                         
+                                <div style="position:relative; border:0; min-width:60%; max-width:60%; ";>  
+                                <span style="position:absolute; right: -10%;">' . $row5['created'] . '</span>
+                                </div>
+                            </div>
+     
+                          <a style="text-decoration:none" href="post.php?aid=' . $row5['aid'] . '">
+                            <div id="c1" class="mt-4 ml-5">
+                             <h2 style="color:black;">'. $title . '</h2>
+                             <p style="font-size:20px; color:gray;">'.  $content . '</p> 
+     
+                             <i class="fa fa-thumbs-up like-btn" style="font-size: 0.8em; color:gray"
+                                data-id=' .  $row5['aid'] . '"> 
+                             </i>
+                             <span class="likes" style="font-size: 1em; color:gray">' . $row3['likes'] . '</span>
+     
+                             &nbsp;&nbsp;&nbsp;&nbsp;
+     
+                             <i class="fa fa-thumbs-down dislike-btn" style="font-size: 0.8em; color:gray"
+                                data-id=' .  $row5['aid'] . '"> 
+                             </i>
+                             <span class="dislikes" style="font-size: 1em; color:gray">' . $row4['dislikes'] . '</span>
+                           
+                            </div>
+                         </div>
+                        
+                          </a>
+                       <hr class="hr">';
+     }
+     
+    }
+    
+
+    ?>
+
+
+  </header>
+
   <!-- navbar -->
   <nav class="navbar fixed-top navbar-expand-md navbar-dark mr-1">
     <div clss="col-3">
@@ -100,7 +191,8 @@ if (mysqli_num_rows($sql) > 0) {
 
   <div id="siderbarindex">
     <div id="m-inform" class="mr-3 ml-3 mb-3">
-    <h1 id="m-nickname-n" class="ml-5"><?php echo $row['nickname']; ?></h1><h1 class="ml-5 text-dark display-5">基本資料</h1>
+      <h1 id="m-nickname-n" class="ml-5"><?php echo $row['nickname']; ?></h1>
+      <h1 class="ml-5 text-dark display-5">基本資料</h1>
       <hr class="hr">
     </div>
 
@@ -112,10 +204,10 @@ if (mysqli_num_rows($sql) > 0) {
         <hr class="hr">
       </div>
       <div id="m-bd" class="m-3">
-      <h4 class="ml-5 text-muted">生日</h4>
-      <label id="m-bd-b" class="ml-5"><?php echo $row['birth']; ?></label>
-      <hr class="hr">
-    </div>
+        <h4 class="ml-5 text-muted">生日</h4>
+        <label id="m-bd-b" class="ml-5"><?php echo $row['birth']; ?></label>
+        <hr class="hr">
+      </div>
     </div>
 
 
@@ -124,20 +216,7 @@ if (mysqli_num_rows($sql) > 0) {
     </div>
     <hr class="hr">
 
-    <div id="p1" class="m-3 mb-3">
-      <div id="p1" class="row mb-2 ml-5 ">
-        <img src="" class="" width="40px" height="40px"></img>
-        <h5 class="ml-5">類別二</h5>
-        <h5 class="ml-5">黃色的皮卡丘</h5>
-      </div>
-      <div id="p1" class="row mt-4 ml-5">
-        <h3 class="">一個大標題1</h3>
-        <p class="ml-5">2022/01/13</p>
-      </div>
-    </div>
-    <hr class="hr">
-  </div>
-
+    <?php echo $output;  ?>
 
   <div id="siderbarright1">
     廣告
