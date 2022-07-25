@@ -1,4 +1,4 @@
-<?php
+<?php //文章內文
 session_start();
 
 include('php/like_dislike.php');
