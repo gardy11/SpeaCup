@@ -43,6 +43,7 @@ if (mysqli_num_rows($sql) > 0) {
     }
   </script>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <link rel="stylesheet" href="css/responsive.css">
 </head>
 
 <body class="body">
@@ -119,12 +120,16 @@ if (mysqli_num_rows($sql) > 0) {
   $sqlIndexHot = "SELECT * ,
   (likes+angry) as total 
   from posts LEFT JOIN discussion_board
-ON posts.cid = discussion_board.cid ORDER BY total DESC;";
+  ON posts.cid = discussion_board.cid 
+  LEFT JOIN users ON posts.unique_id = users.unique_id
+  ORDER BY total DESC;";
   $resultIndexHot = $mysqli->query($sqlIndexHot);
   $sqlIndexNew = "SELECT * ,
-  (likes+angry) as total  
+  (likes+angry) as total 
   from posts LEFT JOIN discussion_board
-ON posts.cid = discussion_board.cid ORDER BY created DESC;";
+  ON posts.cid = discussion_board.cid 
+  LEFT JOIN users ON posts.unique_id = users.unique_id
+  ORDER BY created DESC;";
   $resultIndexNew = $mysqli->query($sqlIndexNew);
   ?>
   <!--最新與熱門html-->
@@ -142,27 +147,27 @@ ON posts.cid = discussion_board.cid ORDER BY created DESC;";
         for ($i = 0; $i < 4; $i++) {
           $rowIndexHot = $resultIndexHot->fetch_object();
           echo
-          '<div class="row" style="border: solid 2px orange; width: 100%;">' .
+          '<div class="row" style="border: solid 2px orange; width: 100%; height: 300px;">' .
             '<div class="col-12 row">' .
               '<form class="row col-12">' .
-                '<img src="assets/img/bell.png " class="col-2" width="70px" height="70px">' .
-                '<div class="col-2 mt-4" style=" text-align:center; font-size: 20px;">' .
-                '類別一' .
+              '<img src="./php/img/'.$rowIndexHot->img.' " class="col-2 dissapear" width="70px" height="70px">' .
+                '<div class="col-2 mt-4 smallerword1" style=" text-align:center; font-size: 20px;color:#EA7500	;">' .
+                $rowIndexHot->board_name .
                 '</div>' .
-                '<p class="col-4 mt-4" style=" text-align:center; font-size: 20px;">' . $rowIndexHot->aid . '</p>' .
+                '<p class="col-4 mt-4" style=" text-align:center; font-size: 20px;color:#EA7500	;">' . $rowIndexHot->nickname . '</p>' .
               '</form>' .
               '<div class="col-12" style=" text-align:center;font-size: 30px;">' .
                 '<p style="overflow-wrap: break-word;">>' . $rowIndexHot->title . '</p>' .
               '</div>' .
-              '<div class="col-1 material-symbols-outlined" style="color:red;">
+              '<div class="col-1 material-symbols-outlined" style="color:#ff8c00;">
               thumb_up_off
               </div>'.
-              '<div class="col-1">'.$rowIndexHot->likes.'</div>'.
-              '<div class="col-8 nopadding" style="height:12%;background:yellow;">'.
-                '<div style="background:red;height:100%; width: calc(100% * ('.$rowIndexHot->likes.'/'.$rowIndexHot->total.'));"></div>'.
+              '<div class="col-1" style="color:#ff8c00;">'.$rowIndexHot->likes.'</div>'.
+              '<div class="col-8 nopadding" style="height:12%;background:#FFD306;">'.
+                '<div style="background:#ff8c00;height:100%; width: calc(100% * ('.$rowIndexHot->likes.'/'.$rowIndexHot->total.'));"></div>'.
               '</div>'.
-              '<div class="col-1">'.$rowIndexHot->angry.'</div>'.
-              '<div class="col-1 material-symbols-outlined" style="color:red;">
+              '<div class="col-1" style="color:#FFD306;">'.$rowIndexHot->angry.'</div>'.
+              '<div class="col-1 material-symbols-outlined" style="color:#FFD306;">
               thumb_down_off
               </div>'.
               '<div class="col-12 nopadding" style="height:10%;">'.
@@ -180,15 +185,16 @@ ON posts.cid = discussion_board.cid ORDER BY created DESC;";
 
         for ($i = 0; $i < 4; $i++) {
           $rowIndexNew = $resultIndexNew->fetch_object();
+          
           echo
           '<div class="row" style="border: solid 2px orange; width: 100%;">' .
             '<div class="col-12">' .
             '<form class="row">' .
-            '<img src="assets/img/bell.png " class="col-2" width="70px" height="70px">' .
+            '<img src="./php/img/'.$rowIndexNew->img.' " class="col-2" width="70px" height="70px">' .
             '<div class="col-2 mt-4" style=" text-align:center; font-size: 20px;">' .
             $rowIndexNew->board_name .
             '</div>' .
-            '<p class="col-4 mt-4" style=" word-wrap:break-word; text-align:center; font-size: 20px;">' . $rowIndexNew->aid . '</p>' .
+            '<p class="col-4 mt-4" style=" word-wrap:break-word; text-align:center; font-size: 20px;">' . $rowIndexNew->nickname . '</p>' .
             '</form>' .
             '<div class="col-12" style="  text-align:center;font-size: 30px;">' .
             '<p style="overflow-wrap: break-word;">' . $rowIndexNew->title . '</p>' .
