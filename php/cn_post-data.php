@@ -31,6 +31,7 @@ while ($row = mysqli_fetch_assoc($query6)) {
    $output .= '  
                    
                     <div id="c1" class="m-3 mb-3">
+                    <a style="text-decoration:none" href="m-index.php?unique_id=' . $row['unique_id'] . '">
                        <div id="c1" class="row mb-2 ml-5 ">
                           <span style="font-size:20px;">' . $row2['board_name'] . '</span>
                           <img src="php/images/' . $row5['img'] . '"  alt=""  width="6%" height="6%" ">
@@ -41,7 +42,7 @@ while ($row = mysqli_fetch_assoc($query6)) {
                            <span style="position:absolute; right: -10%;">' . $row['created'] . '</span>
                            </div>
                        </div>
-
+                     </a>
                      <a style="text-decoration:none" href="post.php?aid=' . $row['aid'] . '">
                        <div id="c1" class="mt-4 ml-5">
                         <h2 style="color:black;">'. $title . '</h2>
