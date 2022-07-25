@@ -99,10 +99,7 @@ while ($row = mysqli_fetch_assoc($query)) {
 
       <div id="siderbarindex">
 
-            <div id="collections" class="m-3 ">
-                  <h1 class="ml-5 display-4">已發表文章</h1>
-                  <hr class="hr">
-            </div>
+           
 
       <div class="wrapper">
             <section class="chat-area">
