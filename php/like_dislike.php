@@ -2,6 +2,11 @@
     $conn =  mysqli_connect('localhost', 'root', '', 'speacup', 3306);
     $conn->set_charset('utf8');    
      
+    if (!isset($_SESSION['unique_id'])) { //未登入 按讚/怒沒反應
+
+      
+    } else {  //已登入
+          $user_id = $_SESSION['unique_id'];
      $user_id = $_SESSION['unique_id'];
 
     // if user clicks like or dislike button
@@ -40,7 +45,7 @@
         echo getRating($post_id);
         exit(0);
     }
-
+  }
  
 
 // Get total number of likes for a particular post

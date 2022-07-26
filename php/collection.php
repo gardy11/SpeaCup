@@ -3,7 +3,14 @@
   $conn =  mysqli_connect('localhost', 'root', '', 'speacup', 3306);
   $conn->set_charset('utf8');
 
-    $user_id = $_SESSION['unique_id'];
+  if (!isset($_SESSION['unique_id'])) { //未登入按收藏沒反應
+
+      
+  } else {  //已登入
+        $user_id = $_SESSION['unique_id'];
+        
+  
+    
 
     if(isset($_POST['action1'])){
       $post_id = $_POST['post_id'];
@@ -30,7 +37,7 @@
       //echo getRating($post_id);
       exit(0);
   }
-
+}
 
 
 function userCollected($post_id)
