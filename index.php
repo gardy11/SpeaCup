@@ -18,6 +18,7 @@ if (!isset($_SESSION['unique_id'])) { //未登入時顯示請登入
              </a>';
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -152,15 +153,27 @@ if (!isset($_SESSION['unique_id'])) { //未登入時顯示請登入
           '<div class="row" style="border: solid 2px orange; width: 100%; height: 300px;">' .
             '<div class="col-12 row">' .
               '<form class="row col-12">' .
+              '<a style="text-decoration:none" href="m-index.php?unique_id=' . $rowIndexHot->unique_id . '">'.
               '<img src="./php/img/'.$rowIndexHot->img.' " class="col-2 dissapear" width="70px" height="70px">' .
-                '<div class="col-2 mt-4 smallerword1" style=" text-align:center; font-size: 20px;color:#EA7500	;">' .
+              '</a>'.
+
+              '<a style="text-decoration:none" href="cate'.$rowIndexHot->cid.'.php?c_id=' . $rowIndexHot->cid . '">'.
+              '<div class="col-2 mt-4 smallerword1" style=" text-align:center; font-size: 20px;color:#EA7500	;">' .
                 $rowIndexHot->board_name .
-                '</div>' .
-                '<p class="col-4 mt-4" style=" text-align:center; font-size: 20px;color:#EA7500	;">' . $rowIndexHot->nickname . '</p>' .
-              '</form>' .
-              '<div class="col-12" style=" text-align:center;font-size: 30px;">' .
-                '<p style="overflow-wrap: break-word;">>' . $rowIndexHot->title . '</p>' .
               '</div>' .
+              '</a>'.
+
+              '<a style="text-decoration:none" href="m-index.php?unique_id=' . $rowIndexHot->unique_id . '">'.
+              '<p class="col-4 mt-4" style=" text-align:center; font-size: 20px;color:#EA7500	;">' . $rowIndexHot->nickname . '</p>' .
+              '</a>'.
+              '</form>' .
+            
+              '<div class="col-12" style=" text-align:center;font-size: 30px;">' .
+              '<a style="text-decoration:none" href="post.php?aid=' . $rowIndexHot->aid . '">'.
+                '<p style="overflow-wrap: break-word;">>' . $rowIndexHot->title . '</p>' .
+              '</a>'.
+              '</div>' .
+            
               '<div class="col-1 material-symbols-outlined" style="color:#ff8c00;">
               thumb_up_off
               </div>'.
@@ -175,7 +188,9 @@ if (!isset($_SESSION['unique_id'])) { //未登入時顯示請登入
               '<div class="col-12 nopadding" style="height:10%;">'.
                         '<p>&nbsp</P>'.
               '</div>'.
+              
             '</div>' .
+            
           '</div>';
         }
         ?>
@@ -192,14 +207,26 @@ if (!isset($_SESSION['unique_id'])) { //未登入時顯示請登入
           '<div class="row" style="border: solid 2px orange; width: 100%;">' .
             '<div class="col-12">' .
             '<form class="row">' .
+
+            '<a style="text-decoration:none" href="m-index.php?unique_id=' . $rowIndexNew->unique_id . '">'.
             '<img src="./php/img/'.$rowIndexNew->img.' " class="col-2" width="70px" height="70px">' .
-            '<div class="col-2 mt-4" style=" text-align:center; font-size: 20px;">' .
-            $rowIndexNew->board_name .
-            '</div>' .
-            '<p class="col-4 mt-4" style=" word-wrap:break-word; text-align:center; font-size: 20px;">' . $rowIndexNew->nickname . '</p>' .
+            '</a>'.
+
+            '<a style="text-decoration:none" href="cate'.$rowIndexNew->cid.'.php?c_id=' . $rowIndexNew->cid . '">'.
+            '<div class="col-2 mt-4 smallerword1" style=" text-align:center; font-size: 20px;color:#EA7500	;">' .$rowIndexNew->board_name .'</div>' .
+            '</a>'.
+
+            '<a style="text-decoration:none" href="m-index.php?unique_id=' . $rowIndexNew->unique_id . '">'.
+            '<p class="col-4 mt-4" style=" text-align:center; font-size: 20px;color:#EA7500	;">' . $rowIndexNew->nickname . '</p>' .
+            '</a>'.
+
             '</form>' .
             '<div class="col-12" style="  text-align:center;font-size: 30px;">' .
+
+            '<a style="text-decoration:none" href="post.php?aid=' . $rowIndexNew->aid . '">'.
             '<p style="overflow-wrap: break-word;">' . $rowIndexNew->title . '</p>' .
+            '</a>'.
+
             '</div>' .
             '<div class="col-12 nopadding" style="height:12%;background:yellow;">'.
                       '<div style="background:red;height:100%; width: calc(100% * ('.$rowIndexNew->likes.' / '.$rowIndexNew->total.'));"></div>'.
