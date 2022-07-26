@@ -2,17 +2,21 @@
 session_start();
 include_once "php/config.php";
 
-if (!isset($_SESSION['unique_id'])) { //未登入時導向登入頁
-  header("location: login.php");
-}
-?>
+if (!isset($_SESSION['unique_id'])) { //未登入時顯示請登入
+  
+  echo $a = "請登入";
+  $output ="";
+} else {  //已登入時顯示會員暱稱及登出
+  $sql = mysqli_query($conn, "SELECT * FROM users WHERE unique_id = {$_SESSION['unique_id']}");
+  if (mysqli_num_rows($sql) > 0) {
+    $row = mysqli_fetch_assoc($sql);
+  }
 
-<?php //撈資料
-$sql = mysqli_query($conn, "SELECT * FROM users WHERE unique_id = {$_SESSION['unique_id']}");
-if (mysqli_num_rows($sql) > 0) {
-  $row = mysqli_fetch_assoc($sql);
+  echo $a = $row['nickname'];
+  $output .='<a href="php/dereout.php" class="link-secondary">
+             <p class="h5">登出</p>
+             </a>';
 }
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -76,14 +80,12 @@ if (mysqli_num_rows($sql) > 0) {
     <div class="box" id="box">
       <div class="row">
         <p class="h5">&ensp;&ensp;HI!&ensp;&ensp;</p>
-        <p class="h5 text-primary"><?php echo $row['nickname']; ?></p>
+        <a href="member.php" class="h5 text-primary"><?php echo $a; ?></a>
       </div>
       <a href="member.php" class="link-secondary">
         <p class="h5">會員中心</p>
       </a>
-      <a href="php/dereout.php" class="link-secondary">
-        <p class="h5">登出</p>
-      </a>
+      <?php echo $output; ?>
     </div>
   </nav>
 
