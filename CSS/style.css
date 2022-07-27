@@ -214,23 +214,7 @@ nav.navbar {
    margin: 0 !important;
 }
 
-/* bell */
-.bell {
-  font-family: "微軟正黑體";
-  font-weight: bold;
-  position: fixed;
-  top: -200px;
-  right: 4%;
-  height: 130px;
-  width: 300px;
-  background-color: #fff;
-  color: #7F7F7F;
-  padding: 20px;
-  border: 2px solid #ccc;
-  -webkit-border-radius: 20px;
-  -webkit-box-shadow: 0 1px 5px #333;
-  z-index: 101;
-}
+
 
 /*siderbarindex.發文*/
 
@@ -240,7 +224,7 @@ nav.navbar {
   border-width: 0;
   color: gray;
   background-color: gray;
-  width: 90%;
+  width: 100%;
 }
 
 
@@ -513,3 +497,73 @@ nav.navbar {
   'opsz' 48
 }
 
+
+/* 讚和收藏樣式 */
+.fa-thumbs-down, .fa-thumbs-o-down {
+  transform:rotateY(180deg);
+  
+}
+.bluei {
+  color: blue;
+}
+
+.redi {
+  color: red;
+}
+
+
+/* 回覆文章留言樣式 */
+
+.typing-area {
+  padding: 18px 30px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.typing-area input {
+  height: 45px;
+  width: calc(100% - 58px);
+  font-size: 16px;
+  padding: 0 13px;
+  border: 1px solid #e6e6e6;
+  outline: none;
+  border-radius: 5px 0 0 5px;
+}
+
+.typing-area button {
+  color: #fff;
+  width: 55px;
+  border: none;
+  outline: none;
+  background: #333;
+  font-size: 19px;
+  opacity: 0.7;
+  pointer-events: none;
+  border-radius: 0 5px 5px 0;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.typing-area button.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.input-content[placeholder]:empty:before {
+  content: attr(placeholder);
+  color: #555; 
+}
+
+.input-content::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+  .input-content {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.input-content {
+  overflow-y: scroll; /* Add the ability to scroll 增加滾輪功能*/
+}
