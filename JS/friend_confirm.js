@@ -18,9 +18,7 @@ $( '.btnAccept' ).click( function ()
                         // console.log(button.parent());
 
                         // @ts-ignore
-                        button.parent().parent().text( '你和 ' +
-                              // @ts-ignore
-                              reqsendingfrom + '是朋友了!' )
+                        button.parent().parent().text( '你們是朋友了!' )
                   }
             } )
 } )
@@ -45,9 +43,7 @@ $( '.btnReject' ).click( function ()
                         // console.log(button.parent());
 
                         // @ts-ignore
-                        button.parent().parent().text( '你拒絕了 ' +
-                              // @ts-ignore
-                              reqsendingfrom )
+                        button.parent().parent().text( '你拒絕了 ' )
                   }
             } )
 } )
