@@ -25,27 +25,6 @@ while ($row = mysqli_fetch_assoc($query1)) {
    $query4 = mysqli_query($conn, $sql4);
    $row4 = mysqli_fetch_assoc($query4);
 
-
-   //    //$row['content']
-   //    function timeago($timestamp) {
-   //       $strTime = array("秒", "分鐘", "小時", "天", "月", "年");
-   //       $length = array("60", "60", "24", "30", "12", "10");
-   //       $currentTime = time();
-   //       if ($currentTime >= $timestamp) {
-   //           $diff = time() - $timestamp;
-   //           for ($i = 0; $diff >= $length[$i] && $i < count($length) - 1; $i++) {
-   //               $diff = $diff / $length[$i];
-   //           }
-   //           $diff = round($diff);
-   //           return $diff . " " . $strTime[$i] . "前";
-   //       }
-   //   }
-
-   //   //$row['created']
-   //   $diff_time = timeago('$row[created]'); 
-   //<span>' . $row2['board_name'] . '</span> 原line54 暫放 
-
-
    $output .= '  
                    
                     <div id="c1" class="m-3 mb-3">
@@ -56,11 +35,11 @@ while ($row = mysqli_fetch_assoc($query1)) {
                            <span style="font-size:20px;">' . $row['nickname'] . '</span>
                     
                            <div style="position:relative; border:0; min-width:60%; max-width:60%; ";>  
-                           <span style="position:absolute; right: -10%;">' . $row['created'] . '</span>
+                           <span style="position:absolute; right: -10%;">' . substr($row['created'], 0, 10) . '</span>
                            </div>
                        </div>
 
-                     <a style="text-decoration:none" href="post.php?aid=' . $row['aid'] . '">
+                     <a style="text-decoration:none" href="user_post.php?aid=' . $row['aid'] . '">
                        <div id="c1" class="mt-4 ml-5">
                         <h2 style="color:black;">'. $title . '</h2>
                         <p style="font-size:20px; color:gray;">'.  $content . '</p> 
