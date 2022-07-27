@@ -1,17 +1,25 @@
-<?php //文章內文
+<?php
 session_start();
 
 include('php/like_dislike.php');
 include('php/collection.php');
 
-$user_id = $_SESSION['unique_id'];
+
 ?>
-<?php
-$sql = "SELECT * FROM posts INNER JOIN users ON posts.unique_id = users.unique_id ORDER BY aid DESC";
-$query = mysqli_query($conn, $sql);
-while ($row = mysqli_fetch_assoc($query)) {
-      $posts = mysqli_fetch_all($query, MYSQLI_ASSOC);
+<?php  //判別登入
+if (!isset($_SESSION['unique_id'])) { //未登入只可瀏覽文章 
+
+      
+} else {  //已登入時按收藏/讚/怒才有反應
+      $user_id = $_SESSION['unique_id'];
+      $sql = "SELECT * FROM posts INNER JOIN users ON posts.unique_id = users.unique_id ORDER BY aid DESC";
+      $query = mysqli_query($conn, $sql);
+      while ($row = mysqli_fetch_assoc($query)) {
+            $posts = mysqli_fetch_all($query, MYSQLI_ASSOC);
+      }
+      
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -103,7 +111,7 @@ while ($row = mysqli_fetch_assoc($query)) {
 
       <div class="wrapper">
             <section class="chat-area">
-                  <header class="row">
+                  <header  style="height: 10%;">
                         <?php
 
                         $aid = mysqli_real_escape_string($conn, $_GET['aid']);
@@ -119,42 +127,52 @@ while ($row = mysqli_fetch_assoc($query)) {
 
                         ?>
                         <!--上一頁、看板、頭貼、發文者、發文時間-->
+                        <a href="cate<?php echo $row['cid']; ?>.php?c_id=<?php echo $row['cid']; ?>">
+                        <span class="col-2" style="font-size: 20px;"><?php echo $row['board_name']; ?></span>
+                        </a>
+
+                        <a href="m-index.php?unique_id=<?php echo $row['unique_id']; ?>">
+                        <img src="php/images/<?php echo $row['img']; ?>"
+                             style="border-radius: 50%;" 
+                             alt="" width="6%" height="6%">
+                        </a>
+
+                        <a href="m-index.php?unique_id=<?php echo $row['unique_id']; ?>" >
+                        <span class="col-2" style="font-size: 20px;"><?php echo $row['nickname']; ?></span>
+                        </a>
+
+                        <span class="time-text col-4"><?php echo nl2br($row['created']) ?></span>
                         
-                        <span class="col-2"><?php echo $row['board_name']; ?></span>
                         
-                        
-                              <span class="col-2"><?php echo $row['nickname']; ?></span>
-                              <p class="time-text col-4"><?php echo nl2br($row['created']) ?></p>
-                        
-                        <i class="fa-solid fa-pen-to-square fa-lg col-4" style="position:relative; left:240px;"></i>
                   </header>
                         <!--文章標題、內容、讚按鈕、收藏紐-->
                   <div class="container">
                         <div class="content">
                               <p class="content-text">
-                              <h1 class="text-body title-text " > <?php echo $row['title'] ?></h1>
-                              <br></br>
-                              <?php echo str_replace("\n", "<br/>", $row['content']) ?>
+                                    
+                              <h1 class="text-body title-text "><strong> <?php echo $row['title'] ?></strong></h1>
+                              <hr class="hr" align="left"/>
                               <!-- 讓內容可以顯示出換行 -->
+                              <p style="font-size: 20px;"><?php echo str_replace("\n", "<br/>", $row['content']) ?></p>
+                              
 
                               <br><br><br>
-
-                              <i <?php if (userLiked($row['aid'])) : ?> class="fa fa-thumbs-up like-btn bluei" <?php else : ?> class="fa fa-thumbs-o-up like-btn bluei" <?php endif ?> data-id="<?php echo $row['aid'] ?>">
+                              <hr class="hr" align="left"/>
+                              <i <?php if (userLiked($row['aid'])) : ?> class="fa fa-thumbs-up like-btn bluei" <?php else : ?> class="fa fa-thumbs-o-up like-btn bluei" <?php endif ?> data-id="<?php echo $row['aid'] ?>"style="font-size: 1.5em;">
                               </i>
                               <span class="likes"><?php echo getLikes($row['aid']); ?></span>
 
                               &nbsp;&nbsp;&nbsp;&nbsp;
 
                               <!-- if user dislikes post, style button differently -->
-                              <i <?php if (userDisliked($row['aid'])) : ?> class="fa fa-thumbs-down dislike-btn bluei" <?php else : ?> class="fa fa-thumbs-o-down dislike-btn bluei" <?php endif ?> data-id="<?php echo $row['aid'] ?>">
+                              <i <?php if (userDisliked($row['aid'])) : ?> class="fa fa-thumbs-down dislike-btn bluei" <?php else : ?> class="fa fa-thumbs-o-down dislike-btn bluei" <?php endif ?> data-id="<?php echo $row['aid'] ?>"style="font-size: 1.5em;">
                               </i>
                               <span class="dislikes"><?php echo getDislikes($row['aid']); ?></span>
 
-                              <!-- <i id="browers" style="position:relative;left:120px;" class="far fa-eye"> 5</i>
-                              <i id="comments" style="position:relative;left:150px;" class="far fa-comment ml-2"> 3</i>  -->
-                              <i <?php if (userCollected($row['aid'])) : ?> class="fa fa-bookmark collection-btn redi" <?php else : ?> class="fa fa-bookmark-o collection-btn redi" <?php endif ?> data-id="<?php echo $row['aid'] ?>" style="position:relative;left:400px;">
-                              </i>
-                              </p>
+                             
+                              <i <?php if (userCollected($row['aid'])) : ?> class="fa fa-bookmark collection-btn redi" <?php else : ?> class="fa fa-bookmark-o collection-btn redi" <?php endif ?> data-id="<?php echo $row['aid'] ?>" style="position:relative;left:5%;font-size: 1.5em;">
+                              收藏</i>
+                              
                         </div>
                   </div>
 
