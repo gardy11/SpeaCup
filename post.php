@@ -103,7 +103,7 @@ while ($row = mysqli_fetch_assoc($query)) {
 
       <div class="wrapper">
             <section class="chat-area">
-                  <header>
+                  <header class="row">
                         <?php
 
                         $aid = mysqli_real_escape_string($conn, $_GET['aid']);
@@ -119,20 +119,21 @@ while ($row = mysqli_fetch_assoc($query)) {
 
                         ?>
                         <!--上一頁、看板、頭貼、發文者、發文時間-->
-                        <a href="posts.php" class="back-icon"><i class="fa fa-arrow-left"></i></a>
-                        <span><?php echo $row['board_name']; ?></span>
-                        <img src="php/images/<?php echo $row['img']; ?>" alt="" width="6%" height="6%">
-                        <div class="details">
-                              <span><?php echo $row['nickname']; ?></span>
-                              <p class="time-text"><?php echo nl2br($row['created']) ?></p>
-                        </div>
-                        <i class="fa-solid fa-pen-to-square fa-lg" style="position:relative; left:240px;"></i>
+                        
+                        <span class="col-2"><?php echo $row['board_name']; ?></span>
+                        
+                        
+                              <span class="col-2"><?php echo $row['nickname']; ?></span>
+                              <p class="time-text col-4"><?php echo nl2br($row['created']) ?></p>
+                        
+                        <i class="fa-solid fa-pen-to-square fa-lg col-4" style="position:relative; left:240px;"></i>
                   </header>
                         <!--文章標題、內容、讚按鈕、收藏紐-->
                   <div class="container">
                         <div class="content">
                               <p class="content-text">
-                              <h6 class="text-body title-text"> <?php echo $row['title'] ?></h6>
+                              <h1 class="text-body title-text " > <?php echo $row['title'] ?></h1>
+                              <br></br>
                               <?php echo str_replace("\n", "<br/>", $row['content']) ?>
                               <!-- 讓內容可以顯示出換行 -->
 
