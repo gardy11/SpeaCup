@@ -214,7 +214,23 @@ nav.navbar {
    margin: 0 !important;
 }
 
-
+/* bell */
+.bell {
+  font-family: "微軟正黑體";
+  font-weight: bold;
+  position: fixed;
+  top: -200px;
+  right: 4%;
+  height: 130px;
+  width: 300px;
+  background-color: #fff;
+  color: #7F7F7F;
+  padding: 20px;
+  border: 2px solid #ccc;
+  -webkit-border-radius: 20px;
+  -webkit-box-shadow: 0 1px 5px #333;
+  z-index: 101;
+}
 
 /*siderbarindex.發文*/
 

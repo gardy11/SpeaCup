@@ -72,7 +72,7 @@ if (!isset($_SESSION['unique_id'])) { //未登入時顯示請登入
           <button class="btn btn-outline-danger my-2 my-sm-0 " type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
         </form>
         <li class="nav-item pl-5 mr-5">
-        <li><a href=""><i class="fa-solid fa-bell">&ensp;&ensp;</i></a></li>
+        <li><a class="fa-solid fa-bell" onclick="doAnimateShowbell();">&ensp;&ensp;</a></li>
         <li><a class="fa-solid fa-user" onclick="doAnimateShow();">&ensp;&ensp;</a></li>
         </li>
     </div>
@@ -88,6 +88,10 @@ if (!isset($_SESSION['unique_id'])) { //未登入時顯示請登入
       </a>
       <?php echo $output; ?>
     </div>
+    <!-- 小鈴鐺裡面的東西 -->
+    <div class="bell" id="bell">
+            <p>bell</p>
+            </div>
   </nav>
 
   <div id="siderbarleft" class="siderbarleft">
@@ -285,11 +289,22 @@ if (!isset($_SESSION['unique_id'])) { //未登入時顯示請登入
 
   }
 
-  window.onclick = function(ev) {
-    if (ev.target.nodeName !== 'A') {
-      doAnimateHide();
-    }
-  };
+  function doAnimateShowbell() {
+      document.getElementById("bell").style.top = "90px";
+      event.cancelBubble = true;
+}
+function doAnimateHidebell() {
+      document.getElementById("bell").style.top = "-200px";
+
+}
+
+window.onclick = function(ev) {
+      if (ev.target.nodeName !== 'A') {
+            doAnimateHide();
+            doAnimateHidebell();
+      }
+};
+
 </script>
 
 </html>
