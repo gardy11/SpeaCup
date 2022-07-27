@@ -75,6 +75,7 @@ if (mysqli_num_rows($sql) > 0) {
 
   <div id="siderbarleft">
     <ul class="nav flex-column ind ">
+       
       <li class="nav-item">
         <a class="nav-link " aria-current="page" href="member.php"><i class="fa-solid fa-bell">&ensp;基本資料</i></a>
       </li>
@@ -98,9 +99,6 @@ if (mysqli_num_rows($sql) > 0) {
       <form method="POST" action="#" enctype="multipart/form-data" autocomplete="off">
         <div id="m-inform" class="mr-3 ml-3 mb-3">
           <h1 class="ml-5 text-dark display-5">基本資料</h1>
-          <p class="ml-5">(暫放)狀態：<?php echo $row['status']; ?>
-            <a href="php/logout.php?logout_id=<?php echo $row['unique_id']; ?>" class="logout">登出</a>
-          </p>
           <hr class="hr">
         </div>
         <div id="m-nickname" class="m-3">
@@ -111,6 +109,7 @@ if (mysqli_num_rows($sql) > 0) {
         <div id="m-nickname" class="m-3 field input">
           <h4 class="ml-5 text-muted">暱稱</h4>
           <input type="text" name="fname" value="<?php echo $row['nickname']; ?>" id="m-nickname-n" class="ml-5" required />
+          <!-- <p id="m-nickname-n" class="ml-5"><?php echo $row['nickname']; ?></p> -->
           <hr class="hr">
         </div>
 
@@ -118,7 +117,7 @@ if (mysqli_num_rows($sql) > 0) {
           <h4 class="ml-5 text-muted">密碼</h4>
           <div class="row ">
             <button class="btn btn-outline-warning ml-5 col-2" onclick="location.href='update_pw.php'">更改密碼</button>
-            
+
           </div>
           <hr class="hr">
         </div>
@@ -126,16 +125,16 @@ if (mysqli_num_rows($sql) > 0) {
         <div id="m-img " class="m-3 ">
           <h4 class="ml-5 text-muted">頭貼</h4>
           <div class="row">
-            
-              <input type="hidden" name="old_img" value="/<?php echo $row['img']; ?>" />
-              
-              <img src="php/images/<?php echo $row['img']; ?>" width="200px" height="200px" class="ml-5 col-3 rounded" alt="大頭貼">
-            
+
+            <input type="hidden" name="old_img" value="/<?php echo $row['img']; ?>" />
+
+            <img src="php/images/<?php echo $row['img']; ?>" width="200px" height="200px" class="ml-5 col-3 rounded" alt="大頭貼">
+
             <div class="col" style="padding-left:10%">
-                <div class="input-group mb-1 pb-5 col-7 field image" width="200px">
-                  <img id="preview_img" src="php/images/review.png" width="200px" height="200px" style="padding-bottom:2%"/>
-                  <input type="file" name="image" accept="image/*,.jpeg, .png, .jpg" class="form-control " id="inputGroupFile02" width="200px">
-                </div>
+              <div class="input-group mb-1 pb-5 col-7 field image" width="200px">
+                <img id="preview_img" src="php/images/review.png" width="200px" height="200px" style="padding-bottom:2%" />
+                <input type="file" name="image" accept="image/*,.jpeg, .png, .jpg" class="form-control " id="inputGroupFile02" width="200px">
+              </div>
             </div>
 
           </div>
@@ -145,18 +144,59 @@ if (mysqli_num_rows($sql) > 0) {
 
         <div id="m-bd" class="m-3">
           <h4 class="ml-5 text-muted">生日</h4>
-          <label id="m-bd-b" class="ml-5"><?php echo $row['birth']; ?></label>
+          <?php if ($row['birth'] != "0000-00-00") { ?> <!-- google登入者須填寫生日，一般登入回傳預設值 -->
+              <p id="m-nickname-n" class= "ml-5"><?php echo $row['birth']; ?></p>
+              <!-- 隱藏區塊 回傳預設值到後端以進行更新作業 -->
+              <div id="r-bd-r" class="ml-5 field" style="display:none">
+                <input type="date" name="birth" id="r-bd" value="<?php echo $row['birth'] ?>" required />
+              </div>
+          <?php } else { ?>
+            <!-- 限制日期只可選取不可自行輸入 -->
+              <div id="r-bd-r" class="ml-5 field">
+                <input type="date" name="birth" id="r-bd" onkeydown="return false" required />
+                <label style="color: red;padding-left:2.5%;">*生日待填寫(填好不可修改)</label>
+              </div>
+          <?php  } ?>
+
           <hr class="hr">
         </div>
-        <div id="m-bd" class="m-3">
+
+        <div id="m-bd" class="m-3 mt-2">
           <h4 class="ml-5 text-muted">性別：</h4>
-          <label id="m-bd-b" class="ml-5"><?php echo $row['gender']; ?></label>
+          <?php if ($row['gender'] != "") { ?> <!-- google登入者須填寫性別，一般登入回傳預設值 -->
+             <p id="m-nickname-n" class= "ml-5"><?php echo $row['gender']; ?></p>
+             <!-- 隱藏區塊 回傳預設值到後端以進行更新作業 -->
+             <div class="gender m-3 mt-2" style="display:none">
+              <input id ="g1" type="radio" name="gender" value="男" class="ml-5" required /><label for="g1">男</label>
+              <input id ="g2" type="radio" name="gender" value="女" class="ml-5" required /><label for="g2">女</label>
+              <!-- 未勾選按鈕的情況下 回傳預設值 -->
+              <input type="hidden" name="gender" value="<?php echo $row['gender']; ?>" class="ml-5" required />
+             </div>
+          <?php } else { ?>
+            <div class="gender m-3 mt-2">
+              <input id ="g1" type="radio" name="gender" value="男" class="ml-5" required /><label for="g1">男</label>
+              <input id ="g2" type="radio" name="gender" value="女" class="ml-5" required /><label for="g2">女</label>
+              <label style="color: red; padding-left:3%;">*性別待填寫(填好不可修改)</label>
+            </div>
+          <?php  } ?>
+          
           <hr class="hr">
         </div>
+
+
         <div id="m-email" class="m-3 field input">
           <h4 class="ml-5 text-muted">綁定信箱</h4>
+          <?php if ($row['mid'] != 0) { ?> <!-- 一般登入信箱可修改，google登入信箱不可修改-->
+           <!-- 傳回預設值以讓後端更新-->
+           <input type="email" name="email" value="<?php echo $row['email']; ?>" id="m-email-e" class="ml-5 " readonly required />
+           <label style="color: red; padding-left:3%;">*使用google登入的帳戶信箱不可修改</label>
+           <?php } else { ?>
           <input type="email" name="email" value="<?php echo $row['email']; ?>" id="m-email-e" class="ml-5 " required />
+          <?php  } ?>
+        
         </div>
+
+        <hr class="hr">
         <div id="m-bd" class="m-3">
           <h4 class="ml-5 text-muted">註冊日期：</h4>
           <label id="m-bd-b" class="ml-5"><?php echo substr($row['register'], 0, 10); ?></label>
@@ -179,10 +219,10 @@ if (mysqli_num_rows($sql) > 0) {
   </div>
 
   <div id="siderbarright2">
-    
+
   </div>
 
-  
+
   <script src="./Js/user_update.js"></script>
 
 </body>

@@ -1,3 +1,7 @@
+<?php 
+include_once "myheader.php";  
+  session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -54,46 +58,43 @@
 
   </nav>
 
-  <div id="siderbarleft">
-    <ul class="nav flex-column ind ">
-      <li class="nav-item">
-        <a class="nav-link " aria-current="page" href="index.php"><i class="fa-solid fa-mug-hot">&ensp;首頁</i></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="cate1.php"><i class="fa-solid fa-mug-hot">&ensp;類別一</i></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link active" href="cate2.php"><i class="fa-solid fa-mug-hot">&ensp;類別二</i></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="cate3.php"><i class="fa-solid fa-mug-hot">&ensp;類別三</i></a>
-      </li>
-
-    </ul>
-  </div>    </div>
+  <div id="siderbarleft" class="siderbarleft">
+    <div id="sidebar">
+      <button type="button" id="collapse" class="collapse-btn">
+        <i class="fas fa-align-left"></i>
+      </button>
+      <ul class="list-unstyled p-1 ">
+        <li>
+          <a href="member.php" calss="m-2">基本資料<i class="fas mt-1 fa-solid fa-user-check"></i></i> </a>
+        </li>
+        <li>
+          <a href="collections.php" calss="m-2">收藏文章<i class="fas mt-1 fa-solid fa-file-circle-plus"></i></i> </a>
+        </li>
+        <li>
+          <a href="posts.php" calss="p-2">發表過文章<i class="fas mt-1 fa-regular fa-pen-to-square"></i></i> </a>
+        </li>
+        <li>
+          <a href="friends.php" calss="m-2">好友列表<i class="fas mt-1  fa-solid fa-users"></i> </a>
+        </li>
+        <li>
+          <a href="apply.php" calss="m-2">好友申請<i class="fas mt-1 fa-solid fa-user-pen"></i></i> </a>
+        </li>
+      </ul>
+    </div>
+  </div>
 
 
   </nav>
 
-  <div id="siderbarleft">
-    <ul class="nav flex-column ind ">
-      <li class="nav-item">
-        <a class="nav-link " aria-current="page" href="index.html"><i class="fa-solid fa-bell">&ensp;首頁</i></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="cate1.html"><i class="fa-solid fa-bell">&ensp;類別一</i></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link active" href="cate2.html"><i class="fa-solid fa-bell">&ensp;類別二</i></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="cate3.html"><i class="fa-solid fa-bell">&ensp;類別三</i></a>
-      </li>
-    </ul>
-  </div>
+  
 
-
-  <div id="siderbarindex">
+<div style="width: 60%;
+  height:10%;">
+  <?php 
+  include_once "newpost.php"; 
+?>
+</div>
+  <!-- <div id="siderbarindex">
     <div class="hotnew"style="border: solid 2px orange; width: 50%;">
   
         <div class="row">
@@ -126,7 +127,7 @@
           <div class="col-1"></div>
         </from>
     </div>
-  </div>
+  </div> -->
 
 
   <div id="siderbarright1">

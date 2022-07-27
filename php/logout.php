@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 if (isset($_SESSION['unique_id'])) {
     include_once "config.php";
@@ -8,6 +9,7 @@ if (isset($_SESSION['unique_id'])) {
         $sql = mysqli_query($conn, "UPDATE users SET status = '{$status}' WHERE unique_id = {$_GET['logout_id']}");
         if ($sql) {
             session_unset();
+            $client->revokeToken();
             session_destroy();
             header("location: ../login.php");
         }
@@ -17,3 +19,11 @@ if (isset($_SESSION['unique_id'])) {
 } else {
     header("location: ../login.php");
 }
+
+//google登出
+// session_start();
+// require_once 'config.php';
+// unset($_SESSION['user_token']);
+// $client->revokeToken();
+// session_destroy();
+// header("Location: ../index.php");
