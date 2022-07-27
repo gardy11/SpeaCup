@@ -158,8 +158,8 @@ else if ($_REQUEST['action'] === 'postStatus') {
        </div>
         <div class="col-2"></div>
             <div class="col-10 d-flex justify-content-end "> 
-                <input type="text" class="form-control" id="comment_input_' . $row_fetchAllSTATUS['pid'] . '" placeholder="請輸入回覆"> 
-                <input type="button" value="回覆"  id="comment_button_' . $row_fetchAllSTATUS['pid'] . '">
+                <input type="text" class="form-control" id="comment_input_' . $row_fetchAllSTATUS['pid'] . '" placeholder="請輸入留言"> 
+                <input type="button" value="留言"  id="comment_button_' . $row_fetchAllSTATUS['pid'] . '" class="btn btn-primary">
             </div>
        </div>
         <div class="col-12 text-right">
