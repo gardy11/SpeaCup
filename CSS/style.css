@@ -74,10 +74,14 @@ nav.navbar {
   background-color: #f2510c;
 }
 
+
+
 .form-control {
   width: 180px !important;
   height: 35px !important;
 }
+
+
 
 /* siderbarleft 樣式 */
 
@@ -497,3 +501,8 @@ nav.navbar {
 }
 
 /* 回覆格式 */
+
+.form-group .form-control {
+  width: 100% !important;
+  height: 100% !important;
+}

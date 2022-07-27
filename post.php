@@ -123,7 +123,7 @@ while ($row = mysqli_fetch_assoc($query)) {
                               } else {
                                     header("location: posts.php");
                               }
-
+                              $post_user = $row['unique_id'];
                               ?>
                               <!--上一頁、看板、頭貼、發文者、發文時間-->
                               <a href="posts.php" class="back-icon"><i class="fa fa-arrow-left"></i></a>
@@ -253,7 +253,7 @@ $(function() {
 
 $('#postStatus').click(function() {
       $statusTXT = $('#status').val();
-      $.post(`php/action.php?action=postStatus&status=${ $statusTXT }&postTo=<?php echo $user_id; ?>`,
+      $.post(`php/action.php?action=postStatus&status=${ $statusTXT }&aid=<?php echo $aid; ?>`,
             function(res) {
 
                   loadStatus()
@@ -268,7 +268,7 @@ $(document).ready(function() {
 
 function loadStatus() {
 
-      $.post('php/action.php?action=fetchAllStatus&uid=<?php echo $user_id; ?>', function(res) {
+      $.post('php/action.php?action=fetchAllStatus&aid=<?php echo $aid; ?>', function(res) {
             // alert(res);
             $('#all-status').html(res)
       })

@@ -93,7 +93,14 @@ else if ($_REQUEST['action'] === 'postStatus') {
     $dateAdded_now = date('y-m-d H:i:s');
     $memID = $_SESSION['unique_id'];
     $status = $_REQUEST['status'];
-    $postTo = $_REQUEST['postTo'];
+    $aid = $_REQUEST['aid'];   //文章id
+
+
+    $sql_selectPostUser = "SELECT * FROM posts where aid = '$aid'";
+    $sql_PostUser = mysqli_query($conn, $sql_selectPostUser);
+    $PostUser = mysqli_fetch_assoc($sql_PostUser);
+    $postTo = $PostUser['unique_id'];
+
     $sql_statusINSERT = "INSERT INTO replys (userid, post_to, post_status, date_added) VALUES ('$memID','$postTo', '$status', '$dateAdded_now')";
 
     if (mysqli_query($conn, $sql_statusINSERT)) {
@@ -104,7 +111,13 @@ else if ($_REQUEST['action'] === 'postStatus') {
     }
 } else if ($_REQUEST['action'] === 'fetchAllStatus') {
     // $memID = $_SESSION['unique_id'];
-    $uid = $_REQUEST['uid'];
+    $aid = $_REQUEST['aid'];   //文章id
+
+    $sql_selectPostUser = "SELECT * FROM posts where aid = '$aid'";
+    $sql_PostUser = mysqli_query($conn, $sql_selectPostUser);
+    $PostUser = mysqli_fetch_assoc($sql_PostUser);
+    $uid = $PostUser['unique_id'];
+
     // $sql_fetchAllSTATUS = "SELECT * FROM replys where user_id = '$memID' order by pid DESC";
     if ($uid == $_SESSION['unique_id']) {
         $s_ID = $_SESSION['unique_id'];
@@ -147,7 +160,7 @@ else if ($_REQUEST['action'] === 'postStatus') {
             <img src="php/images/' . $row_profilePIC['img'] . '" height=50 width=50>
        </div>
        <div class="col-10">
-          <p class="text-uppercase p-0 m-0"><a href="timeline.php?user_id=' . $storedID . '">' . $row_getName['nickname'] . '</a>
+          <p class="text-uppercase p-0 m-0"><a href="m-index.php?user_id=' . $storedID . '">' . $row_getName['nickname'] . '</a>
 
             <a href="timeline.php?user_id=' . $post_to . '">' . $postingTo . '</a>
 
@@ -163,7 +176,7 @@ else if ($_REQUEST['action'] === 'postStatus') {
             </div>
        </div>
         <div class="col-12 text-right">
-            <a href="javascript:void(0)" onclick="loadRelatedComment(' . $row_fetchAllSTATUS['pid'] . ')">View Comments</a>
+            <a href="javascript:void(0)" onclick="loadRelatedComment(' . $row_fetchAllSTATUS['pid'] . ')">查看更多留言...</a>
             <div id="displayRelatedComment' . $row_fetchAllSTATUS['pid'] . '">
             </div>
         </div>
@@ -211,10 +224,14 @@ else if ($_REQUEST['action'] === 'postStatus') {
         $result_profilePIC = mysqli_query($conn, $sql_profilePIC);
         $row_profilePIC = mysqli_fetch_assoc($result_profilePIC);
 
-        $comments .= "<div class='row my-2'>
-          <div class='col-2'><img src='php/images/" . $row_profilePIC['img'] . "' height=30></div>
-          <div class='col-8 text-left'>" . $row_relatedComments['comment'] . "</div>
-          </div>";
+        $comments .=
+            '<div class="row my-2">
+          <div class="col-2">
+            <img src="php/images/' . $row_profilePIC['img'] . '" height=30>
+                 <a href="m-index.php?user_id=' . $storedID . '">' . $row_profilePIC['nickname'] . '<a>
+            </div>
+          <div class="col-8 text-left">' . $row_relatedComments['comment'] . '</div>
+        </div>';
     }
     echo $comments;
 }
