@@ -21,7 +21,7 @@ while ($row = mysqli_fetch_assoc($query)) {
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <title>SpeaCup有話直說</title>
       <link href="CSS/style.css" rel="stylesheet" />
-
+      <link rel="stylesheet" href="./css/style_chat.css">
       <link rel="icon" type="image/x-icon" href="assets/fav.ico" />
       <script src="JS/scripts.js"></script>
       <script src="js/jquery-3.6.0.js"></script>
@@ -127,11 +127,11 @@ while ($row = mysqli_fetch_assoc($query)) {
                                     <span class="col-2" style="font-size: 20px;"><?php echo $row['board_name']; ?></span>
                               </a>
 
-                              <a href="m-index.php?unique_id=<?php echo $row['unique_id']; ?>">
+                              <a href="m-index.php?user_id=<?php echo $row['unique_id']; ?>">
                                     <img src="php/images/<?php echo $row['img']; ?>" style="border-radius: 50%;" alt="" width="6%" height="6%">
                               </a>
 
-                              <a href="m-index.php?unique_id=<?php echo $row['unique_id']; ?>">
+                              <a href="m-index.php?user_id=<?php echo $row['unique_id']; ?>">
                                     <span class="col-2" style="font-size: 20px;"><?php echo $row['nickname']; ?></span>
                               </a>
 
@@ -187,11 +187,7 @@ while ($row = mysqli_fetch_assoc($query)) {
                               </div>
                         </div>
 
-                        <!--回覆文章-->
-                        <form action="#" class="typing-area">
-                              <input type="text" name="message" class="input-field" placeholder="留個言吧.." autocomplete="off" />
-                              <button><i class="fa fa-telegram"></i></button>
-                        </form>
+                        
                   
             </div>
 
@@ -200,7 +196,8 @@ while ($row = mysqli_fetch_assoc($query)) {
 
 
       <div id="siderbarright1">
-            廣告
+            <!-- 聊天對象選擇介面 -->
+            <?php include_once "./php/users_select.php"; ?>
       </div>
 
       <div id="siderbarright2">

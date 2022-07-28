@@ -20,11 +20,10 @@
 									點此選擇發文看板
 								</button>
 								<div class="dropdown-menu" id="SelectMe">
-									<a class="dropdown-item" href="#" value="1" >演藝</a>
+									<a class="dropdown-item" href="#" value="1" >時事</a>
 									<a class="dropdown-item" href="#" value="2" >美食</a>
-									<a class="dropdown-item" href="#" value="3" >電影</a>
-									<a class="dropdown-item" href="#" value="4" >遊戲</a>
-									<a class="dropdown-item" href="#" value="5" >心情</a>
+									<a class="dropdown-item" href="#" value="3" >演藝</a>
+
 								</div>
 							</div>
 															

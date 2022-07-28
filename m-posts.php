@@ -177,13 +177,11 @@ if (mysqli_num_rows($sql) > 0) {
 							  <!-- <div id="textarea" contenteditable>
 								<img contenteditable="false" style="width:45px" id="myimg" />
 								I look like a textarea
-
 								</div> -->
 
 								<!-- <div id="textarea" contenteditable>
 								<img contenteditable="false" style="max-width:540px" id="myimg" />
 								I look like a textarea
-
 								</div> -->
 
 							  <br/><br/>	

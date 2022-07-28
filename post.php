@@ -1,4 +1,4 @@
-<?php
+<?php //文章內文
 session_start();
 
 include('php/like_dislike.php');
@@ -9,7 +9,7 @@ include('php/collection.php');
 <?php  //判別登入
 if (!isset($_SESSION['unique_id'])) { //未登入只可瀏覽文章 
 
-      
+
 } else {  //已登入時按收藏/讚/怒才有反應
       $user_id = $_SESSION['unique_id'];
       $sql = "SELECT * FROM posts INNER JOIN users ON posts.unique_id = users.unique_id ORDER BY aid DESC";
@@ -17,7 +17,6 @@ if (!isset($_SESSION['unique_id'])) { //未登入只可瀏覽文章
       while ($row = mysqli_fetch_assoc($query)) {
             $posts = mysqli_fetch_all($query, MYSQLI_ASSOC);
       }
-      
 }
 
 ?>
@@ -29,7 +28,7 @@ if (!isset($_SESSION['unique_id'])) { //未登入只可瀏覽文章
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <title>SpeaCup有話直說</title>
       <link href="CSS/style.css" rel="stylesheet" />
-
+      <link rel="stylesheet" href="./css/style_chat.css">
       <link rel="icon" type="image/x-icon" href="assets/fav.ico" />
       <script src="JS/scripts.js"></script>
       <script src="js/jquery-3.6.0.js"></script>
@@ -85,7 +84,8 @@ if (!isset($_SESSION['unique_id'])) { //未登入只可瀏覽文章
                   <ul class="list-unstyled p-1 ">
 
                         <li>
-                              <a href="member.php" calss="m-2">基本資料<i class="fas mt-1 fa-solid fa-user-check"></i></i> </a>
+                              <a href="member.php" calss="m-2">基本資料<i class="fas mt-1 fa-solid fa-user-check"></i></i>
+                              </a>
                         </li>
                         <li>
                               <a href="collections.php" calss="m-2">收藏文章<i class="fas mt-1 fa-solid fa-file-circle-plus"></i></i> </a>
@@ -107,46 +107,42 @@ if (!isset($_SESSION['unique_id'])) { //未登入只可瀏覽文章
 
       <div id="siderbarindex">
 
-           
 
-      <div class="wrapper">
-            <section class="chat-area">
-                  <header  style="height: 10%;">
-                        <?php
 
-                        $aid = mysqli_real_escape_string($conn, $_GET['aid']);
-                        $sql = mysqli_query($conn, "SELECT * FROM posts INNER JOIN users ON posts.unique_id = users.unique_id LEFT JOIN board_categories  ON posts.cid = board_categories.cid WHERE aid =  $aid ORDER BY aid DESC");
-                        if ($aid === "") {
-                              header("location: login.php");
-                        }
-                        if (mysqli_num_rows($sql) > 0) {
-                              $row = mysqli_fetch_assoc($sql);
-                        } else {
-                              header("location: posts.php");
-                        }
+            <div class="wrapper_post">
+                  <section class="post-area">
+                        <header>
+                              <?php
 
-                        ?>
-                        <!--上一頁、看板、頭貼、發文者、發文時間-->
-                        <a href="cate<?php echo $row['cid']; ?>.php?c_id=<?php echo $row['cid']; ?>">
-                        <span class="col-2" style="font-size: 20px;"><?php echo $row['board_name']; ?></span>
-                        </a>
+                              $aid = mysqli_real_escape_string($conn, $_GET['aid']);
+                              $sql = mysqli_query($conn, "SELECT * FROM posts INNER JOIN users ON posts.unique_id = users.unique_id LEFT JOIN board_categories  ON posts.cid = board_categories.cid WHERE aid =  $aid ORDER BY aid DESC");
+                              if ($aid === "") {
+                                    header("location: login.php");
+                              }
+                              if (mysqli_num_rows($sql) > 0) {
+                                    $row = mysqli_fetch_assoc($sql);
+                              } else {
+                                    header("location: posts.php");
+                              }
+                              $post_user = $row['unique_id'];
+                              ?>
+                              <!--上一頁、看板、頭貼、發文者、發文時間-->
+                              <a href="cate<?php echo $row['cid']; ?>.php?c_id=<?php echo $row['cid']; ?>">
+                                    <span class="col-2" style="font-size: 20px;"><?php echo $row['board_name']; ?></span>
+                              </a>
 
-                        <a href="m-index.php?unique_id=<?php echo $row['unique_id']; ?>">
-                        <img src="php/images/<?php echo $row['img']; ?>"
-                             style="border-radius: 50%;" 
-                             alt="" width="6%" height="6%">
-                        </a>
+                              <a href="m-index.php?user_id=<?php echo $row['unique_id']; ?>">
+                                    <img src="php/images/<?php echo $row['img']; ?>" style="border-radius: 50%;" alt="" width="6%" height="6%">
+                              </a>
 
-                        <a href="m-index.php?unique_id=<?php echo $row['unique_id']; ?>" >
-                        <span class="col-2" style="font-size: 20px;"><?php echo $row['nickname']; ?></span>
-                        </a>
+                              <a href="m-index.php?user_id=<?php echo $row['unique_id']; ?>">
+                                    <span class="col-2" style="font-size: 20px;"><?php echo $row['nickname']; ?></span>
+                              </a>
 
-                        <span class="time-text col-4"><?php echo nl2br($row['created']) ?></span>
-                        
-                        
-                  </header>
+                              <span class="time-text col-4"><?php echo nl2br($row['created']) ?></span>
+                        </header>
                         <!--文章標題、內容、讚按鈕、收藏紐-->
-                  <div class="container">
+                        <div class="container">
                         <div class="content">
                               <p class="content-text">
                                     
@@ -176,20 +172,37 @@ if (!isset($_SESSION['unique_id'])) { //未登入只可瀏覽文章
                         </div>
                   </div>
 
-                   <!--回覆文章-->                 
-                  <form action="#" class="typing-area">
-                        <input type="text" name="message" class="input-field" placeholder="留個言吧.." autocomplete="off" />
-                        <button><i class="fa fa-telegram"></i></button>
+
+
+
+                  </section>
+            </div>
+            <!--回覆文章-->
+            <div>
+
+                  <form action="javascript:void(0)" id='statusForm'>
+                        <!-- <div class="form-group mt-4"> -->
+                        <div class="form-group">
+                              <textarea class="form-control" name='status' rows="5" id="status"></textarea>
+                              <input type="button" value="回覆" id='postStatus' class="btn btn-primary">
+                        </div>
+
                   </form>
-            </section>
-      </div>
+
+                  <div id="all-status">
+
+                  </div>
+
+            </div>
 
 
       </div>
+
 
 
       <div id="siderbarright1">
-            廣告
+            <!-- 聊天對象選擇介面 -->
+            <?php include_once "./php/users_select.php"; ?>
       </div>
 
       <div id="siderbarright2">
@@ -201,7 +214,7 @@ if (!isset($_SESSION['unique_id'])) { //未登入只可瀏覽文章
 
 
 
-      
+
 
       <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
       <script src="Myjs/like_dislike.js"></script>
@@ -235,6 +248,37 @@ if (!isset($_SESSION['unique_id'])) { //未登入只可瀏覽文章
                   }, 200);
             });
       });
+
+      $('#postStatus').click(function() {
+            $statusTXT = $('#status').val();
+            $.post(`php/action.php?action=postStatus&status=${ $statusTXT }&aid=<?php echo $aid; ?>`,
+                  function(res) {
+
+                        loadStatus()
+                        $('#status').val(' ');
+                  })
+      })
+
+
+      $(document).ready(function() {
+            loadStatus()
+      })
+
+      function loadStatus() {
+
+            $.post('php/action.php?action=fetchAllStatus&aid=<?php echo $aid; ?>', function(res) {
+                  // alert(res);
+                  $('#all-status').html(res)
+            })
+      }
+
+      function loadRelatedComment(pid) {
+            $.post(`php/action.php?action=relatedComments&pid=${ pid }`, function(res) {
+                  // console.log(res);
+                  $('#displayRelatedComment' + pid).html(res);
+                  $('#displayRelatedComment' + pid).prev().hide();
+            })
+      }
 </script>
 
 </html>
