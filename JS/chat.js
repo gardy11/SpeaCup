@@ -1,4 +1,4 @@
-const form = document.querySelector( ".typing-area" ),
+var form = document.querySelector( ".typing-area" ),
     // @ts-ignore
     incoming_id = form.querySelector( ".incoming_id" ).value,
     // @ts-ignore

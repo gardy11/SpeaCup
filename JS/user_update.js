@@ -1,3 +1,4 @@
+
 const form = document.querySelector( '.update form' );
       // @ts-ignore
       continueBtn = form.querySelector( '.button input' );
