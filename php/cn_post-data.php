@@ -31,7 +31,7 @@ while ($row = mysqli_fetch_assoc($query6)) {
    $output .= '  
                    
                     <div id="c1" class="m-3 mb-3">
-                    <a style="text-decoration:none" href="m-index.php?unique_id=' . $row['unique_id'] . '">
+                    <a style="text-decoration:none" href="m-index.php?user_id=' . $row['unique_id'] . '">
                        <div id="c1" class="row mb-2 ml-5 ">
                           <span style="font-size:20px;">' . $row2['board_name'] . '</span>
                           <img src="php/images/' . $row5['img'] . '"  alt=""  width="6%" height="6%" ">
@@ -39,7 +39,7 @@ while ($row = mysqli_fetch_assoc($query6)) {
                            <span style="font-size:20px;">' . $row5['nickname'] . '</span>
                     
                            <div style="position:relative; border:0; min-width:60%; max-width:60%; ";>  
-                           <span style="position:absolute; right: -10%;">' . $row['created'] . '</span>
+                           <span style="position:absolute; right: -10%;">' . substr($row['created'], 0, 10) . '</span>
                            </div>
                        </div>
                      </a>
