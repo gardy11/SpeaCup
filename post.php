@@ -4,14 +4,21 @@ session_start();
 include('php/like_dislike.php');
 include('php/collection.php');
 
-$user_id = $_SESSION['unique_id'];
+
 ?>
-<?php
-$sql = "SELECT * FROM posts INNER JOIN users ON posts.unique_id = users.unique_id ORDER BY aid DESC";
-$query = mysqli_query($conn, $sql);
-while ($row = mysqli_fetch_assoc($query)) {
-      $posts = mysqli_fetch_all($query, MYSQLI_ASSOC);
+<?php  //判別登入
+if (!isset($_SESSION['unique_id'])) { //未登入只可瀏覽文章 
+
+
+} else {  //已登入時按收藏/讚/怒才有反應
+      $user_id = $_SESSION['unique_id'];
+      $sql = "SELECT * FROM posts INNER JOIN users ON posts.unique_id = users.unique_id ORDER BY aid DESC";
+      $query = mysqli_query($conn, $sql);
+      while ($row = mysqli_fetch_assoc($query)) {
+            $posts = mysqli_fetch_all($query, MYSQLI_ASSOC);
+      }
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

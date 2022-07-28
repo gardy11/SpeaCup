@@ -3,14 +3,14 @@ session_start();
 include_once "php/config.php";
 
 if (!isset($_SESSION['unique_id'])) { //未登入時導向登入頁
-  header("location: login.php");
+      header("location: login.php");
 }
 ?>
 
 <?php //撈資料
 $sql = mysqli_query($conn, "SELECT * FROM users WHERE unique_id = {$_SESSION['unique_id']}");
 if (mysqli_num_rows($sql) > 0) {
-  $row = mysqli_fetch_assoc($sql);
+      $row = mysqli_fetch_assoc($sql);
 }
 
 ?>
@@ -25,10 +25,10 @@ if (mysqli_num_rows($sql) > 0) {
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <title>SpeaCup有話直說</title>
       <link href="CSS/style.css" rel="stylesheet" />
-      <link rel="stylesheet" href="./css/style_chat.css">
       <link rel="icon" type="image/x-icon" href="assets/fav.ico" />
       <script src="JS/scripts.js"></script>
       <script src="js/jquery-3.6.0.js"></script>
+      <link rel="stylesheet" href="./css/style_chat.css">
 
       <!-- 外部匯入樣式 -->
 

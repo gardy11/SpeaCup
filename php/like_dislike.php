@@ -1,47 +1,52 @@
 <?php
-    $conn =  mysqli_connect('localhost', 'root', '', 'speacup', 3306);
-    $conn->set_charset('utf8');    
-     
-     $user_id = $_SESSION['unique_id'];
+$conn =  mysqli_connect('localhost', 'root', '', 'speacup', 3306);
+$conn->set_charset('utf8');
 
-    // if user clicks like or dislike button
-    if(isset($_POST['action'])){
-        $post_id = $_POST['post_id'];
-        $action = $_POST['action'];
-        
+if (!isset($_SESSION['unique_id'])) { //未登入 按讚/怒沒反應
 
-        switch ($action){
-            case 'like':
-                $sql = "INSERT INTO like_dislike (post_id, user_id, rating_action) 
+
+} else {  //已登入
+  $user_id = $_SESSION['unique_id'];
+  $user_id = $_SESSION['unique_id'];
+
+  // if user clicks like or dislike button
+  if (isset($_POST['action'])) {
+    $post_id = $_POST['post_id'];
+    $action = $_POST['action'];
+
+
+    switch ($action) {
+      case 'like':
+        $sql = "INSERT INTO like_dislike (post_id, user_id, rating_action) 
                 VALUES ('$post_id', '$user_id', 'like')
                 ON DUPLICATE KEY UPDATE rating_action='like'";
-                break;
+        break;
 
-            case 'dislike':
-                $sql = "INSERT INTO like_dislike (post_id, user_id, rating_action) 
+      case 'dislike':
+        $sql = "INSERT INTO like_dislike (post_id, user_id, rating_action) 
                 VALUES ('$post_id', '$user_id', 'dislike')
                 ON DUPLICATE KEY UPDATE rating_action='dislike'";
-                break;  
-                
-            case 'unlike':
-                $sql = "DELETE FROM like_dislike WHERE user_id = '$user_id' AND post_id = '$post_id' ";
-                break;
+        break;
 
-            case 'undislike':
-                $sql = "DELETE FROM like_dislike WHERE user_id = '$user_id' AND post_id = '$post_id' ";
-                break;
-            default:
-                break;
-        }
+      case 'unlike':
+        $sql = "DELETE FROM like_dislike WHERE user_id = '$user_id' AND post_id = '$post_id' ";
+        break;
 
-        //execute query
-        mysqli_query($conn, $sql);
-        //return number of likes
-        echo getRating($post_id);
-        exit(0);
+      case 'undislike':
+        $sql = "DELETE FROM like_dislike WHERE user_id = '$user_id' AND post_id = '$post_id' ";
+        break;
+      default:
+        break;
     }
 
- 
+    //execute query
+    mysqli_query($conn, $sql);
+    //return number of likes
+    echo getRating($post_id);
+    exit(0);
+  }
+}
+
 
 // Get total number of likes for a particular post
 function getLikes($id)
@@ -78,8 +83,8 @@ function getRating($id)
   $likes = mysqli_fetch_array($likes_rs);
   $dislikes = mysqli_fetch_array($dislikes_rs);
   $rating = [
-  	'likes' => $likes[0],
-  	'dislikes' => $dislikes[0]
+    'likes' => $likes[0],
+    'dislikes' => $dislikes[0]
   ];
 
   return json_encode($rating);
@@ -94,9 +99,9 @@ function userLiked($post_id)
   		  AND post_id= '$post_id' AND rating_action='like'";
   $result = mysqli_query($conn, $sql);
   if (mysqli_num_rows($result) > 0) {
-  	return true;
-  }else{
-  	return false;
+    return true;
+  } else {
+    return false;
   }
 }
 
@@ -109,9 +114,9 @@ function userDisliked($post_id)
   		  AND post_id = '$post_id' AND rating_action='dislike'";
   $result = mysqli_query($conn, $sql);
   if (mysqli_num_rows($result) > 0) {
-  	return true;
-  }else{
-  	return false;
+    return true;
+  } else {
+    return false;
   }
 }
 
@@ -122,6 +127,3 @@ $query = mysqli_query($conn, $sql);
 // while ($row = mysqli_fetch_assoc($query)) {
 $posts = mysqli_fetch_all($query, MYSQLI_ASSOC);    
 //}
-
-
-?>

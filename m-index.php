@@ -9,7 +9,7 @@ include_once "php/config.php";
 $sql = "SELECT * FROM users ORDER BY  uid DESC";
 $query = mysqli_query($conn, $sql);
 while ($row = mysqli_fetch_assoc($query)) {
-  $apply = mysqli_fetch_all($query, MYSQLI_ASSOC);
+      $apply = mysqli_fetch_all($query, MYSQLI_ASSOC);
 }
 ?>
 
@@ -25,6 +25,7 @@ while ($row = mysqli_fetch_assoc($query)) {
       <link rel="icon" type="image/x-icon" href="assets/fav.ico" />
       <script src="JS/scripts.js"></script>
       <script src="js/jquery-3.6.0.js"></script>
+      <link rel="stylesheet" href="./css/style_chat.css">
 
       <!-- 外部匯入樣式 -->
 
@@ -46,51 +47,51 @@ while ($row = mysqli_fetch_assoc($query)) {
 <body class="body">
       <header>
             <?php
-    //個人資料
-    $user_id =  $_REQUEST['user_id'];
-    $unique_id = mysqli_real_escape_string($conn, $_GET['user_id']); //抓取連結過來的unique_id以取得對應資料
-    $sql = mysqli_query($conn, "SELECT * FROM users WHERE unique_id =  $unique_id ORDER BY  uid DESC");
-    if ($$unique_id === "") {
-      header("location: login.php");
-    }
-    if (mysqli_num_rows($sql) > 0) {
-      $row = mysqli_fetch_assoc($sql);
-    } else {
-      header("location: apply.php");
-    }
+            //個人資料
+            $user_id =  $_REQUEST['user_id'];
+            $unique_id = mysqli_real_escape_string($conn, $_GET['user_id']); //抓取連結過來的unique_id以取得對應資料
+            $sql = mysqli_query($conn, "SELECT * FROM users WHERE unique_id =  $unique_id ORDER BY  uid DESC");
+            if ($$unique_id === "") {
+                  header("location: login.php");
+            }
+            if (mysqli_num_rows($sql) > 0) {
+                  $row = mysqli_fetch_assoc($sql);
+            } else {
+                  header("location: apply.php");
+            }
 
-    //已發表文章
-    $sql5 = "SELECT * FROM users INNER JOIN posts ON posts.unique_id = users.unique_id  WHERE posts.unique_id = $unique_id ORDER BY aid DESC";
-    $query1 = mysqli_query($conn, $sql5);
-    $output = "";
-    if (mysqli_num_rows($query1) == 0) {
-      $output .= "<p class=\"ml-5\">還沒有文章喔!</p>";
-    } elseif (mysqli_num_rows($query1) > 0) {
-      while ($row5 = mysqli_fetch_assoc($query1)) {
+            //已發表文章
+            $sql5 = "SELECT * FROM users INNER JOIN posts ON posts.unique_id = users.unique_id  WHERE posts.unique_id = $unique_id ORDER BY aid DESC";
+            $query1 = mysqli_query($conn, $sql5);
+            $output = "";
+            if (mysqli_num_rows($query1) == 0) {
+                  $output .= "<p class=\"ml-5\">還沒有文章喔!</p>";
+            } elseif (mysqli_num_rows($query1) > 0) {
+                  while ($row5 = mysqli_fetch_assoc($query1)) {
 
-        $title_result = $row5['title'];
-        (strlen($title_result) > 40) ? $title =  mb_substr($title_result, 0, 40, 'utf-8') . '...' : $title = $title_result;
+                        $title_result = $row5['title'];
+                        (strlen($title_result) > 40) ? $title =  mb_substr($title_result, 0, 40, 'utf-8') . '...' : $title = $title_result;
 
-        $content_result = $row5['content'];
-        //(strlen($content_result) > 70) ? $content =  substr($content_result, 0, 100) . '...' : $content = $content_result;
-        (strlen($content_result) > 32) ? $content =  mb_substr($content_result, 0, 32, 'utf-8') . '...' : $content = $content_result;
+                        $content_result = $row5['content'];
+                        //(strlen($content_result) > 70) ? $content =  substr($content_result, 0, 100) . '...' : $content = $content_result;
+                        (strlen($content_result) > 32) ? $content =  mb_substr($content_result, 0, 32, 'utf-8') . '...' : $content = $content_result;
 
-        $sql2 = "SELECT board_name FROM posts INNER JOIN board_Categories ON posts.cid = board_Categories.cid WHERE aid = '$row5[aid]'";
-        $query2 = mysqli_query($conn, $sql2);
-        $row2 = mysqli_fetch_assoc($query2);
+                        $sql2 = "SELECT board_name FROM posts INNER JOIN board_Categories ON posts.cid = board_Categories.cid WHERE aid = '$row5[aid]'";
+                        $query2 = mysqli_query($conn, $sql2);
+                        $row2 = mysqli_fetch_assoc($query2);
 
-        $sql3 = "SELECT COUNT(*) AS likes FROM like_dislike 
+                        $sql3 = "SELECT COUNT(*) AS likes FROM like_dislike 
              WHERE post_id = '$row5[aid]' AND rating_action='like'";
-        $query3 = mysqli_query($conn, $sql3);
-        $row3 = mysqli_fetch_assoc($query3);
+                        $query3 = mysqli_query($conn, $sql3);
+                        $row3 = mysqli_fetch_assoc($query3);
 
-        $sql4 = "SELECT COUNT(*) AS dislikes FROM like_dislike 
+                        $sql4 = "SELECT COUNT(*) AS dislikes FROM like_dislike 
              WHERE post_id = '$row5[aid]' AND rating_action='dislike'";
-        $query4 = mysqli_query($conn, $sql4);
-        $row4 = mysqli_fetch_assoc($query4);
+                        $query4 = mysqli_query($conn, $sql4);
+                        $row4 = mysqli_fetch_assoc($query4);
 
-        //文章內容&格式
-        $output .= '  
+                        //文章內容&格式
+                        $output .= '  
                         
                          <div id="c1" class="m-3 mb-3">
                             <div id="c1" class="row mb-2 ml-5 ">
@@ -126,11 +127,11 @@ while ($row = mysqli_fetch_assoc($query)) {
                         
                           </a>
                        <hr class="hr">';
-      }
-    }
+                  }
+            }
 
 
-    ?>
+            ?>
 
 
       </header>
@@ -202,29 +203,29 @@ while ($row = mysqli_fetch_assoc($query)) {
                   <h1 class="ml-5 text-dark display-5">基本資料</h1>
                   <div class="col-12 pt-2">
                         <?php
-        $sendFrom = $_SESSION["unique_id"];
-        $sql_CheckReq = "SELECT * FROM requests where sendingfrom = '$sendFrom' and sendingto = '$user_id' ";
-        $sql_CheckFriend = "SELECT * FROM friends where (user1 = '$sendFrom' and user2 = '$user_id') or (user1 = '$user_id' and user2 = '$sendFrom')";
+                        $sendFrom = $_SESSION["unique_id"];
+                        $sql_CheckReq = "SELECT * FROM requests where sendingfrom = '$sendFrom' and sendingto = '$user_id' ";
+                        $sql_CheckFriend = "SELECT * FROM friends where (user1 = '$sendFrom' and user2 = '$user_id') or (user1 = '$user_id' and user2 = '$sendFrom')";
 
-        $result_CheckReq = mysqli_query($conn, $sql_CheckReq);
-        $result_CheckFriend = mysqli_query($conn, $sql_CheckFriend);
+                        $result_CheckReq = mysqli_query($conn, $sql_CheckReq);
+                        $result_CheckFriend = mysqli_query($conn, $sql_CheckFriend);
 
 
-        if (mysqli_num_rows($result_CheckReq) > 0 || mysqli_num_rows($result_CheckFriend) > 0) {
-          echo "已經申請過好友或已經是朋友囉!";
-        } else {
-          if ($sendFrom == $user_id) {
-          } else {
+                        if (mysqli_num_rows($result_CheckReq) > 0 || mysqli_num_rows($result_CheckFriend) > 0) {
+                              echo "已經申請過好友或已經是朋友囉!";
+                        } else {
+                              if ($sendFrom == $user_id) {
+                              } else {
 
-        ?>
+                        ?>
 
                         <button class='btn btn-primary' id='sendReq'
                               onclick='sendAction(1,"<?php echo $user_id ?>")'>加好友</button>
 
                         <?php
-          }
-        }
-        ?>
+                              }
+                        }
+                        ?>
                   </div>
                   <hr class="hr">
             </div>
@@ -254,7 +255,8 @@ while ($row = mysqli_fetch_assoc($query)) {
             <?php echo $output;  ?>
 
             <div id="siderbarright1">
-                  廣告
+                  <!-- 聊天對象選擇介面 -->
+                  <?php include_once "./php/users_select.php"; ?>
             </div>
 
             <div id="siderbarright2">

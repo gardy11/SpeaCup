@@ -3,23 +3,17 @@ session_start();
 include_once "php/config.php";
 
 if (!isset($_SESSION['unique_id'])) { //未登入時導向登入頁
-  header("location: login.php");
+      header("location: login.php");
 }
 ?>
 
 <?php //撈資料
 $sql = mysqli_query($conn, "SELECT * FROM users WHERE unique_id = {$_SESSION['unique_id']}");
 if (mysqli_num_rows($sql) > 0) {
-  $row = mysqli_fetch_assoc($sql);
+      $row = mysqli_fetch_assoc($sql);
 }
 ?>
 
-<?php
-$sql = mysqli_query($conn, "SELECT * FROM users WHERE unique_id = {$_SESSION['unique_id']}");
-if (mysqli_num_rows($sql) > 0) {
-  $row = mysqli_fetch_assoc($sql);
-}
-?>
 <!DOCTYPE html>
 <html lang="en">
 

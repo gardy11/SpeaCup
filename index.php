@@ -2,18 +2,23 @@
 session_start();
 include_once "php/config.php";
 
-if (!isset($_SESSION['unique_id'])) { //未登入時導向登入頁
-      header("location: login.php");
+if (!isset($_SESSION['unique_id'])) { //未登入時顯示請登入
+
+      echo $a = "請登入";
+      $output = "";
+} else {  //已登入時顯示會員暱稱及登出
+      $sql = mysqli_query($conn, "SELECT * FROM users WHERE unique_id = {$_SESSION['unique_id']}");
+      if (mysqli_num_rows($sql) > 0) {
+            $row = mysqli_fetch_assoc($sql);
+      }
+
+      echo $a = $row['nickname'];
+      $output .= '<a href="php/dereout.php" class="link-secondary">
+             <p class="h5">登出</p>
+             </a>';
 }
 ?>
 
-<?php //撈資料
-$sql = mysqli_query($conn, "SELECT * FROM users WHERE unique_id = {$_SESSION['unique_id']}");
-if (mysqli_num_rows($sql) > 0) {
-      $row = mysqli_fetch_assoc($sql);
-}
-
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -82,14 +87,16 @@ if (mysqli_num_rows($sql) > 0) {
             <div class="box" id="box">
                   <div class="row">
                         <p class="h5">&ensp;&ensp;HI!&ensp;&ensp;</p>
-                        <p class="h5 text-primary"><?php echo $row['nickname']; ?></p>
+                        <a href="member.php" class="h5 text-primary"><?php echo $a; ?></a>
                   </div>
                   <a href="member.php" class="link-secondary">
                         <p class="h5">會員中心</p>
                   </a>
-                  <a href="php/dereout.php" class="link-secondary">
-                        <p class="h5">登出</p>
-                  </a>
+                  <?php echo $output; ?>
+            </div>
+            <!-- 小鈴鐺裡面的東西 -->
+            <div class="bell" id="bell">
+                  <p>bell</p>
             </div>
       </nav>
 
@@ -117,7 +124,6 @@ if (mysqli_num_rows($sql) > 0) {
 
       </div>
 
-
       <!-- 最新與熱門 -->
       <!--最新與熱門連資料庫和query-->
       <?php
@@ -126,15 +132,15 @@ if (mysqli_num_rows($sql) > 0) {
 
       $sqlIndexHot = "SELECT * ,
   (likes+angry) as total 
-  from posts LEFT JOIN discussion_board
-  ON posts.cid = discussion_board.cid 
+  from posts LEFT JOIN board_categories
+  ON posts.cid = board_categories.cid 
   LEFT JOIN users ON posts.unique_id = users.unique_id
   ORDER BY total DESC;";
       $resultIndexHot = $mysqli->query($sqlIndexHot);
       $sqlIndexNew = "SELECT * ,
   (likes+angry) as total 
-  from posts LEFT JOIN discussion_board
-  ON posts.cid = discussion_board.cid 
+  from posts LEFT JOIN board_categories
+  ON posts.cid = board_categories.cid 
   LEFT JOIN users ON posts.unique_id = users.unique_id
   ORDER BY created DESC;";
       $resultIndexNew = $mysqli->query($sqlIndexNew);
@@ -159,15 +165,27 @@ if (mysqli_num_rows($sql) > 0) {
                               '<div class="row" style="border: solid 2px orange; width: 100%; height: 300px;">' .
                                     '<div class="col-12 row">' .
                                     '<form class="row col-12">' .
-                                    '<img src="./php/images/' . $rowIndexHot->img . ' " class="col-2 dissapear" width="70px" height="70px">' .
+                                    '<a style="text-decoration:none" href="m-index.php?unique_id=' . $rowIndexHot->unique_id . '">' .
+                                    '<img src="./php/img/' . $rowIndexHot->img . ' " class="col-2 dissapear" width="70px" height="70px">' .
+                                    '</a>' .
+
+                                    '<a style="text-decoration:none" href="cate' . $rowIndexHot->cid . '.php?c_id=' . $rowIndexHot->cid . '">' .
                                     '<div class="col-2 mt-4 smallerword1" style=" text-align:center; font-size: 20px;color:#EA7500	;">' .
                                     $rowIndexHot->board_name .
                                     '</div>' .
+                                    '</a>' .
+
+                                    '<a style="text-decoration:none" href="m-index.php?unique_id=' . $rowIndexHot->unique_id . '">' .
                                     '<p class="col-4 mt-4" style=" text-align:center; font-size: 20px;color:#EA7500	;">' . $rowIndexHot->nickname . '</p>' .
+                                    '</a>' .
                                     '</form>' .
+
                                     '<div class="col-12" style=" text-align:center;font-size: 30px;">' .
+                                    '<a style="text-decoration:none" href="post.php?aid=' . $rowIndexHot->aid . '">' .
                                     '<p style="overflow-wrap: break-word;">>' . $rowIndexHot->title . '</p>' .
+                                    '</a>' .
                                     '</div>' .
+
                                     '<div class="col-1 material-symbols-outlined" style="color:#ff8c00;">
               thumb_up_off
               </div>' .
@@ -182,7 +200,9 @@ if (mysqli_num_rows($sql) > 0) {
                                     '<div class="col-12 nopadding" style="height:10%;">' .
                                     '<p>&nbsp</P>' .
                                     '</div>' .
+
                                     '</div>' .
+
                                     '</div>';
                         }
                         ?>
@@ -199,14 +219,26 @@ if (mysqli_num_rows($sql) > 0) {
                               '<div class="row" style="border: solid 2px orange; width: 100%;">' .
                                     '<div class="col-12">' .
                                     '<form class="row">' .
-                                    '<img src="./php/images/' . $rowIndexNew->img . ' " class="col-2" width="70px" height="70px">' .
-                                    '<div class="col-2 mt-4" style=" text-align:center; font-size: 20px;">' .
-                                    $rowIndexNew->board_name .
-                                    '</div>' .
-                                    '<p class="col-4 mt-4" style=" word-wrap:break-word; text-align:center; font-size: 20px;">' . $rowIndexNew->nickname . '</p>' .
+
+                                    '<a style="text-decoration:none" href="m-index.php?unique_id=' . $rowIndexNew->unique_id . '">' .
+                                    '<img src="./php/img/' . $rowIndexNew->img . ' " class="col-2" width="70px" height="70px">' .
+                                    '</a>' .
+
+                                    '<a style="text-decoration:none" href="cate' . $rowIndexNew->cid . '.php?c_id=' . $rowIndexNew->cid . '">' .
+                                    '<div class="col-2 mt-4 smallerword1" style=" text-align:center; font-size: 20px;color:#EA7500	;">' . $rowIndexNew->board_name . '</div>' .
+                                    '</a>' .
+
+                                    '<a style="text-decoration:none" href="m-index.php?unique_id=' . $rowIndexNew->unique_id . '">' .
+                                    '<p class="col-4 mt-4" style=" text-align:center; font-size: 20px;color:#EA7500	;">' . $rowIndexNew->nickname . '</p>' .
+                                    '</a>' .
+
                                     '</form>' .
                                     '<div class="col-12" style="  text-align:center;font-size: 30px;">' .
+
+                                    '<a style="text-decoration:none" href="post.php?aid=' . $rowIndexNew->aid . '">' .
                                     '<p style="overflow-wrap: break-word;">' . $rowIndexNew->title . '</p>' .
+                                    '</a>' .
+
                                     '</div>' .
                                     '<div class="col-12 nopadding" style="height:12%;background:yellow;">' .
                                     '<div style="background:red;height:100%; width: calc(100% * (' . $rowIndexNew->likes . ' / ' . $rowIndexNew->total . '));"></div>' .
@@ -268,9 +300,20 @@ function doAnimateHide() {
 
 }
 
+function doAnimateShowbell() {
+      document.getElementById("bell").style.top = "90px";
+      event.cancelBubble = true;
+}
+
+function doAnimateHidebell() {
+      document.getElementById("bell").style.top = "-200px";
+
+}
+
 window.onclick = function(ev) {
       if (ev.target.nodeName !== 'A') {
             doAnimateHide();
+            doAnimateHidebell();
       }
 };
 </script>

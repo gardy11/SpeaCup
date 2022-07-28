@@ -88,5 +88,3 @@ if (isset($_GET['code'])) {
     $userinfo = mysqli_fetch_assoc($result);
   }
 }
-
-?>
