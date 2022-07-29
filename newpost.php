@@ -1,5 +1,5 @@
-<br/><br/><br/><br/><br/><br/><br/><br/>
-      <div class="wrapper">
+<div class="wrapper" >
+	
             <section class="users">
                   <header>
                         <div class="content">
@@ -45,38 +45,14 @@
 							  <input type="text" name="cid" class="cid" value="" hidden>	
 							  <input type="text" name="aid" class="aid" value="<?php echo $aid; ?>" hidden>
 							  <input type="text" name="unique_id" class="unique_id" value="<?php echo $unique_id; ?>" hidden>
-							  <textarea rows="1" type ="text" name="title" id="autoresizing" spellcheck="false" class="input-field input-title" placeholder="標題" style="position:relative; top:5px; overflow:hidden; border:none; outline:none; width:540px; font-size:30px;"></textarea><br /><br />
+							  <textarea rows="1" type ="text" name="title" id="autoresizing" spellcheck="false" class="input-field input-title" placeholder="標題" style="position:relative; top:5px; overflow:hidden; border:none; outline:none; width:90%; font-size:30px;"></textarea><br /><br />
 							  
 							  
 							  <textarea contenteditable name="content" id="input-content" class="input-field input-content" spellcheck="false" placeholder="內容..." 
-							  style="position:relative; top:2px; resize:none; overflow-y:auto; border:none; outline:none; height: 400px; width:540px;"></textarea>
+							  style="position:relative; top:2px; resize:none; overflow-y:auto; border:none; outline:none; height: 400px; width:90%;"></textarea>
 							  
-
-							  <!-- <div contenteditable="true" name="content" id="input-content" class="input-field input-content" placeholder="內容..." style="position:relative; top:2px; resize:none; overflow:hidden;  border:none; outline:none; height: 400px; width:540px;"><img contenteditable="false" style="max-width:540px" id="myimg" /></div> -->
-
-							  <!-- <div contenteditable="true" data-placeholder="(內容...)" class="input-content" name="content" id="input-content"   
-							  style="position: relative; flex: 1 1 0%; line-height: 22px; font-size: 16px; 
-							  outline: none; border: none; word-break: break-word; height: 400px; width:540px;"></div> -->
-							  <!-- <div data-dcard-editor-index="0"><div style="caret-color: transparent;">
-							  <div class="sc-ce377132-0 btqnSF"><div class="sc-ce377132-6 fRnKqK"> -->
-								
-
-							  <!-- <div id="textarea" contenteditable>
-								<img contenteditable="false" style="width:45px" id="myimg" />
-								I look like a textarea
-
-								</div> -->
-
-								<!-- <div id="textarea" contenteditable>
-								<img contenteditable="false" style="max-width:540px" id="myimg" />
-								I look like a textarea
-
-								</div> -->
-
 							  <br/><br/>	
-							  <!-- <label for = "post_img">
-							  <i class="fa-solid fa-image" style="cursor:pointer;"></i>
-							  </label> -->
+							 
 							  <input type ="file" name="post_img[]" id="post_img" accept="image/*" multiple style="display:none;"></input>
 
 							  <div class="alert alert-success titlealert hide" role="alert" ;>
@@ -112,9 +88,4 @@
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
 		<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 		<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>					 
-	   <script src="./Myjs/newpost.js"></script> 
-
-
-
-
-
+	    <script src="./Myjs/newpost.js"></script> 
