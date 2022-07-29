@@ -30,7 +30,7 @@ if ($_REQUEST['action'] === 'sendReq') {
 
 
 
-    $sql_notification = "INSERT INTO notifications (noti_From, noti_To, message, is_Read, date_Added) VALUES ('$reqSendingFrom', '$reqSendingTo', '$message', '0', '$dateAdded_now')";
+    $sql_notification = "INSERT INTO notifications (noti_From, noti_To, message, date_Added) VALUES ('$reqSendingFrom', '$reqSendingTo', '$message', '$dateAdded_now')";
 
 
     if (mysqli_query($conn, $sql_notification) && mysqli_query($conn, $sql)) {
