@@ -70,10 +70,12 @@ sendBtn.onclick = () =>
                 //清除localStorage
                 localStorage.removeItem(".input-title");
                 localStorage.removeItem(".input-content");
-                //alert('文章發布成功');
-                    $(".successalert").fadeTo(2000, 500).slideUp(500, function(){
-                        $(".successalert").slideUp(500);
-                    });
+                alert('文章發布成功');
+                
+                location.href = "posts.php";
+                    // $(".successalert").fadeTo(2000, 500).slideUp(500, function(){
+                    //     $(".successalert").slideUp(500);
+                    // });
                 
                 
                 }else if(inputTitle.innerHTML == ""){                    
@@ -98,46 +100,29 @@ sendBtn.onclick = () =>
 
 
 //localstorage 暫存標題
-function showTitle(){
-if(!localStorage.getItem(".input-title"))//window物件，前面的window省略
-localStorage.setItem(".input-title","");//這裡先判斷一下，做空白儲存，否則返回 NULL 
-localStorage.title = localStorage.getItem(".input-title");//取值
-$(".input-title").html(localStorage.title);//顯示
-$(".input-title").keyup(function(){
-localStorage.setItem(".input-title",$(this).val());//重新儲存
-});
-}
+// function showTitle(){
+// if(!localStorage.getItem(".input-title"))//window物件，前面的window省略
+// localStorage.setItem(".input-title","");//這裡先判斷一下，做空白儲存，否則返回 NULL 
+// localStorage.title = localStorage.getItem(".input-title");//取值
+// $(".input-title").html(localStorage.title);//顯示
+// $(".input-title").keyup(function(){
+// localStorage.setItem(".input-title",$(this).val());//重新儲存
+// });
+// }
 
-setTimeout(( () => showTitle() ), 1000);
+// setTimeout(( () => showTitle() ), 1000);
 
 //localstorage 暫存內容
-function showContent(){
-if(!localStorage.getItem(".input-content"))
-localStorage.setItem(".input-content","");
-localStorage.content = localStorage.getItem(".input-content");
-$(".input-content").html(localStorage.content);
-$(".input-content").keyup(function(){
-localStorage.setItem(".input-content",$(this).val());
-});
-}
+// function showContent(){
+// if(!localStorage.getItem(".input-content"))
+// localStorage.setItem(".input-content","");
+// localStorage.content = localStorage.getItem(".input-content");
+// $(".input-content").html(localStorage.content);
+// $(".input-content").keyup(function(){
+// localStorage.setItem(".input-content",$(this).val());
+// });
+// }
 
-setTimeout(( () => showContent() ), 1500);
-
-// //暫存看板
-// function showKanban(){
-//     if(!localStorage.getItem(".dropdown-toggle"))
-//     localStorage.setItem(".dropdown-toggle","點此選擇發文看板");
-//     localStorage.Kanban = localStorage.getItem(".dropdown-toggle");
-//     $(".dropdown-toggle").text(localStorage.Kanban);
-//     $(".dropdown-toggle").click(function(){
-//     localStorage.setItem(".dropdown-toggle",$(this).text());
-//     });
-//     }
-
-// // setTimeout(( () => showKanban() ), 100);
-
-// setInterval(( () => showKanban() ), 500);
-
-
+// setTimeout(( () => showContent() ), 1500);
 
 
