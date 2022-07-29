@@ -106,7 +106,7 @@ if (!isset($_SESSION['unique_id'])) { //未登入時顯示請登入
                         <i class="fas fa-align-left"></i>
                   </button>
                   <ul class="list-unstyled p-1 ">
-                        <li>
+                        <li style="background-color:wheat;">
                               <a href="index.php" calss="m-2">首頁<i class="fas mt-1 fa-solid fa-home"></i></i> </a>
                         </li>
                         <li>
@@ -147,6 +147,14 @@ if (!isset($_SESSION['unique_id'])) { //未登入時顯示請登入
       ?>
       <!--最新與熱門html-->
       <div id="siderbarindex">
+      <?php
+      date_default_timezone_set('Asia/Taipei');
+      $DateAndTime = date('y-m-d h:i', time());  
+      echo '<div class="d-flex flex-row-reverse ">
+            <p >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+            <div>'.$DateAndTime.'</div>
+            </div>'
+      ?>
             <div class="w3-container hotnew" style="width: 100%">
                   <div class="w3-bar w3-black row">
                         <button class="w3-bar-item w3-button tablink w3-red col-6"
