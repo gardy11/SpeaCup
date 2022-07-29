@@ -165,7 +165,7 @@ if (!isset($_SESSION['unique_id'])) { //未登入時顯示請登入
                               '<div class="row" style="border: solid 2px orange; width: 100%; height: 300px;">' .
                                     '<div class="col-12 row">' .
                                     '<form class="row col-12">' .
-                                    '<a style="text-decoration:none" href="m-index.php?unique_id=' . $rowIndexHot->unique_id . '">' .
+                                    '<a style="text-decoration:none" href="m-index.php?unser_id=' . $rowIndexHot->unique_id . '">' .
                                     '<img src="./php/img/' . $rowIndexHot->img . ' " class="col-2 dissapear" width="70px" height="70px">' .
                                     '</a>' .
 
@@ -175,7 +175,7 @@ if (!isset($_SESSION['unique_id'])) { //未登入時顯示請登入
                                     '</div>' .
                                     '</a>' .
 
-                                    '<a style="text-decoration:none" href="m-index.php?unique_id=' . $rowIndexHot->unique_id . '">' .
+                                    '<a style="text-decoration:none" href="m-index.php?user_id=' . $rowIndexHot->unique_id . '">' .
                                     '<p class="col-4 mt-4" style=" text-align:center; font-size: 20px;color:#EA7500	;">' . $rowIndexHot->nickname . '</p>' .
                                     '</a>' .
                                     '</form>' .
@@ -220,7 +220,7 @@ if (!isset($_SESSION['unique_id'])) { //未登入時顯示請登入
                                     '<div class="col-12">' .
                                     '<form class="row">' .
 
-                                    '<a style="text-decoration:none" href="m-index.php?unique_id=' . $rowIndexNew->unique_id . '">' .
+                                    '<a style="text-decoration:none" href="m-index.php?user_id=' . $rowIndexNew->unique_id . '">' .
                                     '<img src="./php/img/' . $rowIndexNew->img . ' " class="col-2" width="70px" height="70px">' .
                                     '</a>' .
 
@@ -228,7 +228,7 @@ if (!isset($_SESSION['unique_id'])) { //未登入時顯示請登入
                                     '<div class="col-2 mt-4 smallerword1" style=" text-align:center; font-size: 20px;color:#EA7500	;">' . $rowIndexNew->board_name . '</div>' .
                                     '</a>' .
 
-                                    '<a style="text-decoration:none" href="m-index.php?unique_id=' . $rowIndexNew->unique_id . '">' .
+                                    '<a style="text-decoration:none" href="m-index.php?user_id=' . $rowIndexNew->unique_id . '">' .
                                     '<p class="col-4 mt-4" style=" text-align:center; font-size: 20px;color:#EA7500	;">' . $rowIndexNew->nickname . '</p>' .
                                     '</a>' .
 
