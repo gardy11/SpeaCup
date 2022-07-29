@@ -49,6 +49,7 @@ if (isset($_POST['delete_staff'])) {
       <script src="JS/scripts.js"></script>
       <script src="js/jquery-3.6.0.js"></script>
 
+
       <!-- 外部匯入樣式 -->
 
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -57,9 +58,9 @@ if (isset($_POST['delete_staff'])) {
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
       <script src="https://kit.fontawesome.com/993da95711.js" crossorigin="anonymous"></script>
       <script language="javascript">
-            function changeImageString(TargetID, FildAddres) {
-                  document.images[TargetID].src = FildAddres;
-            }
+      function changeImageString(TargetID, FildAddres) {
+            document.images[TargetID].src = FildAddres;
+      }
       </script>
 </head>
 
@@ -73,15 +74,19 @@ if (isset($_POST['delete_staff'])) {
                   </a>
             </div>
 
-            <button class="navbar-toggler navbar-left" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler navbar-left" type="button" data-toggle="collapse"
+                  data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                  aria-label="Toggle navigation">
                   <span class="navbar-toggler-icon"></span>
             </button>
 
             <div class="nav-navbar collapse navbar-collapse navbar-right " id="navbarSupportedContent">
                   <ul class="navbar-nav ml-auto pl-1">
                         <form class="form-inline">
-                              <input class="form-control mr-sm-1" type="search" placeholder="SpeaCup" aria-label="Search">
-                              <button class="btn btn-outline-danger my-2 my-sm-0 " type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                              <input class="form-control mr-sm-1" type="search" placeholder="SpeaCup"
+                                    aria-label="Search">
+                              <button class="btn btn-outline-danger my-2 my-sm-0 " type="submit"><i
+                                          class="fa-solid fa-magnifying-glass"></i></button>
                         </form>
                         <li class="nav-item pl-5 mr-5">
                         <li><a href=""><i class="fa-solid fa-bell">&ensp;&ensp;</i></a></li>
@@ -100,13 +105,16 @@ if (isset($_POST['delete_staff'])) {
                   <ul class="list-unstyled p-1 ">
 
                         <li>
-                              <a href="member.php" calss="m-2">基本資料<i class="fas mt-1 fa-solid fa-user-check"></i></i> </a>
+                              <a href="member.php" calss="m-2">基本資料<i class="fas mt-1 fa-solid fa-user-check"></i></i>
+                              </a>
                         </li>
                         <li>
-                              <a href="collections.php" calss="m-2">收藏文章<i class="fas mt-1 fa-solid fa-file-circle-plus"></i></i> </a>
+                              <a href="collections.php" calss="m-2">收藏文章<i
+                                          class="fas mt-1 fa-solid fa-file-circle-plus"></i></i> </a>
                         </li>
                         <li>
-                              <a href="posts.php" calss="p-2">發表過文章<i class="fas mt-1 fa-regular fa-pen-to-square"></i></i> </a>
+                              <a href="posts.php" calss="p-2">發表過文章<i
+                                          class="fas mt-1 fa-regular fa-pen-to-square"></i></i> </a>
                         </li>
                         <li>
                               <a href="friends.php" calss="m-2">好友列表<i class="fas mt-1  fa-solid fa-users"></i> </a>
@@ -121,9 +129,12 @@ if (isset($_POST['delete_staff'])) {
       </div>
 
       <div id="siderbarindex">
-           <div class="wrapper_post">
+
+
+
+            <div class="wrapper_post">
                   <section class="post-area">
-                        <header>
+                        <header style="height: 10%;">
                               <?php
 
                               $aid = mysqli_real_escape_string($conn, $_GET['aid']);
@@ -140,11 +151,13 @@ if (isset($_POST['delete_staff'])) {
                               ?>
                               <!--上一頁、看板、頭貼、發文者、發文時間-->
                               <a href="cate<?php echo $row['cid']; ?>.php?c_id=<?php echo $row['cid']; ?>">
-                                    <span class="col-2" style="font-size: 20px;"><?php echo $row['board_name']; ?></span>
+                                    <span class="col-2"
+                                          style="font-size: 20px;"><?php echo $row['board_name']; ?></span>
                               </a>
 
                               <a href="m-index.php?user_id=<?php echo $row['unique_id']; ?>">
-                                    <img src="php/images/<?php echo $row['img']; ?>" style="border-radius: 50%;" alt="" width="6%" height="6%">
+                                    <img src="php/images/<?php echo $row['img']; ?>" style="border-radius: 50%;" alt=""
+                                          width="6%" height="6%">
                               </a>
 
                               <a href="m-index.php?user_id=<?php echo $row['unique_id']; ?>">
@@ -156,11 +169,13 @@ if (isset($_POST['delete_staff'])) {
                               <!--編輯、刪除-->
                               <form method="post" action="" style="position:relative ;left:65%;">
                                     <a style="text-decoration:none" href="edit_post.php?aid=<?php echo $row['aid']; ?>">
-                                          <i class="fa-solid fa-pen-to-square fa-lg" style="position:relative; left:240px;">編輯</i>
+                                          <i class="fa-solid fa-pen-to-square fa-lg"
+                                                style="position:relative; left:240px;">編輯</i>
                                     </a>
                                     <!-- 下面有個 input type="hidden" 是讓待會的PHP 知道要刪除哪一筆資料 -->
                                     <input type="hidden" name="delete_id" value="<?php echo $row['aid']; ?>">
-                                    <button name="delete_staff" onclick="javascript:return del();" class="btn btn-outline-danger">
+                                    <button name="delete_staff" onclick="javascript:return del();"
+                                          class="btn btn-outline-danger">
                                           <i class='fas fa-trash-alt'>刪除</i>
                                     </button>
                               </form>
@@ -181,33 +196,41 @@ if (isset($_POST['delete_staff'])) {
                                     <h1 class="text-body title-text "><strong> <?php echo $row['title'] ?></strong></h1>
                                     <hr class="hr" align="left" />
                                     <!-- 讓內容可以顯示出換行 -->
-                                    <p style="font-size: 20px;"><?php echo str_replace("\n", "<br/>", $row['content']) ?></p>
+                                    <p style="font-size: 20px;">
+                                          <?php echo str_replace("\n", "<br/>", $row['content']) ?></p>
 
 
                                     <br><br><br>
                                     <hr class="hr" align="left" />
-                                    <i <?php if (userLiked($row['aid'])) : ?> class="fa fa-thumbs-up like-btn bluei" <?php else : ?> class="fa fa-thumbs-o-up like-btn bluei" <?php endif ?> data-id="<?php echo $row['aid'] ?>" style="font-size: 1.5em;">
+                                    <i <?php if (userLiked($row['aid'])) : ?> class="fa fa-thumbs-up like-btn bluei"
+                                          <?php else : ?> class="fa fa-thumbs-o-up like-btn bluei" <?php endif ?>
+                                          data-id="<?php echo $row['aid'] ?>" style="font-size: 1.5em;">
                                     </i>
                                     <span class="likes"><?php echo getLikes($row['aid']); ?></span>
 
                                     &nbsp;&nbsp;&nbsp;&nbsp;
 
                                     <!-- if user dislikes post, style button differently -->
-                                    <i <?php if (userDisliked($row['aid'])) : ?> class="fa fa-thumbs-down dislike-btn bluei" <?php else : ?> class="fa fa-thumbs-o-down dislike-btn bluei" <?php endif ?> data-id="<?php echo $row['aid'] ?>" style="font-size: 1.5em;">
+                                    <i <?php if (userDisliked($row['aid'])) : ?>
+                                          class="fa fa-thumbs-down dislike-btn bluei" <?php else : ?>
+                                          class="fa fa-thumbs-o-down dislike-btn bluei" <?php endif ?>
+                                          data-id="<?php echo $row['aid'] ?>" style="font-size: 1.5em;">
                                     </i>
                                     <span class="dislikes"><?php echo getDislikes($row['aid']); ?></span>
 
 
-                                    <i <?php if (userCollected($row['aid'])) : ?> class="fa fa-bookmark collection-btn redi" <?php else : ?> class="fa fa-bookmark-o collection-btn redi" <?php endif ?> data-id="<?php echo $row['aid'] ?>" style="position:relative;left:5%;font-size: 1.5em;">
+                                    <i <?php if (userCollected($row['aid'])) : ?>
+                                          class="fa fa-bookmark collection-btn redi" <?php else : ?>
+                                          class="fa fa-bookmark-o collection-btn redi" <?php endif ?>
+                                          data-id="<?php echo $row['aid'] ?>"
+                                          style="position:relative;left:5%;font-size: 1.5em;">
                                           收藏</i>
 
                               </div>
                         </div>
 
-                        <!--回覆文章-->
-                        
                   </section>
-            
+            </div>
 
 
       </div>
@@ -229,56 +252,58 @@ if (isset($_POST['delete_staff'])) {
 
 
 
-      <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+      <script src="https://code.jquery.com/jquery-3.5.1.min.js"
+            integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
       <script src="Myjs/like_dislike.js"></script>
       <script src="Myjs/collection.js"></script>
       <script src="./Myjs/post.js"></script>
 
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+            integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
 
 
 
 </body>
 <script>
-      // 回到頂端樣式
-      $(function() {
-            var $win = $(window);
-            var $backToTop = $('.js-back-to-top');
+// 回到頂端樣式
+$(function() {
+      var $win = $(window);
+      var $backToTop = $('.js-back-to-top');
 
-            $win.scroll(function() {
-                  if ($win.scrollTop() > 300) {
-                        $backToTop.show();
-                  } else {
-                        $backToTop.hide();
-                  }
-            });
-
-
-            $backToTop.click(function() {
-                  $('html, body').animate({
-                        scrollTop: 0
-                  }, 200);
-            });
+      $win.scroll(function() {
+            if ($win.scrollTop() > 300) {
+                  $backToTop.show();
+            } else {
+                  $backToTop.hide();
+            }
       });
+
+
+      $backToTop.click(function() {
+            $('html, body').animate({
+                  scrollTop: 0
+            }, 200);
+      });
+});
 </script>
 <!-- 刪除確認的JS -->
 <script type="text/javascript">
-      function del() {
+function del() {
 
-            var msg = confirm('請再確認是否刪除本文章!');
+      var msg = confirm('請再確認是否刪除本文章!');
 
-            if (msg == true) {
+      if (msg == true) {
 
-                  alert("文章已刪除!");
-                  window.location = "posts.php"
+            alert("文章已刪除!");
+            window.location = "posts.php"
 
-            } else {
-                  return false;
-            }
+      } else {
+            return false;
+      }
 
 
-      };
+};
 </script>
 
 
