@@ -87,7 +87,7 @@ if (!isset($_SESSION['unique_id'])) { //未登入時導向登入頁
                         <li>
                               <a href="cate2.php" calss="p-2">美食<i class="fas mt-1 fa-solid fa-utensils"></i></i> </a>
                         </li>
-                        <li>
+                        <li style="background-color:wheat;">
                               <a href="cate3.php" calss="p-2">演藝<i class="fas mt-1 fa-regular fa-music"></i></i></i>
                               </a>
                         </li>
@@ -109,6 +109,14 @@ if (!isset($_SESSION['unique_id'])) { //未登入時導向登入頁
   ?>
       <!--最新與熱門html-->
       <div id="siderbarindex">
+      <?php
+      date_default_timezone_set('Asia/Taipei');
+      $DateAndTime = date('y-m-d h:i', time());  
+      echo '<div class="d-flex flex-row-reverse ">
+            <p >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+            <div>'.$DateAndTime.'</div>
+            </div>'
+      ?>
             <div class="w3-container hotnew" style="width: 100%">
                   <div class="w3-bar w3-black row">
                         <button class="w3-bar-item w3-button tablink w3-red col-6"
