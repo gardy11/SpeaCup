@@ -49,8 +49,6 @@
 
 }
 
-
-
 /* 頂部樣式 */
 nav.navbar {
   background-color: wheat;
@@ -590,4 +588,16 @@ nav.navbar {
 
 .input-content {
   overflow-y: scroll; /* Add the ability to scroll 增加滾輪功能*/
+}
+
+
+/* 發文頁樣式 */
+
+.users header img {
+  height: 45px;
+  width: 45px;
+}
+
+.hide{
+  display:none;
 }
