@@ -143,7 +143,7 @@ sendBtn.onclick = () =>
 
                 $(".successalert").fadeTo(2000, 500).slideUp(500, function(){
                     $(".successalert").slideUp(500);
-                    window.location.assign("index.php");
+                    window.location.assign("posts.php");
                 });
                
                                
