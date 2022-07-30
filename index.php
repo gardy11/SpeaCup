@@ -145,14 +145,7 @@ if (!isset($_SESSION['unique_id'])) { //未登入時顯示請登入
       ?>
       <!--最新與熱門html-->
       <div id="siderbarindex">
-      <?php
-      date_default_timezone_set('Asia/Taipei');
-      $DateAndTime = date('y-m-d h:i', time());  
-      echo '<div class="d-flex flex-row-reverse ">
-            <p >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
-            <div>'.$DateAndTime.'</div>
-            </div>'
-      ?>
+      
             <div class="w3-container hotnew" style="width: 100%">
                   <div class="w3-bar w3-black row">
                         <button class="w3-bar-item w3-button tablink w3-red col-6"
@@ -170,7 +163,7 @@ if (!isset($_SESSION['unique_id'])) { //未登入時顯示請登入
                               echo
                               '<div class="row" style="border: solid 2px orange; width: 100%; height: 300px;">' .
                                     '<div class="col-12 row">' .
-                                    '<form class="row col-12">' .
+                                    '<form class="row col-12" >' .
                                     '<a style="text-decoration:none" href="m-index.php?unser_id=' . $rowIndexHot->unique_id . '">' .
                                     '<img src="./php/img/' . $rowIndexHot->img . ' " class="col-2 dissapear" width="70px" height="70px">' .
                                     '</a>' .
@@ -184,6 +177,8 @@ if (!isset($_SESSION['unique_id'])) { //未登入時顯示請登入
                                     '<a style="text-decoration:none" href="m-index.php?user_id=' . $rowIndexHot->unique_id . '">' .
                                     '<p class="col-4 mt-4" style=" text-align:center; font-size: 20px;color:#EA7500	;">' . $rowIndexHot->nickname . '</p>' .
                                     '</a>' .
+
+                                    '<p class="col-4 mt-4" style=" right: -50%; font-size: 20px;color:#EA7500	;">' . $rowIndexHot->created . '</p>' .
                                     '</form>' .
 
                                     '<div class="col-12" style=" text-align:center;font-size: 30px;">' .
@@ -237,7 +232,7 @@ if (!isset($_SESSION['unique_id'])) { //未登入時顯示請登入
                                     '<a style="text-decoration:none" href="m-index.php?user_id=' . $rowIndexNew->unique_id . '">' .
                                     '<p class="col-4 mt-4" style=" text-align:center; font-size: 20px;color:#EA7500	;">' . $rowIndexNew->nickname . '</p>' .
                                     '</a>' .
-
+                                    '<p class="col-4 mt-4" style=" right: -45%; font-size: 20px;color:#EA7500	;">' . $rowIndexNew->created . '</p>' .
                                     '</form>' .
                                     '<div class="col-12" style="  text-align:center;font-size: 30px;">' .
 
