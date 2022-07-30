@@ -554,16 +554,27 @@ nav.navbar {
   color: #555; 
 }
 
-.input-content::-webkit-scrollbar {
+#input-content::-webkit-scrollbar {
   display: none;
 }
 
 /* Hide scrollbar for IE, Edge and Firefox */
-  .input-content {
+  #input-content {
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */
 }
 
-.input-content {
+#input-content {
   overflow-y: scroll; /* Add the ability to scroll 增加滾輪功能*/
+}
+
+
+.hide{
+  display:none;
+}
+
+.icon{
+  width:50px;
+  height:50px;
+  border-radius: 30px;
 }
