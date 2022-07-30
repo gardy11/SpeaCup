@@ -71,12 +71,10 @@ if (!isset($_SESSION['unique_id'])) { //未登入時顯示請登入
 
             <div class="nav-navbar collapse navbar-collapse navbar-right " id="navbarSupportedContent">
                   <ul class="navbar-nav ml-auto pl-1">
-                        <form class="form-inline">
-                              <input class="form-control mr-sm-1" type="search" placeholder="SpeaCup"
-                                    aria-label="Search">
-                              <button class="btn btn-outline-danger my-2 my-sm-0 " type="submit"><i
-                                          class="fa-solid fa-magnifying-glass"></i></button>
-                        </form>
+                  <form class="form-inline" method="POST" action="searchresult.php" >
+                        <input class="form-control mr-sm-1" type="search" placeholder="SpeaCup" aria-label="Search" name="searchcontent">
+                        <button class="btn btn-outline-danger my-2 my-sm-0 " type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                  </form>
                         <li class="nav-item pl-5 mr-5">
                         <li><a href=""><i class="fa-solid fa-bell">&ensp;&ensp;</i></a></li>
                         <li><a class="fa-solid fa-user" onclick="doAnimateShow();">&ensp;&ensp;</a></li>
