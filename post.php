@@ -126,7 +126,7 @@ if (!isset($_SESSION['unique_id'])) { //未登入只可瀏覽文章
                               }
                               $post_user = $row['unique_id'];
                               ?>
-                              <!--上一頁、看板、頭貼、發文者、發文時間-->
+                              <!--看板、頭貼、發文者、發文時間-->
                               <a href="cate<?php echo $row['cid']; ?>.php?c_id=<?php echo $row['cid']; ?>">
                                     <span class="col-2" style="font-size: 20px;"><?php echo $row['board_name']; ?></span>
                               </a>
@@ -150,7 +150,6 @@ if (!isset($_SESSION['unique_id'])) { //未登入只可瀏覽文章
                               <hr class="hr" align="left"/>
                               <!-- 讓內容可以顯示出換行 -->
                               <p style="font-size: 20px;"><?php echo str_replace("\n", "<br/>", $row['content']) ?></p>
-                              
 
                               <br><br><br>
                               <hr class="hr" align="left"/>

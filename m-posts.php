@@ -1,6 +1,7 @@
 <?php
-include_once "myheader.php";
 session_start();
+include_once "php/config.php";
+
 if (!isset($_SESSION['unique_id'])) { //未登入時導向登入頁
   header("location: login.php");
 }
@@ -24,28 +25,7 @@ if (mysqli_num_rows($sql) > 0) {
 <script src="JS/scripts.js"></script>
 <script src="js/jquery-3.6.0.js"></script>
 
-<!-- 外部匯入樣式 -->
 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<script src="https://kit.fontawesome.com/993da95711.js" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="script.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-<script language="javascript">
-  function changeImageString(TargetID, FildAddres) {
-    document.images[TargetID].src = FildAddres;
-  }
-</script>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-<link rel="stylesheet" href="css/responsive.css">
-<script language="javascript">
-  function changeImageString(TargetID, FildAddres) {
-    document.images[TargetID].src = FildAddres;
-  }
-</script>
 </head>
 
 
@@ -117,23 +97,81 @@ if (mysqli_num_rows($sql) > 0) {
 
   </div>
 
+ <!-- /////////////////////發文 -->
+ <div id="siderbarindex" style="border: solid 2px orange;width: 50%;margin: 10%;margin-top: 3%;">
+  <div class="wrapper">
+      <section class="users">
+          <header>
+              <div class="content">
+                              
+							  <?php
+                $sql = mysqli_query($conn, "SELECT * FROM users WHERE unique_id = {$_SESSION['unique_id']}");
+                if (mysqli_num_rows($sql) > 0) {
+                      $row = mysqli_fetch_assoc($sql);
+                }else {
+								header("location: users.php");
+						     }
+                ?>					  
+							
 
-  <div id="siderbarindex">
-    <div class="mr-3 ml-3 mb-3" style="width:100%;text-align:left;">
-      <h1 class="ml-5 display-5">發表文章</h1>
-      
-    </div>
-    <hr class="hr">
-    <div style="border: solid 2px orange;width:90%;height: 600px;margin:0% auto;">
+							<div class="dropdown" style="width: 200px">
+								<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" >
+									點此選擇發文看板
+								</button>
+								<div class="dropdown-menu" id="SelectMe">
+									<a class="dropdown-item" href="#" value="1" >時事</a>
+									<a class="dropdown-item" href="#" value="2" >美食</a>
+									<a class="dropdown-item" href="#" value="3" >演藝</a>
+								</div>
+							</div>
+															
 
+              <span style="position:relative; bottom:25px; left:190px; "><img class = "icon" src="php/images/<?php echo $row['img']; ?>" alt="" /></span>
+              
+              <!-- <div class="details"> -->
+              <span style="position:relative; bottom:30px; left:190px; "><?php echo $row['nickname']; ?></span>
+              &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+              <span style="position:relative; bottom:30px; left:190px; font-weight: lighter;"><?php date_default_timezone_set('Asia/Taipei');
+              echo date('Y/m/d H:i:s');?></span>
+									<!-- </div> -->
+							</div>							 					
+            </div>						
+				 </header>
+				 
+				 
+				        <form method="POST" action="#" class="posting-area" enctype="multipart/form-data" > 
 
+							  <input type="text" name="cid" class="cid" value="" hidden>	
+							  <input type="text" name="aid" class="aid" value="<?php echo $aid; ?>" hidden>
+							  <input type="text" name="unique_id" class="unique_id" value="<?php echo $unique_id; ?>" hidden>
+							  <textarea rows="1" type ="text" name="title" id="autoresizing" spellcheck="false" class="input-title" placeholder="標題" style="position:relative; top:5px; overflow:hidden; border:none; outline:none; width:660px; font-size:30px;"></textarea><br /><br />
+							  
+							
+							  <textarea  id="input-content" class="input-content" name="content"  spellcheck="false" placeholder="內容..." 
+							  style="overflow:none;  height: 400px; width:670px;"></textarea>  
+							  
+                <!-- <textarea id="sql-content" name="content" hidden ></textarea> -->
 
-      <!--發文介面-->
-      <?php
-      include_once "newpost.php";
-      ?>
+                <div class="alert alert-success titlealert hide" role="alert" ;>
+									尚未輸入標題!
+							  </div>
 
-    </div>
+							  <div class="alert alert-success contentalert hide" role="alert" ;>
+									尚未輸入內容!
+							  </div>
+
+							  <div class="alert alert-success successalert hide" role="alert" ;>
+									文章發佈成功!
+							  </div>  
+
+							  <button type="button" class="btn btn-light">取消</button> 
+							  <button type="submit" name="submitbtn" id="submitbtn" class="btn btn-light submit-btn" disabled="disabled" >送出</button>
+						</form>	
+            <!-- <button type="button" class="btn btn-light">取消</button> 
+            <button onclick="upport()" type="submit" name="submitbtn" id="submitbtn" class="btn btn-light submit-btn" disabled="disabled" >送出</button> -->
+
+			</section>	
+	   </div>
   </div>
 
 
@@ -154,7 +192,25 @@ if (mysqli_num_rows($sql) > 0) {
   </button>
 
 </body>
+<!-- 外部匯入樣式 -->
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	<script src="https://cdn.tiny.cloud/1/hxtclvg3mgc7oaicqs2d6dovwxj8yjv5tapovohch15af5no/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+  <script src="https://kit.fontawesome.com/a8a43cce47.js" crossorigin="anonymous"></script>
+  <script src="https://kit.fontawesome.com/993da95711.js" crossorigin="anonymous"></script>
+
+  <script language="javascript">
+    function changeImageString(TargetID, FildAddres) {
+      document.images[TargetID].src = FildAddres;
+    }
+  </script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <link rel="stylesheet" href="css/responsive.css">
 
 <script>
   // 回到頂端樣式
@@ -209,5 +265,14 @@ if (mysqli_num_rows($sql) > 0) {
     }
   };
 </script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>					 
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" />
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="./Myjs/newpost.js"></script> 
 
 </html>

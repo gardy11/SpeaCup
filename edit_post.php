@@ -21,11 +21,11 @@ while ($row = mysqli_fetch_assoc($query)) {
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <title>SpeaCup有話直說</title>
       <link href="CSS/style.css" rel="stylesheet" />
-
+      <link rel="stylesheet" href="./css/style_chat.css">
       <link rel="icon" type="image/x-icon" href="assets/fav.ico" />
       <script src="JS/scripts.js"></script>
       <script src="js/jquery-3.6.0.js"></script>
-      <link rel="stylesheet" href="./css/style_chat.css">
+      
 
       <!-- 外部匯入樣式 -->
 
@@ -108,9 +108,9 @@ while ($row = mysqli_fetch_assoc($query)) {
       <div id="siderbarindex">
             <div id="collections" class="m-3 ">
                   <h1 class="ml-5 display-4">編輯文章</h1>
-                  <hr class="hr">
+                  
             </div>
-
+            <hr class="hr">
 
             <div class="wrapper">
 
@@ -150,63 +150,52 @@ while ($row = mysqli_fetch_assoc($query)) {
                   </header>
                   <!--文章標題、內容、讚按鈕、收藏紐-->
                   <div class="container">
-                        <div class="content">
+                              <div class="content">
                               <section class="form edit_post">
 
-                                    <form method="POST" action="./php/up_post.php" class="posting-area"
-                                          enctype="multipart/form-data">
-                                          <p class="content-text">
-
-                                                <label id="autoresizing" style="font-size:30px;">標題：</label></br>
-                                                <textarea rows="1" type="text" name="up_title" id="autoresizing"
-                                                      spellcheck="false"
-                                                      style="width: 70%; font-size:30px;resize:none;">
+                                 <form method="POST" action="./php/up_post.php" class="posting-area" enctype="multipart/form-data">
+                                    <p class="content-text">
+                                    
+                                    <label id="autoresizing" style="font-size:30px;">標題：</label></br>
+                                    <textarea rows="1" type ="text" name="up_title" id="autoresizing" spellcheck="false"
+                                              style="width: 70%; font-size:30px;resize:none;">
                                     <?php echo $row['title'] ?>
                                     </textarea>
-                                                </br>
-                                                <!-- 讓內容可以顯示出換行 -->
-                                                <label id="input-content" style="font-size:30px;">內文：</label></br>
-                                                <textarea contenteditable name="up_content" id="input-content"
-                                                      spellcheck="false"
-                                                      style="resize:none; overflow-y:auto; height: 600px; width: 70%;font-size:20px;">
-                                    <?php echo $row['content'] ?>
+                                    </br>
+                                    <!-- 讓內容可以顯示出換行 -->
+                                    <label  style="font-size:30px;">內文：</label></br>
+                                    <textarea name="up_content" id="edit-content" spellcheck="false" 
+							    style="resize:none; overflow-y:auto; height: 600px; width: 70%;font-size:20px;">
+                                              <?php echo str_replace("\n", "<br/>", $row['content']) ?>
                                     </textarea>
-
-                                                <button type="button" class="btn btn-light"
-                                                      onclick="location.href ='user_post.php?aid=<?php echo $row['aid'] ?>'">取消</button>
-                                                <input type="submit" name="submitbtn" id="submitbtn"
-                                                      class="btn btn-light submit-btn" value="確認修改" />
-
+                                   
+                                    
+                                    <button type="button" class="btn btn-light" onclick="location.href ='user_post.php?aid=<?php echo $row['aid'] ?>'">取消</button>
+						<input type="submit" name="submitbtn" id="submitbtn" class="btn btn-light submit-btn" value="確認修改"/>
+                                    
 
                                     </form>
-                              </section>
+                                    </section> 
 
-                              <hr class="hr" align="left" />
-                              <i <?php if (userLiked($row['aid'])) : ?> class="fa fa-thumbs-up like-btn bluei"
-                                    <?php else : ?> class="fa fa-thumbs-o-up like-btn bluei" <?php endif ?>
-                                    data-id="<?php echo $row['aid'] ?>" style="font-size: 1.5em;">
-                              </i>
-                              <span class="likes"><?php echo getLikes($row['aid']); ?></span>
+                                    <hr class="hr" align="left" />
+                                    <i <?php if (userLiked($row['aid'])) : ?> class="fa fa-thumbs-up like-btn bluei" <?php else : ?> class="fa fa-thumbs-o-up like-btn bluei" <?php endif ?> data-id="<?php echo $row['aid'] ?>" style="font-size: 1.5em;">
+                                    </i>
+                                    <span class="likes"><?php echo getLikes($row['aid']); ?></span>
 
-                              &nbsp;&nbsp;&nbsp;&nbsp;
+                                    &nbsp;&nbsp;&nbsp;&nbsp;
 
-                              <!-- if user dislikes post, style button differently -->
-                              <i <?php if (userDisliked($row['aid'])) : ?> class="fa fa-thumbs-down dislike-btn bluei"
-                                    <?php else : ?> class="fa fa-thumbs-o-down dislike-btn bluei" <?php endif ?>
-                                    data-id="<?php echo $row['aid'] ?>" style="font-size: 1.5em;">
-                              </i>
-                              <span class="dislikes"><?php echo getDislikes($row['aid']); ?></span>
+                                    <!-- if user dislikes post, style button differently -->
+                                    <i <?php if (userDisliked($row['aid'])) : ?> class="fa fa-thumbs-down dislike-btn bluei" <?php else : ?> class="fa fa-thumbs-o-down dislike-btn bluei" <?php endif ?> data-id="<?php echo $row['aid'] ?>" style="font-size: 1.5em;">
+                                    </i>
+                                    <span class="dislikes"><?php echo getDislikes($row['aid']); ?></span>
 
 
-                              <i <?php if (userCollected($row['aid'])) : ?> class="fa fa-bookmark collection-btn redi"
-                                    <?php else : ?> class="fa fa-bookmark-o collection-btn redi" <?php endif ?>
-                                    data-id="<?php echo $row['aid'] ?>"
-                                    style="position:relative;left:5%;font-size: 1.5em;">
-                                    收藏</i>
-
-
+                                    <i <?php if (userCollected($row['aid'])) : ?> class="fa fa-bookmark collection-btn redi" <?php else : ?> class="fa fa-bookmark-o collection-btn redi" <?php endif ?> data-id="<?php echo $row['aid'] ?>" style="position:relative;left:5%;font-size: 1.5em;">
+                                          收藏</i>
+                                    
+                              
+                              </div>
                         </div>
-                  </div>
 
             </div>
 
@@ -239,7 +228,8 @@ while ($row = mysqli_fetch_assoc($query)) {
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
             integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
-
+      <script src="https://cdn.tiny.cloud/1/hxtclvg3mgc7oaicqs2d6dovwxj8yjv5tapovohch15af5no/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+      <script src="Myjs/edit_post.js" ></script>                                     
 
 
 </body>

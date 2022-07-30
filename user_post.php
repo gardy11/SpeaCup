@@ -22,7 +22,7 @@ if (!isset($_SESSION['unique_id'])) { //未登入只可瀏覽文章
 
 <?php
 /*刪除該筆文章的內文、收藏、讚資料表內容*/
-if (isset($_POST['delete_staff'])) {
+if (isset($_POST['delete_btn'])) {
       $id2 = $_POST['delete_id'];
       //刪除文章
       $query2 = "DELETE FROM posts WHERE posts.aid ='$id2'";
@@ -149,7 +149,7 @@ if (isset($_POST['delete_staff'])) {
                               }
 
                               ?>
-                              <!--上一頁、看板、頭貼、發文者、發文時間-->
+                              <!--看板、頭貼、發文者、發文時間-->
                               <a href="cate<?php echo $row['cid']; ?>.php?c_id=<?php echo $row['cid']; ?>">
                                     <span class="col-2"
                                           style="font-size: 20px;"><?php echo $row['board_name']; ?></span>
@@ -172,9 +172,9 @@ if (isset($_POST['delete_staff'])) {
                                           <i class="fa-solid fa-pen-to-square fa-lg"
                                                 style="position:relative; left:240px;">編輯</i>
                                     </a>
-                                    <!-- 下面有個 input type="hidden" 是讓待會的PHP 知道要刪除哪一筆資料 -->
+                                    <!-- input type="hidden" 表示要刪除的文章aid -->
                                     <input type="hidden" name="delete_id" value="<?php echo $row['aid']; ?>">
-                                    <button name="delete_staff" onclick="javascript:return del();"
+                                    <button name="delete_btn" onclick="script:return del();return false;"
                                           class="btn btn-outline-danger">
                                           <i class='fas fa-trash-alt'>刪除</i>
                                     </button>
@@ -196,39 +196,28 @@ if (isset($_POST['delete_staff'])) {
                                     <h1 class="text-body title-text "><strong> <?php echo $row['title'] ?></strong></h1>
                                     <hr class="hr" align="left" />
                                     <!-- 讓內容可以顯示出換行 -->
-                                    <p style="font-size: 20px;">
-                                          <?php echo str_replace("\n", "<br/>", $row['content']) ?></p>
+                                    <p style="font-size: 20px;"><?php echo str_replace("\n", "<br/>", $row['content']) ?></p>
 
 
                                     <br><br><br>
                                     <hr class="hr" align="left" />
-                                    <i <?php if (userLiked($row['aid'])) : ?> class="fa fa-thumbs-up like-btn bluei"
-                                          <?php else : ?> class="fa fa-thumbs-o-up like-btn bluei" <?php endif ?>
-                                          data-id="<?php echo $row['aid'] ?>" style="font-size: 1.5em;">
+                                    <i <?php if (userLiked($row['aid'])) : ?> class="fa fa-thumbs-up like-btn bluei" <?php else : ?> class="fa fa-thumbs-o-up like-btn bluei" <?php endif ?> data-id="<?php echo $row['aid'] ?>" style="font-size: 1.5em;">
                                     </i>
                                     <span class="likes"><?php echo getLikes($row['aid']); ?></span>
 
                                     &nbsp;&nbsp;&nbsp;&nbsp;
 
                                     <!-- if user dislikes post, style button differently -->
-                                    <i <?php if (userDisliked($row['aid'])) : ?>
-                                          class="fa fa-thumbs-down dislike-btn bluei" <?php else : ?>
-                                          class="fa fa-thumbs-o-down dislike-btn bluei" <?php endif ?>
-                                          data-id="<?php echo $row['aid'] ?>" style="font-size: 1.5em;">
+                                    <i <?php if (userDisliked($row['aid'])) : ?> class="fa fa-thumbs-down dislike-btn bluei" <?php else : ?> class="fa fa-thumbs-o-down dislike-btn bluei" <?php endif ?> data-id="<?php echo $row['aid'] ?>" style="font-size: 1.5em;">
                                     </i>
                                     <span class="dislikes"><?php echo getDislikes($row['aid']); ?></span>
 
 
-                                    <i <?php if (userCollected($row['aid'])) : ?>
-                                          class="fa fa-bookmark collection-btn redi" <?php else : ?>
-                                          class="fa fa-bookmark-o collection-btn redi" <?php endif ?>
-                                          data-id="<?php echo $row['aid'] ?>"
-                                          style="position:relative;left:5%;font-size: 1.5em;">
+                                    <i <?php if (userCollected($row['aid'])) : ?> class="fa fa-bookmark collection-btn redi" <?php else : ?> class="fa fa-bookmark-o collection-btn redi" <?php endif ?> data-id="<?php echo $row['aid'] ?>" style="position:relative;left:5%;font-size: 1.5em;">
                                           收藏</i>
 
                               </div>
                         </div>
-
                   </section>
             </div>
 
@@ -244,13 +233,6 @@ if (isset($_POST['delete_staff'])) {
       <div id="siderbarright2">
             聊天
       </div>
-
-
-
-
-
-
-
 
       <script src="https://code.jquery.com/jquery-3.5.1.min.js"
             integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
@@ -290,16 +272,21 @@ $(function() {
 <!-- 刪除確認的JS -->
 <script type="text/javascript">
 function del() {
-
+      console.log ("delet?");
       var msg = confirm('請再確認是否刪除本文章!');
 
       if (msg == true) {
 
-            alert("文章已刪除!");
-            window.location = "posts.php"
+            
+            
+            alert("文章已刪除!");window.location = "posts.php";
+            console.log ("delet ok");
+            
 
       } else {
+            console.log ("no delet");
             return false;
+            
       }
 
 
