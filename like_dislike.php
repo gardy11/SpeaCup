@@ -42,7 +42,7 @@
         //execute query
         mysqli_query($conn, $sql);
         //return number of likes
-        echo getRating($post_id);
+        echo getRating($post_id);       
         exit(0);
     }
   }
@@ -52,8 +52,8 @@
 function getLikes($id)
 {
   global $conn;
-  $sql = "SELECT COUNT(*) FROM like_dislike 
-  		  WHERE post_id = '$id' AND rating_action='like'";
+  $sql = "SELECT COUNT(*) FROM like_dislike  WHERE post_id = '$id' AND rating_action='like'"; 
+  //$sql = "SELECT likes FROM posts WHERE aid = '$id'";
   $rs = mysqli_query($conn, $sql);
   $result = mysqli_fetch_array($rs);
   return $result[0];
@@ -63,8 +63,8 @@ function getLikes($id)
 function getDislikes($id)
 {
   global $conn;
-  $sql = "SELECT COUNT(*) FROM like_dislike 
-  		  WHERE post_id = '$id' AND rating_action='dislike'";
+  $sql = "SELECT COUNT(*) FROM like_dislike  WHERE post_id = '$id' AND rating_action='dislike'"; 
+  //$sql = "SELECT angry FROM posts WHERE aid = '$id'";
   $rs = mysqli_query($conn, $sql);
   $result = mysqli_fetch_array($rs);
   return $result[0];
@@ -83,12 +83,26 @@ function getRating($id)
   $likes = mysqli_fetch_array($likes_rs);
   $dislikes = mysqli_fetch_array($dislikes_rs);
   $rating = [
-  	'likes' => $likes[0],
+  	// 'likes' => $likes[0],
+  	// 'dislikes' => $dislikes[0]
+    'likes' => $likes[0],
   	'dislikes' => $dislikes[0]
+
+
   ];
+
+
+  // $aa = "UPDATE posts SET likes = $likes[0] AND angry =  $dislikes[0]  WHERE aid = $id '";
+  // mysqli_query($conn, $aa);
+
+
 
   return json_encode($rating);
 }
+
+ // $aa = "UPDATE posts SET likes = $likes[0] AND angry =  $dislikes[0]  WHERE aid = $id '";
+  // mysqli_query($conn, $aa);
+
 
 
 function userLiked($post_id)

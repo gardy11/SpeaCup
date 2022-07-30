@@ -20,3 +20,10 @@ if (isset($_SESSION['unique_id'])) {
     header("location: ../login.php");
 }
 
+//google登出
+// session_start();
+// require_once 'config.php';
+// unset($_SESSION['user_token']);
+// $client->revokeToken();
+// session_destroy();
+// header("Location: ../index.php");
