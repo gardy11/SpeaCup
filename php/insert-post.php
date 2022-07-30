@@ -1,3 +1,4 @@
+
 <?php
     session_start();
    
@@ -8,7 +9,7 @@
     $title = $_POST['title'];
     $content = $_POST['content'];
     $cid = $_POST['cid'];
-
+    
     date_default_timezone_set('Asia/Taipei');
 	$created = date('Y/m/d H:i:s');
 
