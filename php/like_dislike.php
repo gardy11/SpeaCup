@@ -20,20 +20,28 @@
                 $sql = "INSERT INTO like_dislike (post_id, user_id, rating_action) 
                 VALUES ('$post_id', '$user_id', 'like')
                 ON DUPLICATE KEY UPDATE rating_action='like'";
+			
+		$sql2 = "UPDATE posts SET likes = likes+1 WHERE aid = $post_id";
                 break;
 
             case 'dislike':
                 $sql = "INSERT INTO like_dislike (post_id, user_id, rating_action) 
                 VALUES ('$post_id', '$user_id', 'dislike')
                 ON DUPLICATE KEY UPDATE rating_action='dislike'";
+			
+		$sql2 = "UPDATE posts SET angry = angry+1 WHERE aid = $post_id";	
                 break;  
                 
             case 'unlike':
                 $sql = "DELETE FROM like_dislike WHERE user_id = '$user_id' AND post_id = '$post_id' ";
+			
+		$sql2 = "UPDATE posts SET likes = likes-1 WHERE aid = $post_id";	
                 break;
 
             case 'undislike':
                 $sql = "DELETE FROM like_dislike WHERE user_id = '$user_id' AND post_id = '$post_id' ";
+			
+		$sql2 = "UPDATE posts SET angry = angry-1 WHERE aid = $post_id";	
                 break;
             default:
                 break;
@@ -42,7 +50,8 @@
         //execute query
         mysqli_query($conn, $sql);
         //return number of likes
-        echo getRating($post_id);       
+        echo getRating($post_id); 
+	mysqli_query($conn, $sql2);    
         exit(0);
     }
   }
