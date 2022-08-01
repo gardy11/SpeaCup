@@ -96,12 +96,12 @@ if (mysqli_num_rows($sql) > 0) {
                               <a href="posts.php" calss="p-2">發表過文章<i
                                           class="fas mt-1 fa-regular fa-pen-to-square"></i></i> </a>
                         </li>
-                        <li>
+                        <li class="background-color:wheat;">
                               <a href="friends.php" calss="m-2">好友列表<i class="fas mt-1  fa-solid fa-users"></i> </a>
                         </li>
                         <li>
                               <a href="apply.php" calss="m-2">好友申請<i class="fas mt-1 fa-solid fa-user-pen"></i></i> </a>
-                        </li>
+                        </li> 
                   </ul>
             </div>
       </div>
@@ -114,13 +114,7 @@ if (mysqli_num_rows($sql) > 0) {
             <hr class="hr">
 
             <?php include_once "php/friend_list.php"; ?>
-            <!-- <div id="f-friends" class="row ml-5 m-3">
-      <img src="assets/img/有話 直說 (1).png" width="70px" height="70px" class="ml-3 col-2">
-      <h3 class="ml-3 col-5 mt-3">噴火龍怕火</h3>     
-      <button id="f-inform"class="btn ml-3 col-2" title="好友資訊"><i class="fa-solid fa-address-card fa-2x "></i></button>
-    </div>
-    <hr class="hr"> -->
-
+ 
 
 
 
@@ -133,7 +127,7 @@ if (mysqli_num_rows($sql) > 0) {
       </div>
 
       <div id="siderbarright2">
-            聊天
+           
       </div>
 
       <!-- 回到頂部小蝴蝶 -->
