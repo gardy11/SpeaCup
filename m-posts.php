@@ -128,12 +128,12 @@ if (mysqli_num_rows($sql) > 0) {
 
               <span style="position:relative; bottom:25px; left:190px; "><img class = "icon" src="php/images/<?php echo $row['img']; ?>" alt="" /></span>
               
-              <!-- <div class="details"> -->
+              
               <span style="position:relative; bottom:30px; left:190px; "><?php echo $row['nickname']; ?></span>
               &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
               <span style="position:relative; bottom:30px; left:190px; font-weight: lighter;"><?php date_default_timezone_set('Asia/Taipei');
               echo date('Y/m/d H:i:s');?></span>
-									<!-- </div> -->
+									
 							</div>							 					
             </div>						
 				 </header>
@@ -150,7 +150,7 @@ if (mysqli_num_rows($sql) > 0) {
 							  <textarea  id="input-content" class="input-content" name="content"  spellcheck="false" placeholder="內容..." 
 							  style="overflow:none;  height: 400px; width:670px;"></textarea>  
 							  
-                <!-- <textarea id="sql-content" name="content" hidden ></textarea> -->
+               
 
                 <div class="alert alert-success titlealert hide" role="alert" ;>
 									尚未輸入標題!
@@ -186,10 +186,7 @@ if (mysqli_num_rows($sql) > 0) {
 
   <!-- 回到頂部 -->
   <button class="js-back-to-top back-to-top" title="回到頂部"><i class="fa-solid fa-arrow-up"></i></button>
-  <!-- 前往發文介面 -->
-  <a href="m-posts.php" title="會員中心"><button class="go-posts" title="前往發文">
-      <i class="fa-solid fa-pen-to-square fa-xl" style=color:red></i></a>
-  </button>
+  
 
 </body>
 <!-- 外部匯入樣式 -->
