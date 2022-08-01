@@ -125,12 +125,6 @@ if (mysqli_num_rows($sql) > 0) {
             <?php include_once "./php/users_select.php"; ?>
       </div>
 
-      <div id="siderbarright2">
-            聊天
-      </div>
-
-      <!-- 回到頂部小蝴蝶 -->
-
 
 </body>
 

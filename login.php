@@ -95,9 +95,9 @@ require_once './php/config.php';
         </div>
         <hr class="hr">
         <div id="l-login-l" class="row ml-4 mb-3 field button">
-          <input type="submit" id="l-login-l" class="btn btn-outline-warning ml-5 col-3 btn-lg" value="會員登入" />
+          <input type="submit" id="l-login-l" class="btn btn-outline-warning ml-5 col-4 btn-lg" value="會員登入" />
           <button onclick="location.href ='<?php echo $client->createAuthUrl() ?>'" 
-                  class="btn btn-outline-primary btn-lg ml-5 col-3"><i class="bi bi-google"></i>Google Login</button>
+                  class="btn btn-outline-primary btn-lg ml-5 col-4"><i class="bi bi-google"></i>Google Login</button>
 
           <p class="col-6 mt-2">還沒有會員嗎?<a href="register.php">點我註冊</a></p>
         </div>

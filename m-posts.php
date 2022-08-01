@@ -98,7 +98,7 @@ if (mysqli_num_rows($sql) > 0) {
   </div>
 
  <!-- /////////////////////發文 -->
- <div id="siderbarindex" style="border: solid 2px orange;width: 50%;margin: 10%;margin-top: 3%;">
+ <div id="siderbarindex" style="  position: relative;  float: right;  right: 21%;  top: 85px;  width: 60%;  height: 100%;">
   <div class="wrapper">
       <section class="users">
           <header>
@@ -123,32 +123,29 @@ if (mysqli_num_rows($sql) > 0) {
 									<a class="dropdown-item" href="#" value="2" >美食</a>
 									<a class="dropdown-item" href="#" value="3" >演藝</a>
 								</div>
-							</div>
-															
+							</div>															
 
-              <span style="position:relative; bottom:25px; left:190px; "><img class = "icon" src="php/images/<?php echo $row['img']; ?>" alt="" /></span>
-              
+              <span style="position:relative; top: 5px; left:55px; "><img class = "icon" src="php/images/<?php echo $row['img']; ?>" alt="" /></span>
               <!-- <div class="details"> -->
-              <span style="position:relative; bottom:30px; left:190px; "><?php echo $row['nickname']; ?></span>
+              <span style="position:relative; top: 5px; left:60px; "><?php echo $row['nickname']; ?></span>
               &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-              <span style="position:relative; bottom:30px; left:190px; font-weight: lighter;"><?php date_default_timezone_set('Asia/Taipei');
-              echo date('Y/m/d H:i:s');?></span>
+              <span style="position:relative; top: 5px; left:60px; font-weight: lighter;"><?php date_default_timezone_set('Asia/Taipei');
+              echo date('Y/m/d H:i');?></span>
 									<!-- </div> -->
 							</div>							 					
             </div>						
 				 </header>
 				 
 				 
-				        <form method="POST" action="#" class="posting-area" enctype="multipart/form-data" > 
-
+				        <form method="POST" action="#" class="posting-area" enctype="multipart/form-data" >   
 							  <input type="text" name="cid" class="cid" value="" hidden>	
 							  <input type="text" name="aid" class="aid" value="<?php echo $aid; ?>" hidden>
 							  <input type="text" name="unique_id" class="unique_id" value="<?php echo $unique_id; ?>" hidden>
-							  <textarea rows="1" type ="text" name="title" id="autoresizing" spellcheck="false" class="input-title" placeholder="標題" style="position:relative; top:5px; overflow:hidden; border:none; outline:none; width:660px; font-size:30px;"></textarea><br /><br />
+							  <textarea rows="1" type ="text" name="title" id="autoresizing" spellcheck="false" class="input-title" placeholder="標題" style="position:relative; top:5px; overflow:hidden; border:none; outline:none; width:560px; font-size:30px;"></textarea><br /><br />
 							  
 							
 							  <textarea  id="input-content" class="input-content" name="content"  spellcheck="false" placeholder="內容..." 
-							  style="overflow:none;  height: 400px; width:670px;"></textarea>  
+							  style="overflow:none;  height: 460px; width:560px;"></textarea>  
 							  
                 <!-- <textarea id="sql-content" name="content" hidden ></textarea> -->
 
@@ -164,8 +161,8 @@ if (mysqli_num_rows($sql) > 0) {
 									文章發佈成功!
 							  </div>  
 
-							  <button type="button" class="btn btn-light">取消</button> 
-							  <button type="submit" name="submitbtn" id="submitbtn" class="btn btn-light submit-btn" disabled="disabled" >送出</button>
+							  <button type="button" class="btn btn-outline-warning">取消</button> 
+							  <button type="submit" name="submitbtn" id="submitbtn" class="btn btn-outline-warning submit-btn" disabled="disabled" >送出</button>
 						</form>	
             <!-- <button type="button" class="btn btn-light">取消</button> 
             <button onclick="upport()" type="submit" name="submitbtn" id="submitbtn" class="btn btn-light submit-btn" disabled="disabled" >送出</button> -->
@@ -180,16 +177,7 @@ if (mysqli_num_rows($sql) > 0) {
     <?php include_once "./php/users_select.php"; ?>
   </div>
 
-  <div id="siderbarright2">
-    聊天
-  </div>
 
-  <!-- 回到頂部 -->
-  <button class="js-back-to-top back-to-top" title="回到頂部"><i class="fa-solid fa-arrow-up"></i></button>
-  <!-- 前往發文介面 -->
-  <a href="m-posts.php" title="會員中心"><button class="go-posts" title="前往發文">
-      <i class="fa-solid fa-pen-to-square fa-xl" style=color:red></i></a>
-  </button>
 
 </body>
 <!-- 外部匯入樣式 -->
@@ -212,59 +200,49 @@ if (mysqli_num_rows($sql) > 0) {
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
   <link rel="stylesheet" href="css/responsive.css">
 
-<script>
-  // 回到頂端樣式
-  $(function() {
-    var $win = $(window);
-    var $backToTop = $('.js-back-to-top');
-
-    $win.scroll(function() {
-      if ($win.scrollTop() > 100) {
-        $backToTop.show();
-      } else {
-        $backToTop.hide();
+  <script>
+function openArticle(evt, articleName) {
+      var i, x, tablinks;
+      x = document.getElementsByClassName("article");
+      for (i = 0; i < x.length; i++) {
+            x[i].style.display = "none";
       }
-    });
+      tablinks = document.getElementsByClassName("tablink");
+      for (i = 0; i < x.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" w3-red", "");
+      }
+      document.getElementById(articleName).style.display = "block";
+      evt.currentTarget.className += " w3-red";
+}
 
+function doAnimateShow() {
+      document.getElementById("box").style.top = "90px";
+      event.cancelBubble = true;
+}
 
-    $backToTop.click(function() {
-      $('html, body').animate({
-        scrollTop: 0
-      }, 200);
-    });
-  });
+function doAnimateHide() {
+      document.getElementById("box").style.top = "-200px";
 
+}
 
-  function openArticle(evt, articleName) {
-    var i, x, tablinks;
-    x = document.getElementsByClassName("article");
-    for (i = 0; i < x.length; i++) {
-      x[i].style.display = "none";
-    }
-    tablinks = document.getElementsByClassName("tablink");
-    for (i = 0; i < x.length; i++) {
-      tablinks[i].className = tablinks[i].className.replace(" w3-red", "");
-    }
-    document.getElementById(articleName).style.display = "block";
-    evt.currentTarget.className += " w3-red";
-  }
+function doAnimateShowbell() {
+      document.getElementById("bell").style.top = "90px";
+      event.cancelBubble = true;
+}
 
-  function doAnimateShow() {
-    document.getElementById("box").style.top = "90px";
-    event.cancelBubble = true;
-  }
+function doAnimateHidebell() {
+      document.getElementById("bell").style.top = "-200px";
 
-  function doAnimateHide() {
-    document.getElementById("box").style.top = "-200px";
+}
 
-  }
-
-  window.onclick = function(ev) {
-    if (ev.target.nodeName !== 'A') {
-      doAnimateHide();
-    }
-  };
+window.onclick = function(ev) {
+      if (ev.target.nodeName !== 'A') {
+            doAnimateHide();
+            doAnimateHidebell();
+      }
+};
 </script>
+<script src="./JS/users_friend.js"></script>
 
 <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>					 
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" />

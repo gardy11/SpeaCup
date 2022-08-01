@@ -79,7 +79,7 @@ if (isset($_SESSION['unique_id'])) {
         <div id="r-account" class="m-3">
           <div class="row">
             <h4 class="ml-5 col-3">帳號</h4>
-            <span id="passwordHelpInline" class="form-text mt-2 pr-5 col-6 text-muted" >&ensp;帳號長度為大小寫英數字8-20字。</span>
+            <span id="passwordHelpInline" class="form-text mt-2 pr-5 col-7 text-muted " >&ensp;帳號長度為大小寫英數字8-20字。</span>
           </div>
           <div class="col-auto row field input">
             <input type="text" name="account" id="inputAccount6" class="form-control ml-5 " 
@@ -91,7 +91,7 @@ if (isset($_SESSION['unique_id'])) {
         <div id="r-password" class="m-3 field input">
           <div class="row">
             <h4 class="ml-5 col-3">密碼</h4>
-            <span id="passwordHelpInline" class="form-text mt-2 pr-5 col-6 text-muted">&ensp;密碼長度為大小寫英數字8-20字。</span>
+            <span id="passwordHelpInline" class="form-text mt-2 pr-5 col-7 text-muted">&ensp;密碼長度為大小寫英數字8-20字。</span>
           </div>
           <div class="col-auto row field input">
             <input type="password" name="password" id="inputPassword6" class="form-control ml-5 " 
@@ -109,7 +109,7 @@ if (isset($_SESSION['unique_id'])) {
         </div>
 
         <div id="r-bd" class="m-3 ">
-          <h4 class="ml-5 ">生日</h4>
+          <h4 class="ml-5 ">生日:</h4>
           <!-- 限制日期只可選取不可自行輸入 -->
           <div id="r-bd-r" class="ml-5 field">
             <input type="date" name="birth" id="r-bd" 

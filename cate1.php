@@ -48,8 +48,7 @@ if (!isset($_SESSION['unique_id'])) { //未登入時顯示請登入
                   document.images[TargetID].src = FildAddres;
             }
       </script>
-      <link rel="stylesheet"
-            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
       <link rel="stylesheet" href="css/responsive.css">
 </head>
 
@@ -168,7 +167,7 @@ if (!isset($_SESSION['unique_id'])) { //未登入時顯示請登入
 
                                     '<div class="col-12" style=" text-align:center;font-size: 30px;">' .
                                     '<a style="text-decoration:none" href="post.php?aid=' . $rowIndexHot->aid . '">' .
-                                    '<p style="overflow-wrap: break-word;">>' . $rowIndexHot->title . '</p>' .
+                                    '<p style="overflow-wrap: break-word;">' . $rowIndexHot->title . '</p>' .
                                     '</a>' .
                                     '</div>' .
 
@@ -238,23 +237,24 @@ if (!isset($_SESSION['unique_id'])) { //未登入時顯示請登入
                         ?>
                   </div>
             </div>
-            </div>
+      </div>
 
-            <div id="siderbarright1">
-                  <!-- 聊天對象選擇介面 -->
-                  <?php include_once "./php/users_select.php"; ?>
-            </div>
+      <div id="siderbarright1">
+            <!-- 聊天對象選擇介面 -->
+            <?php include_once "./php/users_select.php"; ?>
+      </div>
 
-            <div id="siderbarright2">
-                  聊天
-            </div>
+      <div id="siderbarright2">
+            聊天
+      </div>
 
-            <!-- 回到頂部 -->
-            <button class="js-back-to-top back-to-top" title="回到頂部"><i class="fa-solid fa-arrow-up"></i></button>
-            <!-- 前往發文介面 -->
-            <a href="m-posts.php" title="會員中心"><button class="go-posts" title="前往發文">
-                        <i class="fa-solid fa-pen-to-square fa-xl" style=color:red></i></a>
-            </button>
+      <!-- 回到頂部 -->
+      <button class="js-back-to-top back-to-top" title="回到頂部"><i class="fa-solid fa-arrow-up"></i></button>
+      <!-- 前往發文介面 -->
+      <a href="m-posts.php" title="會員中心"><button class="go-posts" title="前往發文">
+                  <i class="fa-solid fa-pen-to-square fa-xl" style=color:red></i></a>
+      </button>
+
 
 
 </body>

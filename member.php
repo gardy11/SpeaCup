@@ -2,17 +2,21 @@
 session_start();
 include_once "php/config.php";
 
-if (!isset($_SESSION['unique_id'])) { //未登入時導向登入頁
-      header("location: login.php");
-}
-?>
+if (!isset($_SESSION['unique_id'])) { //未登入時顯示請登入
 
-<?php //撈資料
-$sql = mysqli_query($conn, "SELECT * FROM users WHERE unique_id = {$_SESSION['unique_id']}");
-if (mysqli_num_rows($sql) > 0) {
-      $row = mysqli_fetch_assoc($sql);
-}
+      echo $a = "請登入";
+      $output = "";
+} else {  //已登入時顯示會員暱稱及登出
+      $sql = mysqli_query($conn, "SELECT * FROM users WHERE unique_id = {$_SESSION['unique_id']}");
+      if (mysqli_num_rows($sql) > 0) {
+            $row = mysqli_fetch_assoc($sql);
+      }
 
+      echo $a = $row['nickname'];
+      $output .= '<a href="php/dereout.php" class="link-secondary">
+             <p class="h5">登出</p>
+             </a>';
+}
 ?>
 
 
@@ -71,9 +75,23 @@ if (mysqli_num_rows($sql) > 0) {
                         </form>
                         <li class="nav-item pl-5 mr-5">
                         <li><a href=""><i class="fa-solid fa-bell">&ensp;&ensp;</i></a></li>
-                        <li><a href="login.php" title="會員中心"><i class="fa-solid fa-user">&ensp;&ensp;</i></a></li>
+                        <li><a class="fa-solid fa-user" onclick="doAnimateShow();">&ensp;&ensp;</a></li>
                         </li>
             </div>
+                      <!-- 會員圖案click後的box -->
+                      <div class="box" id="box">
+                  <div class="row">
+                        <p class="h5">&ensp;&ensp;HI!&ensp;&ensp;</p>
+                        <a href="member.php" class="h5 text-primary"><?php echo $a; ?></a>
+                  </div>
+                  <a href="member.php" class="link-secondary">
+                        <p class="h5">會員中心</p>
+                  </a>
+                  <?php echo $output; ?>
+            </div>
+            <!-- 小鈴鐺裡面的東西 -->
+            <div class="bell" id="bell">
+                  <p>bell<
 
 
       </nav>
@@ -305,6 +323,11 @@ $("#inputGroupFile02").change(function() {
       readURL(this);
 
 });
+//會員中心
+function doAnimateShow() {
+            document.getElementById("box").style.top = "90px";
+            event.cancelBubble = true;
+      }
 </script>
 
 </html>

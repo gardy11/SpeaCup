@@ -112,24 +112,12 @@ if (mysqli_num_rows($sql) > 0) {
       <div id="siderbarindex">
 
             <div id="collections" class="m-3 ">
-                  <h1 class="ml-5 display-4">已發表文章</h1>
+                  <h1 class="ml-5 display-4">發表過文章</h1>
                   <hr class="hr">
             </div>
 
             <?php include_once "php/user_posts.php"; ?>
-            <!-- <div id="c1" class="m-3 mb-3">
-      <div id="c1" class="row mb-2 ml-5 ">
-        <img src="" class="" width="40px" height="40px"></img>
-        <h5 class="ml-5">看板</h5>
-        <h5 class="ml-5">黃色的皮卡丘</h5>
-      </div>
-      <div id="c1" class="row mt-4 ml-5">
-        <h3 class="">一個大標題1</h3>
-        <p class="ml-5">2022/01/13</p>
-      </div>
-      <hr class="hr">
-    </div> -->
-
+ 
 
 
 
@@ -141,11 +129,8 @@ if (mysqli_num_rows($sql) > 0) {
             <?php include_once "./php/users_select.php"; ?>
       </div>
 
-      <div id="siderbarright2">
-            聊天
-      </div>
 
-      <!-- 回到頂部小蝴蝶 -->
+
 
 
 </body>

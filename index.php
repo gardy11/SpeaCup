@@ -44,12 +44,11 @@ if (!isset($_SESSION['unique_id'])) { //未登入時顯示請登入
       <link rel="stylesheet" href="./css/style_chat.css">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
       <script language="javascript">
-      function changeImageString(TargetID, FildAddres) {
-            document.images[TargetID].src = FildAddres;
-      }
+            function changeImageString(TargetID, FildAddres) {
+                  document.images[TargetID].src = FildAddres;
+            }
       </script>
-      <link rel="stylesheet"
-            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
       <link rel="stylesheet" href="css/responsive.css">
 </head>
 
@@ -63,18 +62,16 @@ if (!isset($_SESSION['unique_id'])) { //未登入時顯示請登入
                   </a>
             </div>
 
-            <button class="navbar-toggler navbar-left" type="button" data-toggle="collapse"
-                  data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                  aria-label="Toggle navigation">
+            <button class="navbar-toggler navbar-left" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                   <span class="navbar-toggler-icon"></span>
             </button>
 
             <div class="nav-navbar collapse navbar-collapse navbar-right " id="navbarSupportedContent">
                   <ul class="navbar-nav ml-auto pl-1">
-                  <form class="form-inline" method="POST" action="searchresult.php" >
-                        <input class="form-control mr-sm-1" type="search" placeholder="SpeaCup" aria-label="Search" name="searchcontent">
-                        <button class="btn btn-outline-danger my-2 my-sm-0 " type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
-                  </form>
+                        <form class="form-inline" method="POST" action="searchresult.php">
+                              <input class="form-control mr-sm-1" type="search" placeholder="SpeaCup" aria-label="Search" name="searchcontent">
+                              <button class="btn btn-outline-danger my-2 my-sm-0 " type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                        </form>
                         <li class="nav-item pl-5 mr-5">
                         <li><a href=""><i class="fa-solid fa-bell">&ensp;&ensp;</i></a></li>
                         <li><a class="fa-solid fa-user" onclick="doAnimateShow();">&ensp;&ensp;</a></li>
@@ -145,13 +142,11 @@ if (!isset($_SESSION['unique_id'])) { //未登入時顯示請登入
       ?>
       <!--最新與熱門html-->
       <div id="siderbarindex">
-      
+
             <div class="w3-container hotnew" style="width: 100%">
                   <div class="w3-bar w3-black row">
-                        <button class="w3-bar-item w3-button tablink w3-red col-6"
-                              onclick="openArticle(event,'ihot')">熱門發文</button>
-                        <button class="w3-bar-item w3-button tablink col-6"
-                              onclick="openArticle(event,'inew')">最新發表</button>
+                        <button class="w3-bar-item w3-button tablink w3-red col-6" onclick="openArticle(event,'ihot')">熱門發文</button>
+                        <button class="w3-bar-item w3-button tablink col-6" onclick="openArticle(event,'inew')">最新發表</button>
                   </div>
 
 
@@ -169,7 +164,7 @@ if (!isset($_SESSION['unique_id'])) { //未登入時顯示請登入
                                     '</a>' .
 
                                     '<a style="text-decoration:none" href="cate' . $rowIndexHot->cid . '.php?c_id=' . $rowIndexHot->cid . '">' .
-                                    '<div class="col-2 mt-4 smallerword1" style=" text-align:center; font-size: 20px;color:#EA7500	;">' .
+                                    '<div class="col-3 mt-4 smallerword1" style=" text-align:center; font-size: 18px;color:#EA7500	;">' .
                                     $rowIndexHot->board_name .
                                     '</div>' .
                                     '</a>' .
@@ -178,12 +173,12 @@ if (!isset($_SESSION['unique_id'])) { //未登入時顯示請登入
                                     '<p class="col-4 mt-4" style=" text-align:center; font-size: 20px;color:#EA7500	;">' . $rowIndexHot->nickname . '</p>' .
                                     '</a>' .
 
-                                    '<p class="col-4 mt-4" style=" right: -50%; font-size: 20px;color:#EA7500	;">' . $rowIndexHot->created . '</p>' .
+                                    '<p class="col-4 mt-4" style=" right: -25%; font-size: 20px;color:#EA7500	;">' . $rowIndexHot->created . '</p>' .
                                     '</form>' .
 
                                     '<div class="col-12" style=" text-align:center;font-size: 30px;">' .
                                     '<a style="text-decoration:none" href="post.php?aid=' . $rowIndexHot->aid . '">' .
-                                    '<p style="overflow-wrap: break-word;">>' . $rowIndexHot->title . '</p>' .
+                                    '<p style="overflow-wrap: break-word;">' . $rowIndexHot->title . '</p>' .
                                     '</a>' .
                                     '</div>' .
 
@@ -259,12 +254,6 @@ if (!isset($_SESSION['unique_id'])) { //未登入時顯示請登入
                   <?php include_once "./php/users_select.php"; ?>
             </div>
 
-
-
-            <div id="siderbarright2">
-                  聊天
-            </div>
-
             <!-- 回到頂部 -->
             <button class="js-back-to-top back-to-top" title="回到頂部"><i class="fa-solid fa-arrow-up"></i></button>
             <!-- 前往發文介面 -->
@@ -272,52 +261,73 @@ if (!isset($_SESSION['unique_id'])) { //未登入時顯示請登入
                         <i class="fa-solid fa-pen-to-square fa-xl" style=color:red></i></a>
             </button>
 
-
 </body>
 
 
 <script>
-function openArticle(evt, articleName) {
-      var i, x, tablinks;
-      x = document.getElementsByClassName("article");
-      for (i = 0; i < x.length; i++) {
-            x[i].style.display = "none";
+      function openArticle(evt, articleName) {
+            var i, x, tablinks;
+            x = document.getElementsByClassName("article");
+            for (i = 0; i < x.length; i++) {
+                  x[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablink");
+            for (i = 0; i < x.length; i++) {
+                  tablinks[i].className = tablinks[i].className.replace(" w3-red", "");
+            }
+            document.getElementById(articleName).style.display = "block";
+            evt.currentTarget.className += " w3-red";
       }
-      tablinks = document.getElementsByClassName("tablink");
-      for (i = 0; i < x.length; i++) {
-            tablinks[i].className = tablinks[i].className.replace(" w3-red", "");
+
+      function doAnimateShow() {
+            document.getElementById("box").style.top = "90px";
+            event.cancelBubble = true;
       }
-      document.getElementById(articleName).style.display = "block";
-      evt.currentTarget.className += " w3-red";
-}
 
-function doAnimateShow() {
-      document.getElementById("box").style.top = "90px";
-      event.cancelBubble = true;
-}
+      function doAnimateHide() {
+            document.getElementById("box").style.top = "-200px";
 
-function doAnimateHide() {
-      document.getElementById("box").style.top = "-200px";
-
-}
-
-function doAnimateShowbell() {
-      document.getElementById("bell").style.top = "90px";
-      event.cancelBubble = true;
-}
-
-function doAnimateHidebell() {
-      document.getElementById("bell").style.top = "-200px";
-
-}
-
-window.onclick = function(ev) {
-      if (ev.target.nodeName !== 'A') {
-            doAnimateHide();
-            doAnimateHidebell();
       }
-};
+
+      function doAnimateShowbell() {
+            document.getElementById("bell").style.top = "90px";
+            event.cancelBubble = true;
+      }
+
+      function doAnimateHidebell() {
+            document.getElementById("bell").style.top = "-200px";
+
+      }
+
+      window.onclick = function(ev) {
+            if (ev.target.nodeName !== 'A') {
+                  doAnimateHide();
+                  doAnimateHidebell();
+            }
+      };
+
+      // 回到頂端樣式
+      $(function() {
+            var $win = $(window);
+            var $backToTop = $('.js-back-to-top');
+
+            $win.scroll(function() {
+                  if ($win.scrollTop() > 100) {
+                        $backToTop.show();
+                  } else {
+                        $backToTop.hide();
+                  }
+            });
+
+
+            $backToTop.click(function() {
+                  $('html, body').animate({
+                        scrollTop: 0
+                  }, 200);
+            });
+      });
 </script>
+
 <script src="./JS/users_friend.js"></script>
 
 </html>

@@ -167,7 +167,7 @@ if (!isset($_SESSION['unique_id'])) { //未登入時顯示請登入
 
                                     '<div class="col-12" style=" text-align:center;font-size: 30px;">' .
                                     '<a style="text-decoration:none" href="post.php?aid=' . $rowIndexHot->aid . '">' .
-                                    '<p style="overflow-wrap: break-word;">>' . $rowIndexHot->title . '</p>' .
+                                    '<p style="overflow-wrap: break-word;">' . $rowIndexHot->title . '</p>' .
                                     '</a>' .
                                     '</div>' .
 
@@ -244,9 +244,6 @@ if (!isset($_SESSION['unique_id'])) { //未登入時顯示請登入
             <?php include_once "./php/users_select.php"; ?>
       </div>
 
-      <div id="siderbarright2">
-            聊天
-      </div>
       <!-- 回到頂部 -->
       <button class="js-back-to-top back-to-top" title="回到頂部"><i class="fa-solid fa-arrow-up"></i></button>
       <!-- 前往發文介面 -->
