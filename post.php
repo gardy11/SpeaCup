@@ -153,16 +153,16 @@ if (!isset($_SESSION['unique_id'])) { //未登入只可瀏覽文章
 
                               <br><br><br>
                               <hr class="hr" align="left"/>
-                              <i <?php if (userLiked($row['aid'])) : ?> class="fa fa-thumbs-up like-btn bluei" <?php else : ?> class="fa fa-thumbs-o-up like-btn bluei" <?php endif ?> data-id="<?php echo $row['aid'] ?>"style="font-size: 1.5em;">
+                              <i style="color:#ff8c00;"<?php if (userLiked($row['aid'])) : ?> class="fa fa-thumbs-up like-btn bluei" <?php else : ?> class="fa fa-thumbs-o-up like-btn bluei" <?php endif ?> data-id="<?php echo $row['aid'] ?>"style="font-size: 1.5em;">
                               </i>
-                              <span class="likes"><?php echo getLikes($row['aid']); ?></span>
+                              <span class="likes" style="color:#ff8c00;"><?php echo getLikes($row['aid']); ?></span>
 
                               &nbsp;&nbsp;&nbsp;&nbsp;
 
                               <!-- if user dislikes post, style button differently -->
-                              <i <?php if (userDisliked($row['aid'])) : ?> class="fa fa-thumbs-down dislike-btn bluei" <?php else : ?> class="fa fa-thumbs-o-down dislike-btn bluei" <?php endif ?> data-id="<?php echo $row['aid'] ?>"style="font-size: 1.5em;">
+                              <i style="color:#FFD306;"<?php if (userDisliked($row['aid'])) : ?> class="fa fa-thumbs-down dislike-btn bluei" <?php else : ?> class="fa fa-thumbs-o-down dislike-btn bluei" <?php endif ?> data-id="<?php echo $row['aid'] ?>"style="font-size: 1.5em;">
                               </i>
-                              <span class="dislikes"><?php echo getDislikes($row['aid']); ?></span>
+                              <span style="color:#FFD306;" class="dislikes"><?php echo getDislikes($row['aid']); ?></span>
 
                              
                               <i <?php if (userCollected($row['aid'])) : ?> class="fa fa-bookmark collection-btn redi" <?php else : ?> class="fa fa-bookmark-o collection-btn redi" <?php endif ?> data-id="<?php echo $row['aid'] ?>" style="position:relative;left:5%;font-size: 1.5em;">
