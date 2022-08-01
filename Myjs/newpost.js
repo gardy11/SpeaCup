@@ -46,8 +46,6 @@ const form = document.querySelector( ".posting-area" ),
 
 
 
-       
-
         setup: function (editor) {
             editor.on('change', function () {
                 tinymce.triggerSave();
