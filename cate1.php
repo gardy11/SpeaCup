@@ -4,18 +4,21 @@ include_once "php/config.php";
 
 if (!isset($_SESSION['unique_id'])) { //未登入時顯示請登入
 
-      echo $a = "請登入";
-      $output = "";
+      $a = '<a href="login.php" class="link-secondary">
+      <p class="h5">請登入</p> </a>';
+      $b = "";
 } else {  //已登入時顯示會員暱稱及登出
       $sql = mysqli_query($conn, "SELECT * FROM users WHERE unique_id = {$_SESSION['unique_id']}");
       if (mysqli_num_rows($sql) > 0) {
             $row = mysqli_fetch_assoc($sql);
       }
 
-      echo $a = $row['nickname'];
-      $output .= '<a href="php/dereout.php" class="link-secondary">
-             <p class="h5">登出</p>
-             </a>';
+      $a = $row['nickname'];
+      $b = ' <a href="member.php" class="link-secondary">
+             <p class="h5">會員中心</p>  </a>';
+ $c =             '<a href="php/dereout.php" class="link-secondary">
+             <p class="h5">登出</p></a>
+             ';
 }
 ?>
 
@@ -28,7 +31,6 @@ if (!isset($_SESSION['unique_id'])) { //未登入時顯示請登入
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <title>SpeaCup有話直說</title>
       <link href="CSS/style.css" rel="stylesheet" />
-      <link rel="stylesheet" href="./css/style_chat.css">
       <link rel="icon" type="image/x-icon" href="assets/fav.ico" />
       <script src="JS/scripts.js"></script>
       <script src="js/jquery-3.6.0.js"></script>
@@ -42,6 +44,7 @@ if (!isset($_SESSION['unique_id'])) { //未登入時顯示請登入
       <script src="https://kit.fontawesome.com/993da95711.js" crossorigin="anonymous"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
       <script src="script.js"></script>
+      <link rel="stylesheet" href="./css/style_chat.css">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
       <script language="javascript">
             function changeImageString(TargetID, FildAddres) {
@@ -66,19 +69,31 @@ if (!isset($_SESSION['unique_id'])) { //未登入時顯示請登入
                   <span class="navbar-toggler-icon"></span>
             </button>
 
-            <div class="nav-navbar collapse navbar-collapse navbar-right " id="navbarSupportedContent">
+            <div class="nav-navbar  navbar-collapse navbar-right " id="navbarSupportedContent">
                   <ul class="navbar-nav ml-auto pl-1">
-                        <form class="form-inline">
-                              <input class="form-control mr-sm-1" type="search" placeholder="SpeaCup" aria-label="Search">
+                        <form class="form-inline" method="POST" action="searchresult.php">
+                              <input class="form-control mr-sm-1" type="search" placeholder="SpeaCup" aria-label="Search" name="searchcontent">
                               <button class="btn btn-outline-danger my-2 my-sm-0 " type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
                         </form>
                         <li class="nav-item pl-5 mr-5">
-                        <li><a href=""><i class="fa-solid fa-bell">&ensp;&ensp;</i></a></li>
-                        <li><a href="login.php" title="會員中心"><i class="fa-solid fa-user">&ensp;&ensp;</i></a></li>
+             
+                        <li><a class="fa-solid fa-user mt-2" onclick="doAnimateShow();">&ensp;&ensp;</a></li>
                         </li>
             </div>
 
- 
+            <!-- 會員圖案click後的box -->
+            <div class="box" id="box">
+                  <div class="row">
+                        <p class="h5">&ensp;&ensp;HI!&ensp;&ensp;</p>
+                        <p class="h5 text-primary"><?php echo $a; ?></p>
+                  </div>
+                  <?php echo $b; ?>
+                  <?php echo $c; ?>
+            </div>
+            <!-- 小鈴鐺裡面的東西 -->
+            <div class="bell" id="bell">
+                  <p></p>
+            </div>
       </nav>
 
       <div id="siderbarleft" class="siderbarleft">
@@ -259,9 +274,7 @@ if (!isset($_SESSION['unique_id'])) { //未登入時顯示請登入
 
 </body>
 
-
 <script>
-      //熱門最新選擇
       function openArticle(evt, articleName) {
             var i, x, tablinks;
             x = document.getElementsByClassName("article");
@@ -275,6 +288,33 @@ if (!isset($_SESSION['unique_id'])) { //未登入時顯示請登入
             document.getElementById(articleName).style.display = "block";
             evt.currentTarget.className += " w3-red";
       }
+
+      function doAnimateShow() {
+            document.getElementById("box").style.top = "90px";
+            event.cancelBubble = true;
+      }
+
+      function doAnimateHide() {
+            document.getElementById("box").style.top = "-200px";
+
+      }
+
+      function doAnimateShowbell() {
+            document.getElementById("bell").style.top = "90px";
+            event.cancelBubble = true;
+      }
+
+      function doAnimateHidebell() {
+            document.getElementById("bell").style.top = "-200px";
+
+      }
+
+      window.onclick = function(ev) {
+            if (ev.target.nodeName !== 'A') {
+                  doAnimateHide();
+                  doAnimateHidebell();
+            }
+      };
 
       // 回到頂端樣式
       $(function() {
@@ -296,11 +336,6 @@ if (!isset($_SESSION['unique_id'])) { //未登入時顯示請登入
                   }, 200);
             });
       });
-
-      //發文介面
-      function openvote() {
-            window.open("https://open.spotify.com/track/5mxK8CuKCqxW7HlBjBtmRS?si=04d737c4b3614ade");
-      }
 </script>
 
 </html>

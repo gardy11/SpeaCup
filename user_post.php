@@ -1,6 +1,6 @@
 <?php
 session_start();
-
+include_once "php/config.php";
 include('php/like_dislike.php');
 include('php/collection.php');
 
@@ -18,7 +18,29 @@ if (!isset($_SESSION['unique_id'])) { //未登入只可瀏覽文章
             $posts = mysqli_fetch_all($query, MYSQLI_ASSOC);
       }
 }
+
+if (!isset($_SESSION['unique_id'])) { //未登入時顯示請登入
+
+$a = '<a href="login.php" class="link-secondary">
+<p class="h5">請登入</p> </a>';
+$b = "";
+} else {  //已登入時顯示會員暱稱及登出
+$sql = mysqli_query($conn, "SELECT * FROM users WHERE unique_id = {$_SESSION['unique_id']}");
+if (mysqli_num_rows($sql) > 0) {
+      $row = mysqli_fetch_assoc($sql);
+}
+
+$a = $row['nickname'];
+$b = ' <a href="member.php" class="link-secondary">
+       <p class="h5">會員中心</p>  </a>';
+$c =             '<a href="php/dereout.php" class="link-secondary">
+       <p class="h5">登出</p></a>
+       ';
+}
 ?>
+
+
+
 
 <?php
 /*刪除該筆文章的內文、收藏、讚資料表內容*/
@@ -74,27 +96,35 @@ if (isset($_POST['delete_btn'])) {
                   </a>
             </div>
 
-            <button class="navbar-toggler navbar-left" type="button" data-toggle="collapse"
-                  data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                  aria-label="Toggle navigation">
+            <button class="navbar-toggler navbar-left" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                   <span class="navbar-toggler-icon"></span>
             </button>
 
-            <div class="nav-navbar collapse navbar-collapse navbar-right " id="navbarSupportedContent">
+            <div class="nav-navbar  navbar-collapse navbar-right " id="navbarSupportedContent">
                   <ul class="navbar-nav ml-auto pl-1">
-                        <form class="form-inline">
-                              <input class="form-control mr-sm-1" type="search" placeholder="SpeaCup"
-                                    aria-label="Search">
-                              <button class="btn btn-outline-danger my-2 my-sm-0 " type="submit"><i
-                                          class="fa-solid fa-magnifying-glass"></i></button>
+                        <form class="form-inline" method="POST" action="searchresult.php">
+                              <input class="form-control mr-sm-1" type="search" placeholder="SpeaCup" aria-label="Search" name="searchcontent">
+                              <button class="btn btn-outline-danger my-2 my-sm-0 " type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
                         </form>
                         <li class="nav-item pl-5 mr-5">
-                        <li><a href=""><i class="fa-solid fa-bell">&ensp;&ensp;</i></a></li>
-                        <li><a href="login.php" title="會員中心"><i class="fa-solid fa-user">&ensp;&ensp;</i></a></li>
+             
+                        <li><a class="fa-solid fa-user mt-2" onclick="doAnimateShow();">&ensp;&ensp;</a></li>
                         </li>
             </div>
 
-
+            <!-- 會員圖案click後的box -->
+            <div class="box" id="box">
+                  <div class="row">
+                        <p class="h5">&ensp;&ensp;HI!&ensp;&ensp;</p>
+                        <p class="h5 text-primary"><?php echo $a; ?></p>
+                  </div>
+                  <?php echo $b; ?>
+                  <?php echo $c; ?>
+            </div>
+            <!-- 小鈴鐺裡面的東西 -->
+            <div class="bell" id="bell">
+                  <p></p>
+            </div>
       </nav>
 
       <div id="siderbarleft" class="siderbarleft">
@@ -291,6 +321,70 @@ function del() {
 
 
 };
+</script>
+
+<script>
+      function openArticle(evt, articleName) {
+            var i, x, tablinks;
+            x = document.getElementsByClassName("article");
+            for (i = 0; i < x.length; i++) {
+                  x[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablink");
+            for (i = 0; i < x.length; i++) {
+                  tablinks[i].className = tablinks[i].className.replace(" w3-red", "");
+            }
+            document.getElementById(articleName).style.display = "block";
+            evt.currentTarget.className += " w3-red";
+      }
+
+      function doAnimateShow() {
+            document.getElementById("box").style.top = "90px";
+            event.cancelBubble = true;
+      }
+
+      function doAnimateHide() {
+            document.getElementById("box").style.top = "-200px";
+
+      }
+
+      function doAnimateShowbell() {
+            document.getElementById("bell").style.top = "90px";
+            event.cancelBubble = true;
+      }
+
+      function doAnimateHidebell() {
+            document.getElementById("bell").style.top = "-200px";
+
+      }
+
+      window.onclick = function(ev) {
+            if (ev.target.nodeName !== 'A') {
+                  doAnimateHide();
+                  doAnimateHidebell();
+            }
+      };
+
+      // 回到頂端樣式
+      $(function() {
+            var $win = $(window);
+            var $backToTop = $('.js-back-to-top');
+
+            $win.scroll(function() {
+                  if ($win.scrollTop() > 100) {
+                        $backToTop.show();
+                  } else {
+                        $backToTop.hide();
+                  }
+            });
+
+
+            $backToTop.click(function() {
+                  $('html, body').animate({
+                        scrollTop: 0
+                  }, 200);
+            });
+      });
 </script>
 
 

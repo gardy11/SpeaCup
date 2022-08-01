@@ -170,8 +170,8 @@ while ($row = mysqli_fetch_assoc($query)) {
                                     </textarea>
                                    
                                     
-                                    <button type="button" class="btn btn-light" onclick="location.href ='user_post.php?aid=<?php echo $row['aid'] ?>'">取消</button>
-						<input type="submit" name="submitbtn" id="submitbtn" class="btn btn-light submit-btn" value="確認修改"/>
+                                    <button type="button" class="btn btn-outline-warning" onclick="location.href ='user_post.php?aid=<?php echo $row['aid'] ?>'">取消</button>
+						<input type="submit" name="submitbtn" id="submitbtn" class="btn btn-outline-warning submit-btn" value="確認修改"/>
                                     
 
                                     </form>
