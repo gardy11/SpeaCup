@@ -216,7 +216,7 @@ error_reporting(0);
                                           
                                           
                                           '<a class="col-2" style="text-decoration:none; width:50px;height:50px;"   href="m-index.php?unser_id=' . $rowIndexHot->unique_id . '">' .
-                                          '<img src="./php/images/' . $rowIndexHot->img . ' "   style="width:100px;height:100px;>' .
+                                          '<img src="./php/images/' . $rowIndexHot->img . ' "   style="width:100px;height:100px;">' .
                                           '</a>' .
 
                                           
@@ -300,7 +300,7 @@ error_reporting(0);
                                           
                                           
                                           '<a class="col-2" style="text-decoration:none; width:100px;height:100px;"   href="m-index.php?unser_id=' . $rowIndexNew->unique_id . '">' .
-                                          '<img src="./php/images/' . $rowIndexNew->img . ' "   style="width:100px;height:100px;>' .
+                                          '<img src="./php/images/' . $rowIndexNew->img . ' "   style="width:100px;height:100px;">' .
                                           '</a>' .
 
                                           
