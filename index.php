@@ -235,7 +235,7 @@ error_reporting(0);
 
                                     '<div class="col-12 smallerword1" style=" text-align:center;font-size: 30px;">' .
                                           '<a style="text-decoration:none" href="post.php?aid=' . $rowIndexHot->aid . '">' .
-                                          '<p class="smallerword2" style="overflow-wrap: break-word;">>' . $rowIndexHot->title . '</p>' .
+                                          '<p class="smallerword2" style="overflow-wrap: break-word;">' . $rowIndexHot->title . '</p>' .
                                           '</a>' .
                                     '</div>' .
                                     
@@ -319,7 +319,7 @@ error_reporting(0);
 
                                     '<div class="col-12" style=" text-align:center;font-size: 30px;">' .
                                           '<a style="text-decoration:none" href="post.php?aid=' . $rowIndexNew->aid . '">' .
-                                          '<p style="overflow-wrap: break-word;">>' . $rowIndexNew->title . '</p>' .
+                                          '<p style="overflow-wrap: break-word;">' . $rowIndexNew->title . '</p>' .
                                           '</a>' .
                                     '</div>' .
                                     
