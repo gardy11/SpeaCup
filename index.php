@@ -53,7 +53,7 @@ error_reporting(0);
       </script>
       <link rel="stylesheet"
             href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-      <link rel="stylesheet" href="css/responsive.css">
+      <link rel="stylesheet" href="css/responsivee.css">
 </head>
 
 <body class="body">
@@ -212,29 +212,30 @@ error_reporting(0);
 
                               echo
                               '<div class="row" style="border: solid 2px orange; width: 100%; height: 300px;">' .
-                                    '<div class="col-12 row">' .
+                                    '<div class="col-12 row ">' .
                                           
                                           
-                                          '<a class="col-2" style="text-decoration:none; width:50px;height:50px;"   href="m-index.php?unser_id=' . $rowIndexHot->unique_id . '">' .
-                                          '<img src="./php/images/' . $rowIndexHot->img . ' "   style="width:100px;height:100px;">' .
+                                          '<a class="col-2 " style="text-decoration:none; width:50px;height:50px;"   href="m-index.php?unser_id=' . $rowIndexHot->unique_id . '">' .
+                                          '<img src="./php/images/' . $rowIndexHot->img . ' "   style="width:100px;height:100px;" class="disappear">' .
                                           '</a>' .
 
                                           
-                                          '<a class="col-4" style="text-decoration:none;" href="localhost/cate' . $rowIndexHot->cid . '.php ">' .
-                                                '<p class=" mt-4" style=" text-align:center; font-size: 20px;color:#EA7500	;">' . $rowIndexHot->board_name . '</p>' .
+                                          '<a class="col-4 smallerword3"   style="text-decoration:none;" href="localhost/cate' . $rowIndexHot->cid . '.php ">' .
+                                                '<p class=" mt-4 "  style=" text-align:center; font-size: 20px;color:#EA7500	;">' . $rowIndexHot->board_name . '</p>' .
                                           '</a>' .
-                                          '<a class="col-4" style="text-decoration:none;" href="m-index.php?user_id=' . $rowIndexHot->unique_id . '">' .
-                                                '<p class=" mt-4" style=" text-align:center; font-size: 20px;color:#EA7500	;">' . $rowIndexHot->nickname . '</p>' .
-                                          '</a>' .
+                                          '<div class="col-4 smallerword1"
+                                          <a  style="text-decoration:none;" href="m-index.php?user_id=' . $rowIndexHot->unique_id . '">' .
+                                                '<p  style=" text-align:center; font-size: 20px;color:#EA7500	;"class=" mt-4 ">' . $rowIndexHot->nickname . '</p>' .
+                                          '</a></div>' .
 
-                                          '<p class="col-2 mt-4" style="  font-size: 20px;color:#EA7500	;">' . $rowIndexHot->created . '</p>' .
+                                          '<p class="col-2 mt-4 smallerword4" style="  font-size: 20px;color:#EA7500	;">' . substr( $rowIndexHot->created , 5 , 11 ) . '</p>' .
                                           
 
                                     '</div>' .
 
-                                    '<div class="col-12" style=" text-align:center;font-size: 30px;">' .
+                                    '<div class="col-12 smallerword1" style=" text-align:center;font-size: 30px;">' .
                                           '<a style="text-decoration:none" href="post.php?aid=' . $rowIndexHot->aid . '">' .
-                                          '<p style="overflow-wrap: break-word;">>' . $rowIndexHot->title . '</p>' .
+                                          '<p class="smallerword2" style="overflow-wrap: break-word;">>' . $rowIndexHot->title . '</p>' .
                                           '</a>' .
                                     '</div>' .
                                     
@@ -311,7 +312,7 @@ error_reporting(0);
                                                 '<p class=" mt-4" style=" text-align:center; font-size: 20px;color:#EA7500	;">' . $rowIndexNew->nickname . '</p>' .
                                           '</a>' .
 
-                                          '<p class="col-2 mt-4" style="  font-size: 20px;color:#EA7500	;">' . $rowIndexNew->created . '</p>' .
+                                          '<p class="col-2 mt-4" style="  font-size: 20px;color:#EA7500	;">' . substr( $rowIndexNew->created , 5 , 11 ) . '</p>' .
                                           
 
                                     '</div>' .
