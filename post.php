@@ -155,7 +155,8 @@ if (!isset($_SESSION['unique_id'])) { //未登入只可瀏覽文章
                               <hr class="hr" align="left"/>
                               <i style="color:#ff8c00;"<?php if (userLiked($row['aid'])) : ?> class="fa fa-thumbs-up like-btn bluei" <?php else : ?> class="fa fa-thumbs-o-up like-btn bluei" <?php endif ?> data-id="<?php echo $row['aid'] ?>"style="font-size: 1.5em;">
                               </i>
-                              <span class="likes" style="color:#ff8c00;"><?php echo getLikes($row['aid']); ?></span>
+                              <?php $like = getLikes($row['aid'])+1 ?>           
+                              <span class="likes" style="color:#ff8c00;"><?php echo $like ?></span>
 
                               &nbsp;&nbsp;&nbsp;&nbsp;
 

@@ -241,7 +241,7 @@ error_reporting(0);
                                     
 
                                           '<div class="col-1 material-symbols-outlined" style="color:#ff8c00;">thumb_up_off</div>' .
-                                          '<div class="col-1" style="color:#ff8c00;">' . $rowIndexHotLike->likeamount . '</div>' .
+                                          '<div class="col-1" style="color:#ff8c00;">' . $biliIndexHotlike . '</div>' .
                                           '<div class="col-8 nopadding" style="height:12%;background:#FFD306;">' .
                                           '<div style="background:#ff8c00;height:100%; width: calc(100% * (' . $biliIndexHotlike . '/' . $biliIndexHottotal . '));"></div>' .
                                           '</div>' .
@@ -325,7 +325,7 @@ error_reporting(0);
                                     
 
                                           '<div class="col-1 material-symbols-outlined" style="color:#ff8c00;">thumb_up_off</div>' .
-                                          '<div class="col-1" style="color:#ff8c00;">' . $rowIndexNewLike->likeamount . '</div>' .
+                                          '<div class="col-1" style="color:#ff8c00;">' . $biliIndexNewlike . '</div>' .
                                           '<div class="col-8 nopadding" style="height:12%;background:#FFD306;">' .
                                           '<div style="background:#ff8c00;height:100%; width: calc(100% * (' . $biliIndexNewlike . '/' . $biliIndexNewtotal . '));"></div>' .
                                           '</div>' .
