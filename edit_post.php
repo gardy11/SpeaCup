@@ -158,14 +158,14 @@ while ($row = mysqli_fetch_assoc($query)) {
                                     
                                     <label id="autoresizing" style="font-size:30px;">標題：</label></br>
                                     <textarea rows="1" type ="text" name="up_title" id="autoresizing" spellcheck="false"
-                                              style="width: 70%; font-size:30px;resize:none;">
+                                              style="width: 95%; font-size:30px;resize:none;">
                                     <?php echo $row['title'] ?>
                                     </textarea>
                                     </br>
                                     <!-- 讓內容可以顯示出換行 -->
                                     <label  style="font-size:30px;">內文：</label></br>
                                     <textarea name="up_content" id="edit-content" spellcheck="false" 
-							    style="resize:none; overflow-y:auto; height: 600px; width: 70%;font-size:20px;">
+							    style="resize:none; overflow-y:auto; height: 600px; width: 95%;font-size:20px;">
                                               <?php echo str_replace("\n", "<br/>", $row['content']) ?>
                                     </textarea>
                                    
@@ -209,7 +209,7 @@ while ($row = mysqli_fetch_assoc($query)) {
       </div>
 
       <div id="siderbarright2">
-            聊天
+           
       </div>
 
 

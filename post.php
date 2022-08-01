@@ -141,7 +141,7 @@ if (!isset($_SESSION['unique_id'])) { //未登入只可瀏覽文章
 
                               <span class="time-text col-4"><?php echo nl2br($row['created']) ?></span>
                         </header>
-                        <!--文章標題、內容、讚按鈕、收藏紐-->
+                        <!--文章標題、內容、讚按鈕、收藏紐--> 
                         <div class="container">
                         <div class="content">
                               <p class="content-text">
@@ -205,7 +205,7 @@ if (!isset($_SESSION['unique_id'])) { //未登入只可瀏覽文章
       </div>
 
       <div id="siderbarright2">
-            聊天
+           
       </div>
 
 

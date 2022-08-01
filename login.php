@@ -107,6 +107,9 @@ require_once './php/config.php';
     </section>
   </div>
 
+  <div id="siderbarright2">
+            聊天
+      </div>
 
 
 

@@ -167,7 +167,7 @@ if (isset($_POST['delete_btn'])) {
                               <span class="time-text col-4"><?php echo nl2br($row['created']) ?></span>
 
                               <!--編輯、刪除-->
-                              <form method="post" action="" style="position:relative ;left:65%;">
+                              <form method="post" action="" style="position:relative ;left:45%;">
                                     <a style="text-decoration:none" href="edit_post.php?aid=<?php echo $row['aid']; ?>">
                                           <i class="fa-solid fa-pen-to-square fa-lg"
                                                 style="position:relative; left:240px;">編輯</i>

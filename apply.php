@@ -148,14 +148,12 @@ if (mysqli_num_rows($query) == 0) {
 
 
       <div id="siderbarright1">
-            廣告
+            <!-- 聊天對象選擇介面 -->
+            <?php include_once "./php/users_select.php"; ?>
       </div>
-
       <div id="siderbarright2">
-            聊天
-      </div>
-
-
+           
+           </div>
 
 </body>
 

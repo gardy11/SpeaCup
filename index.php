@@ -4,18 +4,21 @@ include_once "php/config.php";
 
 if (!isset($_SESSION['unique_id'])) { //未登入時顯示請登入
 
-      echo $a = "請登入";
-      $output = "";
+      $a = '<a href="login.php" class="link-secondary">
+      <p class="h5">請登入</p> </a>';
+      $b = "";
 } else {  //已登入時顯示會員暱稱及登出
       $sql = mysqli_query($conn, "SELECT * FROM users WHERE unique_id = {$_SESSION['unique_id']}");
       if (mysqli_num_rows($sql) > 0) {
             $row = mysqli_fetch_assoc($sql);
       }
 
-      echo $a = $row['nickname'];
-      $output .= '<a href="php/dereout.php" class="link-secondary">
-             <p class="h5">登出</p>
-             </a>';
+      $a = $row['nickname'];
+      $b = ' <a href="member.php" class="link-secondary">
+             <p class="h5">會員中心</p>  </a>';
+ $c =             '<a href="php/dereout.php" class="link-secondary">
+             <p class="h5">登出</p></a>
+             ';
 }
 ?>
 
@@ -66,15 +69,15 @@ if (!isset($_SESSION['unique_id'])) { //未登入時顯示請登入
                   <span class="navbar-toggler-icon"></span>
             </button>
 
-            <div class="nav-navbar collapse navbar-collapse navbar-right " id="navbarSupportedContent">
+            <div class="nav-navbar  navbar-collapse navbar-right " id="navbarSupportedContent">
                   <ul class="navbar-nav ml-auto pl-1">
                         <form class="form-inline" method="POST" action="searchresult.php">
                               <input class="form-control mr-sm-1" type="search" placeholder="SpeaCup" aria-label="Search" name="searchcontent">
                               <button class="btn btn-outline-danger my-2 my-sm-0 " type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
                         </form>
                         <li class="nav-item pl-5 mr-5">
-                        <li><a href=""><i class="fa-solid fa-bell">&ensp;&ensp;</i></a></li>
-                        <li><a class="fa-solid fa-user" onclick="doAnimateShow();">&ensp;&ensp;</a></li>
+             
+                        <li><a class="fa-solid fa-user mt-2" onclick="doAnimateShow();">&ensp;&ensp;</a></li>
                         </li>
             </div>
 
@@ -82,16 +85,14 @@ if (!isset($_SESSION['unique_id'])) { //未登入時顯示請登入
             <div class="box" id="box">
                   <div class="row">
                         <p class="h5">&ensp;&ensp;HI!&ensp;&ensp;</p>
-                        <a href="member.php" class="h5 text-primary"><?php echo $a; ?></a>
+                        <p class="h5 text-primary"><?php echo $a; ?></p>
                   </div>
-                  <a href="member.php" class="link-secondary">
-                        <p class="h5">會員中心</p>
-                  </a>
-                  <?php echo $output; ?>
+                  <?php echo $b; ?>
+                  <?php echo $c; ?>
             </div>
             <!-- 小鈴鐺裡面的東西 -->
             <div class="bell" id="bell">
-                  <p>bell</p>
+                  <p></p>
             </div>
       </nav>
 
@@ -252,6 +253,9 @@ if (!isset($_SESSION['unique_id'])) { //未登入時顯示請登入
             <div id="siderbarright1">
                   <!-- 聊天對象選擇介面 -->
                   <?php include_once "./php/users_select.php"; ?>
+            </div>
+            <div id="siderbarright2">
+
             </div>
 
             <!-- 回到頂部 -->

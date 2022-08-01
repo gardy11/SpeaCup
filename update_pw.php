@@ -107,7 +107,7 @@ if (mysqli_num_rows($sql) > 0) {
 
           <hr class="hr">
         </div>
-
+ 
 
 
         <div id="m-password" class="m-3 field input">
@@ -115,7 +115,7 @@ if (mysqli_num_rows($sql) > 0) {
           <div class="row ">
             <input type="password" name="old_pswd" class="form-control ml-5" 
                    id="m-password" placeholder="輸入舊密碼" />
-            <i class="fa fa-eye"></i>
+            <i class="fa fa-eye mt-2"></i>
           </div>
           <hr class="hr">
         </div>
@@ -126,7 +126,7 @@ if (mysqli_num_rows($sql) > 0) {
             <input type="password" name="new_pswd" class="form-control ml-5" 
                    id="m-password2" placeholder="輸入新密碼"
                    pattern="^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z0-9]{8,20}$" />
-            <i class="fa fa-eye"></i>
+            <i class="fa fa-eye mt-3"></i>
           </div>
           <hr class="hr">
         </div>
@@ -137,7 +137,7 @@ if (mysqli_num_rows($sql) > 0) {
             <input type="password" name="ch_pswd" class="form-control ml-5" 
                    id="m-password3" placeholder="再次輸入新密碼" 
                    pattern="^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z0-9]{8,20}$" />
-            <i class="fa fa-eye"></i>
+            <i class="fa fa-eye mt-3"></i>
           </div>
           <hr class="hr">
         </div>
@@ -148,7 +148,7 @@ if (mysqli_num_rows($sql) > 0) {
 
         <div class="error-txt"></div>
         <div class="m-3 pl-5 field button">
-          <input type="submit" name="submit3" value="儲存修改">
+          <input type="submit" name="submit3" value="儲存修改" class="btn btn-outline-warning">
         </div>
         
 

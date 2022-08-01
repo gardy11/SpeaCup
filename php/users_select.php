@@ -17,8 +17,8 @@
                         </div>
                   </header>
                   <div class="search">
-                        <span class="text">選擇聊天對象</span>
-                        <input type="text" placeholder="尋找對象..." />
+                        <span class="text">尋找朋友</span>
+                        <input type="text" placeholder="尋找朋友..." />
                         <button><i class="fa fa-search"></i></button>
                   </div>
                   <div class="users-list">

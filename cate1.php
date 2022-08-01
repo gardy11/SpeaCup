@@ -78,7 +78,7 @@ if (!isset($_SESSION['unique_id'])) { //未登入時顯示請登入
                         </li>
             </div>
 
-
+ 
       </nav>
 
       <div id="siderbarleft" class="siderbarleft">
@@ -86,7 +86,7 @@ if (!isset($_SESSION['unique_id'])) { //未登入時顯示請登入
                   <button type="button" id="collapse" class="collapse-btn">
                         <i class="fas fa-align-left"></i>
                   </button>
-                  <ul class="list-unstyled p-1 ">
+                  <ul class="list-unstyled p-1">
                         <li>
                               <a href="index.php" calss="m-2">首頁<i class="fas mt-1 fa-solid fa-home"></i></i> </a>
                         </li>
@@ -245,7 +245,7 @@ if (!isset($_SESSION['unique_id'])) { //未登入時顯示請登入
       </div>
 
       <div id="siderbarright2">
-            聊天
+           
       </div>
 
       <!-- 回到頂部 -->

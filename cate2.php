@@ -250,7 +250,9 @@ if (!isset($_SESSION['unique_id'])) { //未登入時顯示請登入
       <a href="m-posts.php" title="會員中心"><button class="go-posts" title="前往發文">
                   <i class="fa-solid fa-pen-to-square fa-xl" style=color:red></i></a>
       </button>
-
+      <div id="siderbarright2">
+           
+           </div>
 
 
 </body>

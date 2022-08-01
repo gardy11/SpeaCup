@@ -141,11 +141,11 @@ if (mysqli_num_rows($sql) > 0) {
 							  <input type="text" name="cid" class="cid" value="" hidden>	
 							  <input type="text" name="aid" class="aid" value="<?php echo $aid; ?>" hidden>
 							  <input type="text" name="unique_id" class="unique_id" value="<?php echo $unique_id; ?>" hidden>
-							  <textarea rows="1" type ="text" name="title" id="autoresizing" spellcheck="false" class="input-title" placeholder="標題" style="position:relative; top:5px; overflow:hidden; border:none; outline:none; width:560px; font-size:30px;"></textarea><br /><br />
+							  <textarea rows="1" type ="text" name="title" id="autoresizing" spellcheck="false" class="input-title" placeholder="標題" style="position:relative; top:5px; overflow:hidden; border:none; outline:none; width:95%; font-size:30px;"></textarea><br /><br />
 							  
 							
 							  <textarea  id="input-content" class="input-content" name="content"  spellcheck="false" placeholder="內容..." 
-							  style="overflow:none;  height: 460px; width:560px;"></textarea>  
+							  style="overflow:none;  height: 460px; width:95%;"></textarea>  
 							  
                 <!-- <textarea id="sql-content" name="content" hidden ></textarea> -->
 
@@ -177,7 +177,9 @@ if (mysqli_num_rows($sql) > 0) {
     <?php include_once "./php/users_select.php"; ?>
   </div>
 
-
+  <div id="siderbarright2">
+           
+           </div>
 
 </body>
 <!-- 外部匯入樣式 -->
