@@ -355,7 +355,7 @@ error_reporting(0);
             <!-- 回到頂部 -->
             <button class="js-back-to-top back-to-top" title="回到頂部"><i class="fa-solid fa-arrow-up"></i></button>
             <!-- 前往發文介面 -->
-            <a href="m-posts.php" title="會員中心"><button class="go-posts" title="前往發文">
+            <a href="m-posts.php" ><button class="go-posts" title="前往發文">
                         <i class="fa-solid fa-pen-to-square fa-xl" style=color:red></i></a>
             </button>
 
