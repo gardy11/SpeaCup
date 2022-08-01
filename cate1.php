@@ -168,7 +168,7 @@ if (!isset($_SESSION['unique_id'])) { //未登入時顯示請登入
 
                                     '<div class="col-12" style=" text-align:center;font-size: 30px;">' .
                                     '<a style="text-decoration:none" href="post.php?aid=' . $rowIndexHot->aid . '">' .
-                                    '<p style="overflow-wrap: break-word;">>' . $rowIndexHot->title . '</p>' .
+                                    '<p style="overflow-wrap: break-word;">' . $rowIndexHot->title . '</p>' .
                                     '</a>' .
                                     '</div>' .
 
