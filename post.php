@@ -217,9 +217,9 @@ if (!isset($_SESSION['unique_id'])) { //未登入只可瀏覽文章
 
 
       <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
-      <script src="Myjs/like_dislike.js"></script>
-      <script src="Myjs/collection.js"></script>
-      <script src="./Myjs/post.js"></script>
+      <script src="./JS/like_dislike.js"></script>
+      <script src="./JS/collection.js"></script>
+      <script src="./JS/post.js"></script>
 
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
