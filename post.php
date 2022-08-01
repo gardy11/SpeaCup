@@ -280,5 +280,8 @@ if (!isset($_SESSION['unique_id'])) { //未登入只可瀏覽文章
             })
       }
 </script>
-
+<script> 
+window.onclick=function(){
+window.location.reload(); }
+</script>
 </html>
