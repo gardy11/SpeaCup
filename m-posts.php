@@ -77,7 +77,7 @@ if (!isset($_SESSION['unique_id'])) { //未登入時顯示請登入
                         </form>
                         <li class="nav-item pl-5 mr-5">
              
-                        <li><a class="fa-solid fa-user mt-2" onclick="doAnimateShow();">&ensp;&ensp;</a></li>
+                        <li><a class="fa-solid fa-user mt-2" style="color: #f2510c;" onclick="doAnimateShow();">&ensp;&ensp;</a></li>
                         </li>
             </div>
 
