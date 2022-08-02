@@ -1,15 +1,20 @@
 <?php
 session_start();
 include_once "php/config.php";
+if (!isset($_SESSION['unique_id'])) { //未登入時顯示請登入
+      header("location: login.php");
+} else {  //已登入時顯示會員暱稱及登出
+      $sql = mysqli_query($conn, "SELECT * FROM users WHERE unique_id = {$_SESSION['unique_id']}");
+      if (mysqli_num_rows($sql) > 0) {
+            $row = mysqli_fetch_assoc($sql);
+      }
 
-?>
-
-
-<?php //撈資料
-$sql = "SELECT * FROM users ORDER BY  uid DESC";
-$query = mysqli_query($conn, $sql);
-while ($row = mysqli_fetch_assoc($query)) {
-      $apply = mysqli_fetch_all($query, MYSQLI_ASSOC);
+      $a = $row['nickname'];
+      $b = ' <a href="member.php" class="link-secondary">
+             <p class="h5">會員中心</p>  </a>';
+ $c =             '<a href="php/dereout.php" class="link-secondary">
+             <p class="h5">登出</p></a>
+             ';
 }
 ?>
 
@@ -100,29 +105,15 @@ while ($row = mysqli_fetch_assoc($query)) {
                           
                                 <span style="font-size:20px;">' . $row5['nickname'] . '</span>
                          
-                                <div style="position:relative; border:0; min-width:60%; max-width:60%; ";>  
-                                <span style="position:absolute; right: -10%;">' . $row5['created'] . '</span>
-                                </div>
+
                             </div>
      
                           <a style="text-decoration:none" href="post.php?aid=' . $row5['aid'] . '">
                             <div id="c1" class="mt-4 ml-5">
                              <h2 style="color:black;">' . $title . '</h2>
                              <p style="font-size:20px; color:gray;">' .  $content . '</p> 
-     
-                             <i class="fa fa-thumbs-up like-btn" style="font-size: 0.8em; color:gray"
-                                data-id=' .  $row5['aid'] . '"> 
-                             </i>
-                             <span class="likes" style="font-size: 1em; color:gray">' . $row3['likes'] . '</span>
-     
-                             &nbsp;&nbsp;&nbsp;&nbsp;
-     
-                             <i class="fa fa-thumbs-down dislike-btn" style="font-size: 0.8em; color:gray"
-                                data-id=' .  $row5['aid'] . '"> 
-                             </i>
-                             <span class="dislikes" style="font-size: 1em; color:gray">' . $row4['dislikes'] . '</span>
-                           
-                            </div>
+   
+
                          </div>
                         
                           </a>
@@ -199,7 +190,7 @@ while ($row = mysqli_fetch_assoc($query)) {
 
       <div id="siderbarindex">
             <div id="m-inform" class="mr-3 ml-3 mb-3">
-                  <h1 id="m-nickname-n" class="ml-5"><?php echo $row['nickname']; ?></h1>
+                  <h1 id="m-nickname-n" class="ml-5 text-primary"><?php echo $row['nickname']; ?></h1>
                   <h1 class="ml-5 text-dark display-5">基本資料</h1>
                   <div class="col-12 pt-2">
                         <?php
@@ -237,8 +228,7 @@ while ($row = mysqli_fetch_assoc($query)) {
                         <img src="php/images/<?php echo $row['img']; ?>" width="200px" height="200px"
                               class="ml-5 col-3 rounded" alt="大頭貼">
 
-                        <hr class="hr">
-                  </div>
+                               </div>
                   <div id="m-bd" class="m-3">
                         <h4 class="ml-5 text-muted">生日</h4>
                         <label id="m-bd-b" class="ml-5"><?php echo $row['birth']; ?></label>
@@ -250,7 +240,7 @@ while ($row = mysqli_fetch_assoc($query)) {
             <div id="m-index-p" class="m-3">
                   <h1 class="ml-5 display-4">發表過文章 !!</h1>
             </div>
-            <hr class="hr">
+          
 
             <?php echo $output;  ?>
 
@@ -260,7 +250,7 @@ while ($row = mysqli_fetch_assoc($query)) {
             </div>
 
             <div id="siderbarright2">
-                  聊天
+              
             </div>
 
 
@@ -296,6 +286,47 @@ while ($row = mysqli_fetch_assoc($query)) {
                         $('#displayRelatedComment' + pid).prev().hide();
                   })
             }
+
+            function openArticle(evt, articleName) {
+            var i, x, tablinks;
+            x = document.getElementsByClassName("article");
+            for (i = 0; i < x.length; i++) {
+                  x[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablink");
+            for (i = 0; i < x.length; i++) {
+                  tablinks[i].className = tablinks[i].className.replace(" w3-red", "");
+            }
+            document.getElementById(articleName).style.display = "block";
+            evt.currentTarget.className += " w3-red";
+      }
+
+      function doAnimateShow() {
+            document.getElementById("box").style.top = "90px";
+            event.cancelBubble = true;
+      }
+
+      function doAnimateHide() {
+            document.getElementById("box").style.top = "-200px";
+
+      }
+
+      function doAnimateShowbell() {
+            document.getElementById("bell").style.top = "90px";
+            event.cancelBubble = true;
+      }
+
+      function doAnimateHidebell() {
+            document.getElementById("bell").style.top = "-200px";
+
+      }
+
+      window.onclick = function(ev) {
+            if (ev.target.nodeName !== 'A') {
+                  doAnimateHide();
+                  doAnimateHidebell();
+            }
+      };
             </script>
 
 
