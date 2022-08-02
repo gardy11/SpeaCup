@@ -1,12 +1,8 @@
 <?php
 session_start();
 include_once "php/config.php";
-
 if (!isset($_SESSION['unique_id'])) { //未登入時顯示請登入
-
-      $a = '<a href="login.php" class="link-secondary">
-      <p class="h5">請登入</p> </a>';
-      $b = "";
+      header("location: login.php");
 } else {  //已登入時顯示會員暱稱及登出
       $sql = mysqli_query($conn, "SELECT * FROM users WHERE unique_id = {$_SESSION['unique_id']}");
       if (mysqli_num_rows($sql) > 0) {

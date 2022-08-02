@@ -197,10 +197,10 @@ if (isset($_POST['delete_btn'])) {
                               <span class="time-text col-4"><?php echo nl2br($row['created']) ?></span>
 
                               <!--編輯、刪除-->
-                              <form method="post" action="" style="position:relative ;left:45%;">
+                              <form method="post" action="" style="position:relative ;left:35%;">
                                     <a style="text-decoration:none" href="edit_post.php?aid=<?php echo $row['aid']; ?>">
                                           <i class="fa-solid fa-pen-to-square fa-lg"
-                                                style="position:relative; left:240px;">編輯</i>
+                                                style="position:relative; left:170px;">編輯</i>
                                     </a>
                                     <!-- input type="hidden" 表示要刪除的文章aid -->
                                     <input type="hidden" name="delete_id" value="<?php echo $row['aid']; ?>">

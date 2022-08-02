@@ -127,10 +127,10 @@ if (!isset($_SESSION['unique_id'])) { //未登入時顯示請登入
 
 
       <div id="siderbarindex">
-            <div id="friends" class="m-3">
-                  <h1 class="ml-5 display-4">申請好友</h1>
-            </div>
-            <hr class="hr">
+      <div class="mr-3 ml-3 mb-3">
+
+                              <h1 class="ml-5 text-dark display-5">好友申請</h1>
+                              <hr class="hr">
             <!-- 交友通知 -->
             <?php include_once "php/friend_noti.php" ?>
 

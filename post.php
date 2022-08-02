@@ -192,7 +192,7 @@ if (isset($_POST['delete_btn'])) {
 
                               <span class="time-text col-4"><?php echo nl2br($row['created']) ?></span>
                         </header>
-                        <!--文章標題、內容、讚按鈕、收藏紐--> 
+                        <!--文章標題、內容、讚按鈕、收藏紐-->
                         <div class="container">
                         <div class="content">
                               <p class="content-text">
@@ -204,16 +204,17 @@ if (isset($_POST['delete_btn'])) {
 
                               <br><br><br>
                               <hr class="hr" align="left"/>
-                              <i <?php if (userLiked($row['aid'])) : ?> class="fa fa-thumbs-up like-btn bluei" <?php else : ?> class="fa fa-thumbs-o-up like-btn bluei" <?php endif ?> data-id="<?php echo $row['aid'] ?>"style="font-size: 1.5em;">
+                              <i style="color:#ff8c00;"<?php if (userLiked($row['aid'])) : ?> class="fa fa-thumbs-up like-btn bluei" <?php else : ?> class="fa fa-thumbs-o-up like-btn bluei" <?php endif ?> data-id="<?php echo $row['aid'] ?>"style="font-size: 1.5em;">
                               </i>
-                              <span class="likes"><?php echo getLikes($row['aid']); ?></span>
+                              <?php $like = getLikes($row['aid'])+1 ?>           
+                              <span class="likes" style="color:#ff8c00;"><?php echo $like ?></span>
 
                               &nbsp;&nbsp;&nbsp;&nbsp;
 
                               <!-- if user dislikes post, style button differently -->
-                              <i <?php if (userDisliked($row['aid'])) : ?> class="fa fa-thumbs-down dislike-btn bluei" <?php else : ?> class="fa fa-thumbs-o-down dislike-btn bluei" <?php endif ?> data-id="<?php echo $row['aid'] ?>"style="font-size: 1.5em;">
+                              <i style="color:#FFD306;"<?php if (userDisliked($row['aid'])) : ?> class="fa fa-thumbs-down dislike-btn bluei" <?php else : ?> class="fa fa-thumbs-o-down dislike-btn bluei" <?php endif ?> data-id="<?php echo $row['aid'] ?>"style="font-size: 1.5em;">
                               </i>
-                              <span class="dislikes"><?php echo getDislikes($row['aid']); ?></span>
+                              <span style="color:#FFD306;" class="dislikes"><?php echo getDislikes($row['aid']); ?></span>
 
                              
                               <i <?php if (userCollected($row['aid'])) : ?> class="fa fa-bookmark collection-btn redi" <?php else : ?> class="fa fa-bookmark-o collection-btn redi" <?php endif ?> data-id="<?php echo $row['aid'] ?>" style="position:relative;left:5%;font-size: 1.5em;">

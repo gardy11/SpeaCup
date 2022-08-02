@@ -128,10 +128,10 @@ if (!isset($_SESSION['unique_id'])) { //未登入時顯示請登入
 
 
       <div id="siderbarindex">
-            <div id="collections" class="m-3 ">
-                  <h1 class="ml-5 display-4">收藏文章</h1>
-                  <hr class="hr">
-            </div>
+      <div class="mr-3 ml-3 mb-3">
+
+                              <h1 class="ml-5 text-dark display-5">收藏文章</h1>
+                              <hr class="hr">
 
             <?php include_once "php/cn_posts.php"; ?>
 

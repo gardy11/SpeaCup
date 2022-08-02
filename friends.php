@@ -1,12 +1,8 @@
 <?php
 session_start();
 include_once "php/config.php";
-
 if (!isset($_SESSION['unique_id'])) { //未登入時顯示請登入
-
-      $a = '<a href="login.php" class="link-secondary">
-      <p class="h5">請登入</p> </a>';
-      $b = "";
+      header("location: login.php");
 } else {  //已登入時顯示會員暱稱及登出
       $sql = mysqli_query($conn, "SELECT * FROM users WHERE unique_id = {$_SESSION['unique_id']}");
       if (mysqli_num_rows($sql) > 0) {
@@ -127,10 +123,10 @@ if (!isset($_SESSION['unique_id'])) { //未登入時顯示請登入
 
 
       <div id="siderbarindex">
-            <div id="friends" class="m-3">
-                  <h1 class="ml-5 display-4">好友列表</h1>
-            </div>
-            <hr class="hr">
+      <div class="mr-3 ml-3 mb-3">
+
+                              <h1 class="ml-5 text-dark display-5">好友列表</h1>
+                              <hr class="hr">
 
             <?php include_once "php/friend_list.php"; ?>
  

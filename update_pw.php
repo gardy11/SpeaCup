@@ -124,10 +124,11 @@ if (!isset($_SESSION['unique_id'])) { //未登入時顯示請登入
   <div id="siderbarindex">
     <section class="form update_pw">
       <form method="POST" action="#" enctype="text/plain" autocomplete="off">
-        <div id="m-inform" class="m-3">
-          <h1 class="ml-5 text-dark display-4">修改密碼</h1>
+        <div id="m-inform" class="mr-3 ml-3 mb-3" >
+          <h1 class="ml-5 text-dark display-">修改密碼</h1>
 
           <hr class="hr">
+
         </div>
  
 

@@ -158,14 +158,14 @@ while ($row = mysqli_fetch_assoc($query)) {
                                     
                                     <label id="autoresizing" style="font-size:30px;">標題：</label></br>
                                     <textarea rows="1" type ="text" name="up_title" id="autoresizing" spellcheck="false"
-                                              style="width: 95%; font-size:30px;resize:none;">
+                                              style="width: 97%; font-size:30px;resize:none;">
                                     <?php echo $row['title'] ?>
                                     </textarea>
                                     </br>
                                     <!-- 讓內容可以顯示出換行 -->
                                     <label  style="font-size:30px;">內文：</label></br>
                                     <textarea name="up_content" id="edit-content" spellcheck="false" 
-							    style="resize:none; overflow-y:auto; height: 600px; width: 95%;font-size:20px;">
+							    style="resize:none; overflow-y:auto; height: 600px; width: 97%;font-size:20px;">
                                               <?php echo str_replace("\n", "<br/>", $row['content']) ?>
                                     </textarea>
                                    
@@ -175,23 +175,7 @@ while ($row = mysqli_fetch_assoc($query)) {
                                     
 
                                     </form>
-                                    </section> 
 
-                                    <hr class="hr" align="left" />
-                                    <i <?php if (userLiked($row['aid'])) : ?> class="fa fa-thumbs-up like-btn bluei" <?php else : ?> class="fa fa-thumbs-o-up like-btn bluei" <?php endif ?> data-id="<?php echo $row['aid'] ?>" style="font-size: 1.5em;">
-                                    </i>
-                                    <span class="likes"><?php echo getLikes($row['aid']); ?></span>
-
-                                    &nbsp;&nbsp;&nbsp;&nbsp;
-
-                                    <!-- if user dislikes post, style button differently -->
-                                    <i <?php if (userDisliked($row['aid'])) : ?> class="fa fa-thumbs-down dislike-btn bluei" <?php else : ?> class="fa fa-thumbs-o-down dislike-btn bluei" <?php endif ?> data-id="<?php echo $row['aid'] ?>" style="font-size: 1.5em;">
-                                    </i>
-                                    <span class="dislikes"><?php echo getDislikes($row['aid']); ?></span>
-
-
-                                    <i <?php if (userCollected($row['aid'])) : ?> class="fa fa-bookmark collection-btn redi" <?php else : ?> class="fa fa-bookmark-o collection-btn redi" <?php endif ?> data-id="<?php echo $row['aid'] ?>" style="position:relative;left:5%;font-size: 1.5em;">
-                                          收藏</i>
                                     
                               
                               </div>
