@@ -158,40 +158,24 @@ while ($row = mysqli_fetch_assoc($query)) {
                                     
                                     <label id="autoresizing" style="font-size:30px;">標題：</label></br>
                                     <textarea rows="1" type ="text" name="up_title" id="autoresizing" spellcheck="false"
-                                              style="width: 70%; font-size:30px;resize:none;">
+                                              style="width: 97%; font-size:30px;resize:none;">
                                     <?php echo $row['title'] ?>
                                     </textarea>
                                     </br>
                                     <!-- 讓內容可以顯示出換行 -->
                                     <label  style="font-size:30px;">內文：</label></br>
                                     <textarea name="up_content" id="edit-content" spellcheck="false" 
-							    style="resize:none; overflow-y:auto; height: 600px; width: 70%;font-size:20px;">
+							    style="resize:none; overflow-y:auto; height: 600px; width: 97%;font-size:20px;">
                                               <?php echo str_replace("\n", "<br/>", $row['content']) ?>
                                     </textarea>
                                    
                                     
-                                    <button type="button" class="btn btn-light" onclick="location.href ='user_post.php?aid=<?php echo $row['aid'] ?>'">取消</button>
-						<input type="submit" name="submitbtn" id="submitbtn" class="btn btn-light submit-btn" value="確認修改"/>
+                                    <button type="button" class="btn btn-outline-warning" onclick="location.href ='user_post.php?aid=<?php echo $row['aid'] ?>'">取消</button>
+						<input type="submit" name="submitbtn" id="submitbtn" class="btn btn-outline-warning submit-btn" value="確認修改"/>
                                     
 
                                     </form>
-                                    </section> 
 
-                                    <hr class="hr" align="left" />
-                                    <i <?php if (userLiked($row['aid'])) : ?> class="fa fa-thumbs-up like-btn bluei" <?php else : ?> class="fa fa-thumbs-o-up like-btn bluei" <?php endif ?> data-id="<?php echo $row['aid'] ?>" style="font-size: 1.5em;">
-                                    </i>
-                                    <span class="likes"><?php echo getLikes($row['aid']); ?></span>
-
-                                    &nbsp;&nbsp;&nbsp;&nbsp;
-
-                                    <!-- if user dislikes post, style button differently -->
-                                    <i <?php if (userDisliked($row['aid'])) : ?> class="fa fa-thumbs-down dislike-btn bluei" <?php else : ?> class="fa fa-thumbs-o-down dislike-btn bluei" <?php endif ?> data-id="<?php echo $row['aid'] ?>" style="font-size: 1.5em;">
-                                    </i>
-                                    <span class="dislikes"><?php echo getDislikes($row['aid']); ?></span>
-
-
-                                    <i <?php if (userCollected($row['aid'])) : ?> class="fa fa-bookmark collection-btn redi" <?php else : ?> class="fa fa-bookmark-o collection-btn redi" <?php endif ?> data-id="<?php echo $row['aid'] ?>" style="position:relative;left:5%;font-size: 1.5em;">
-                                          收藏</i>
                                     
                               
                               </div>
@@ -209,7 +193,7 @@ while ($row = mysqli_fetch_assoc($query)) {
       </div>
 
       <div id="siderbarright2">
-            聊天
+           
       </div>
 
 
@@ -221,15 +205,15 @@ while ($row = mysqli_fetch_assoc($query)) {
 
       <script src="https://code.jquery.com/jquery-3.5.1.min.js"
             integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
-      <script src="./JS/like_dislike.js"></script>
-      <script src="./JS/collection.js"></script>
-      <script src="./JS/post.js"></script>
+      <script src="Myjs/like_dislike.js"></script>
+      <script src="Myjs/collection.js"></script>
+      <script src="./Myjs/post.js"></script>
 
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
             integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
       <script src="https://cdn.tiny.cloud/1/hxtclvg3mgc7oaicqs2d6dovwxj8yjv5tapovohch15af5no/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
-      <script src="./JS/edit_post.js" ></script>                                     
+      <script src="Myjs/edit_post.js" ></script>                                     
 
 
 </body>
