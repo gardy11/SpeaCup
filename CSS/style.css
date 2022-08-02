@@ -145,7 +145,7 @@ nav.navbar {
   display: none;
   position: fixed;
   bottom:5%;
-  right: 22.5%;
+  right:22;
   z-index: 99;
   border: 2px solid #ff513a;
   outline: none;
@@ -170,13 +170,13 @@ nav.navbar {
 .go-posts {
   position: fixed;
   bottom: 5%;
-  right: 28%;
+  right: 30%;
   z-index: 99;
   border: 2px solid #CFDEED;
   outline: none;
   background-color: #fff;
   cursor: pointer;
-  padding: 10px ;
+  padding: 5px ;
   font-weight: bold;
   font-size: 10px;
   border-radius: 30px;

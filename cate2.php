@@ -125,130 +125,130 @@ if (!isset($_SESSION['unique_id'])) { //未登入時顯示請登入
       <!--最新與熱門連資料庫和query-->
       <?php
 
-      $mysqli = new mysqli('localhost', 'root', '', 'speacup', 3306);
+$mysqli = new mysqli('localhost', 'root', '', 'speacup', 3306);
 
-      $sqlIndexHot = "SELECT * ,
-  (likes+angry) as total 
-  from posts LEFT JOIN board_categories
-  ON posts.cid = board_categories.cid 
-  LEFT JOIN users ON posts.unique_id = users.unique_id WHERE posts.cid = 2 ORDER BY total DESC;";
-      $resultIndexHot = $mysqli->query($sqlIndexHot);
-      $sqlIndexNew = "SELECT * ,
-  (likes+angry) as total 
-  from posts LEFT JOIN board_categories
-  ON posts.cid = board_categories.cid 
-  LEFT JOIN users ON posts.unique_id = users.unique_id WHERE posts.cid = 2
-  ORDER BY created DESC;";
-      $resultIndexNew = $mysqli->query($sqlIndexNew);
-
-
-      ?>
-      <!--最新與熱門html-->
-      <div id="siderbarindex">
-
-            <div class="w3-container hotnew" style="width: 100%">
-                  <div class="w3-bar w3-black row">
-                        <button class="w3-bar-item w3-button tablink w3-red col-6" onclick="openArticle(event,'ihot')">熱門發文</button>
-                        <button class="w3-bar-item w3-button tablink col-6" onclick="openArticle(event,'inew')">最新發表</button>
-                  </div>
+$sqlIndexHot = "SELECT * ,
+(likes+angry) as total 
+from posts LEFT JOIN board_categories
+ON posts.cid = board_categories.cid 
+LEFT JOIN users ON posts.unique_id = users.unique_id WHERE posts.cid = 2 ORDER BY total DESC;";
+$resultIndexHot = $mysqli->query($sqlIndexHot);
+$sqlIndexNew = "SELECT * ,
+(likes+angry) as total 
+from posts LEFT JOIN board_categories
+ON posts.cid = board_categories.cid 
+LEFT JOIN users ON posts.unique_id = users.unique_id WHERE posts.cid = 2
+ORDER BY created DESC;";
+$resultIndexNew = $mysqli->query($sqlIndexNew);
 
 
-                  <div id="ihot" class="article">
-                        <?php
+?>
+<!--最新與熱門html-->
+<div id="siderbarindex">
 
-                        for ($i = 0; $i < 4; $i++) {
-                              $rowIndexHot = $resultIndexHot->fetch_object();
-                              echo
-                              '<div class="row" style="border: solid 2px orange; width: 100%; height: 300px;">' .
-                                    '<div class="col-12 row">' .
-                                    '<form class="row col-12" >' .
-                                    '<a style="text-decoration:none" href="m-index.php?unser_id=' . $rowIndexHot->unique_id . '">' .
-                                    '<img src="./php/img/' . $rowIndexHot->img . ' " class="col-2 dissapear" width="70px" height="70px">' .
-                                    '</a>' .
+      <div class="w3-container hotnew" style="width: 100%">
+            <div class="w3-bar w3-black row">
+                  <button class="w3-bar-item w3-button tablink w3-red col-6" onclick="openArticle(event,'ihot')">熱門發文</button>
+                  <button class="w3-bar-item w3-button tablink col-6" onclick="openArticle(event,'inew')">最新發表</button>
+            </div>
 
-                                    '<a style="text-decoration:none" href="cate' . $rowIndexHot->cid . '.php?c_id=' . $rowIndexHot->cid . '">' .
-                                    '<div class="col-2 mt-4 smallerword1" style=" text-align:center; font-size: 20px;color:#EA7500	;">' .
-                                    $rowIndexHot->board_name .
-                                    '</div>' .
-                                    '</a>' .
 
-                                    '<a style="text-decoration:none" href="m-index.php?user_id=' . $rowIndexHot->unique_id . '">' .
-                                    '<p class="col-4 mt-4" style=" text-align:center; font-size: 20px;color:#EA7500	;">' . $rowIndexHot->nickname . '</p>' .
-                                    '</a>' .
+            <div id="ihot" class="article">
+                  <?php
 
-                                    '<p class="col-4 mt-4" style=" text-align:center; font-size: 15px;color:#EA7500	;">' . $rowIndexHot->created . '</p>' .
-                                    '</form>' .
+                  for ($i = 0; $i < 4; $i++) {
+                        $rowIndexHot = $resultIndexHot->fetch_object();
+                        echo
+                        '<div class="row" style="border: solid 2px orange; width: 100%; height: 300px;">' .
+                              '<div class="col-12 row">' .
+                              '<form class="row col-12" >' .
+                              '<a style="text-decoration:none" href="m-index.php?unser_id=' . $rowIndexHot->unique_id . '">' .
+                              '<img src="./php/img/' . $rowIndexHot->img . ' " class="col-2 dissapear" width="70px" height="70px">' .
+                              '</a>' .
 
-                                    '<div class="col-12" style=" text-align:center;font-size: 30px;">' .
-                                    '<a style="text-decoration:none" href="post.php?aid=' . $rowIndexHot->aid . '">' .
-                                    '<p style="overflow-wrap: break-word;">' . $rowIndexHot->title . '</p>' .
-                                    '</a>' .
-                                    '</div>' .
+                              '<a style="text-decoration:none" href="cate' . $rowIndexHot->cid . '.php?c_id=' . $rowIndexHot->cid . '">' .
+                              '<div class="col-2 mt-4 smallerword1" style=" text-align:center; font-size: 20px;color:#EA7500	;">' .
+                              $rowIndexHot->board_name .
+                              '</div>' .
+                              '</a>' .
 
-                                    '<div class="col-1 material-symbols-outlined" style="color:#ff8c00;">
-              thumb_up_off
-              </div>' .
-                                    '<div class="col-1" style="color:#ff8c00;">' . $rowIndexHot->likes . '</div>' .
-                                    '<div class="col-8 nopadding" style="height:12%;background:#FFD306;">' .
-                                    '<div style="background:#ff8c00;height:100%; width: calc(100% * (' . $rowIndexHot->likes . '/' . $rowIndexHot->total . '));"></div>' .
-                                    '</div>' .
-                                    '<div class="col-1" style="color:#FFD306;">' . $rowIndexHot->angry . '</div>' .
-                                    '<div class="col-1 material-symbols-outlined" style="color:#FFD306;">
-              thumb_down_off
-              </div>' .
-                                    '<div class="col-12 nopadding" style="height:10%;">' .
-                                    '<p>&nbsp</P>' .
-                                    '</div>' .
+                              '<a style="text-decoration:none" href="m-index.php?user_id=' . $rowIndexHot->unique_id . '">' .
+                              '<p class="col-4 mt-4" style=" text-align:center; font-size: 20px;color:#EA7500	;">' . $rowIndexHot->nickname . '</p>' .
+                              '</a>' .
 
-                                    '</div>' .
+                              '<p class="col-4 mt-4" style=" text-align:center; font-size: 15px;color:#EA7500	;">' . $rowIndexHot->created . '</p>' .
+                              '</form>' .
 
-                                    '</div>';
-                        }
-                        ?>
+                              '<div class="col-12" style=" text-align:center;font-size: 30px;">' .
+                              '<a style="text-decoration:none" href="post.php?aid=' . $rowIndexHot->aid . '">' .
+                              '<p style="overflow-wrap: break-word;">' . $rowIndexHot->title . '</p>' .
+                              '</a>' .
+                              '</div>' .
 
-                  </div>
+                              '<div class="col-1 material-symbols-outlined" style="color:#ff8c00;">
+        thumb_up_off
+        </div>' .
+                              '<div class="col-1" style="color:#ff8c00;">' . $rowIndexHot->likes . '</div>' .
+                              '<div class="col-8 nopadding" style="height:12%;background:#FFD306;">' .
+                              '<div style="background:#ff8c00;height:100%; width: calc(100% * (' . $rowIndexHot->likes . '/' . $rowIndexHot->total . '));"></div>' .
+                              '</div>' .
+                              '<div class="col-1" style="color:#FFD306;">' . $rowIndexHot->angry . '</div>' .
+                              '<div class="col-1 material-symbols-outlined" style="color:#FFD306;">
+        thumb_down_off
+        </div>' .
+                              '<div class="col-12 nopadding" style="height:10%;">' .
+                              '<p>&nbsp</P>' .
+                              '</div>' .
 
-                  <div id="inew" class="article" style="display:none">
-                        <?php
+                              '</div>' .
 
-                        for ($i = 0; $i < 4; $i++) {
-                              $rowIndexNew = $resultIndexNew->fetch_object();
+                              '</div>';
+                  }
+                  ?>
 
-                              echo
-                              '<div class="row" style="border: solid 2px orange; width: 100%;">' .
-                                    '<div class="col-12">' .
-                                    '<form class="row">' .
+            </div>
 
-                                    '<a style="text-decoration:none" href="m-index.php?user_id=' . $rowIndexNew->unique_id . '">' .
-                                    '<img src="./php/img/' . $rowIndexNew->img . ' " class="col-2" width="70px" height="70px">' .
-                                    '</a>' .
+            <div id="inew" class="article" style="display:none">
+                  <?php
 
-                                    '<a style="text-decoration:none" href="cate' . $rowIndexNew->cid . '.php?c_id=' . $rowIndexNew->cid . '">' .
-                                    '<div class="col-2 mt-4 smallerword1" style=" text-align:center; font-size: 20px;color:#EA7500	;">' . $rowIndexNew->board_name . '</div>' .
-                                    '</a>' .
+                  for ($i = 0; $i < 4; $i++) {
+                        $rowIndexNew = $resultIndexNew->fetch_object();
 
-                                    '<a style="text-decoration:none" href="m-index.php?user_id=' . $rowIndexNew->unique_id . '">' .
-                                    '<p class="col-4 mt-4" style=" text-align:center; font-size: 20px;color:#EA7500	;">' . $rowIndexNew->nickname . '</p>' .
-                                    '</a>' .
-                                    '<p class="col-4 mt-4" style=" text-align:center; font-size: 15px;color:#EA7500	;">' . $rowIndexNew->created . '</p>' .
-                                    '</form>' .
-                                    '<div class="col-12" style="  text-align:center;font-size: 30px;">' .
+                        echo
+                        '<div class="row" style="border: solid 2px orange; width: 100%;">' .
+                              '<div class="col-12">' .
+                              '<form class="row">' .
 
-                                    '<a style="text-decoration:none" href="post.php?aid=' . $rowIndexNew->aid . '">' .
-                                    '<p style="overflow-wrap: break-word;">' . $rowIndexNew->title . '</p>' .
-                                    '</a>' .
+                              '<a style="text-decoration:none" href="m-index.php?user_id=' . $rowIndexNew->unique_id . '">' .
+                              '<img src="./php/img/' . $rowIndexNew->img . ' " class="col-2" width="70px" height="70px">' .
+                              '</a>' .
 
-                                    '</div>' .
-                                    '<div class="col-12 nopadding" style="height:12%;background:yellow;">' .
-                                    '<div style="background:red;height:100%; width: calc(100% * (' . $rowIndexNew->likes . ' / ' . $rowIndexNew->total . '));"></div>' .
-                                    '</div>' .
-                                    '<div class="col-12 nopadding" style="height:10%;">' .
-                                    '<p>&nbsp</P>' .
-                                    '</div>' .
-                                    '</div>' .
-                                    '</div>';
-                        }
-                        ?>
+                              '<a style="text-decoration:none" href="cate' . $rowIndexNew->cid . '.php?c_id=' . $rowIndexNew->cid . '">' .
+                              '<div class="col-2 mt-4 smallerword1" style=" text-align:center; font-size: 20px;color:#EA7500	;">' . $rowIndexNew->board_name . '</div>' .
+                              '</a>' .
+
+                              '<a style="text-decoration:none" href="m-index.php?user_id=' . $rowIndexNew->unique_id . '">' .
+                              '<p class="col-4 mt-4" style=" text-align:center; font-size: 20px;color:#EA7500	;">' . $rowIndexNew->nickname . '</p>' .
+                              '</a>' .
+                              '<p class="col-4 mt-4" style=" text-align:center; font-size: 15px;color:#EA7500	;">' . $rowIndexNew->created . '</p>' .
+                              '</form>' .
+                              '<div class="col-12" style="  text-align:center;font-size: 30px;">' .
+
+                              '<a style="text-decoration:none" href="post.php?aid=' . $rowIndexNew->aid . '">' .
+                              '<p style="overflow-wrap: break-word;">' . $rowIndexNew->title . '</p>' .
+                              '</a>' .
+
+                              '</div>' .
+                              '<div class="col-12 nopadding" style="height:12%;background:yellow;">' .
+                              '<div style="background:red;height:100%; width: calc(100% * (' . $rowIndexNew->likes . ' / ' . $rowIndexNew->total . '));"></div>' .
+                              '</div>' .
+                              '<div class="col-12 nopadding" style="height:10%;">' .
+                              '<p>&nbsp</P>' .
+                              '</div>' .
+                              '</div>' .
+                              '</div>';
+                  }
+                  ?>
                   </div>
             </div>
       </div>
