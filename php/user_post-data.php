@@ -38,7 +38,7 @@ while ($row = mysqli_fetch_assoc($query1)) {
                   <span style="font-size:20px;">' . $row['nickname'] . '</span>
 
                   <div style="position:relative; border:0; min-width:60%; max-width:60%; ";>  
-                  <span style="position:absolute; right: -10%;">' . substr($row['created'], 0, 10) . '</span>
+                  
                   </div>
                </div>
 
@@ -47,17 +47,6 @@ while ($row = mysqli_fetch_assoc($query1)) {
             <h2 style="color:black;">' . $title . '</h2>
             <p style="font-size:20px; color:gray;">' .  $content . '</p> 
 
-            <i class="fa fa-thumbs-up like-btn" style="font-size: 0.8em; color:gray"
-               data-id=' .  $row['aid'] . '"> 
-            </i>
-            <span class="likes" style="font-size: 1em; color:gray">' . $row3['likes'] . '</span>
-
-            &nbsp;&nbsp;&nbsp;&nbsp;
-
-            <i class="fa fa-thumbs-down dislike-btn" style="font-size: 0.8em; color:gray"
-               data-id=' .  $row['aid'] . '"> 
-            </i>
-            <span class="dislikes" style="font-size: 1em; color:gray">' . $row4['angry'] . '</span>
          
             </div>
          </div>

@@ -1,5 +1,5 @@
 <div class="col-8">
-                  <h3 class='pb-3'>通知</h3>
+                  <h3 class='pb-3 ml-3'>尚未有好友申請</h3>
                   <?php
                   $now_id = $_SESSION['unique_id'];
                   $sql_Noti = "SELECT * FROM notifications where noti_To = '$now_id'";

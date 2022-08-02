@@ -28,12 +28,14 @@ while ($row_friensList_get = mysqli_fetch_assoc($result_friensList_get)) {
 ?>
 
 <div id="f-friends" class="row ml-5 m-3">
-      <img src="./php/images/<?php echo $row_ProfilePic['img'] ?>" alt="" height=70px width=70px class="ml-3 col-2">
-      <h3 class="ml-3 col-5 mt-3"><?php echo $row_getName['nickname']; ?></h3>
-      <button class='btn btn-danger' id='cancelReq'
-            onclick='cancelAction(1," <?php echo $row_ProfilePic['unique_id']; ?>")'>解除好友</button>
+      <img src="./php/images/<?php echo $row_ProfilePic['img'] ?>" alt="" height=50px width=50px class="ml-3 col-2">
+      <h3 class="ml-3 col-4 mt-3"><?php echo $row_getName['nickname']; ?></h3>
+
+      <button class='btn   mt-2 col-2' id='cancelReq' title="刪除好友"
+            onclick='cancelAction(1," <?php echo $row_ProfilePic['unique_id']; ?>")'><i class="fa-solid fa-user-minus fa-2x"></i></button>
+
       <a style="text-decoration:none" href="m-index.php?user_id=<?php echo $row_getName['unique_id']; ?>">
-            <button id="f-inform" class="btn ml-3 col-2" title="好友資訊"><i
+            <button class="btn  mt-2 col-2" title="好友資訊"><i
                         class="fa-solid fa-address-card fa-2x "></i></button>
       </a>
 </div>
