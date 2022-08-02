@@ -22,6 +22,10 @@ if (!isset($_SESSION['unique_id'])) { //未登入時顯示請登入
 }
 ?>
 
+<?php
+// Turn off all error reporting
+error_reporting(0);
+?> 
 <!DOCTYPE html>
 <html lang="en">
 

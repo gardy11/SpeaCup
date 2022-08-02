@@ -4,25 +4,29 @@ include_once "php/config.php";
 
 if (!isset($_SESSION['unique_id'])) { //未登入時顯示請登入
 
-      echo $a = "請登入";
-      $output = "";
+      $a = '<a href="login.php" class="link-secondary">
+      <p class="h5">請登入</p> </a>';
+      $b = "";
 } else {  //已登入時顯示會員暱稱及登出
       $sql = mysqli_query($conn, "SELECT * FROM users WHERE unique_id = {$_SESSION['unique_id']}");
       if (mysqli_num_rows($sql) > 0) {
             $row = mysqli_fetch_assoc($sql);
       }
 
-      echo $a = $row['nickname'];
-      $output .= '<a href="php/dereout.php" class="link-secondary">
-             <p class="h5">登出</p>
-             </a>';
+      $a = $row['nickname'];
+      $b = ' <a href="member.php" class="link-secondary">
+             <p class="h5">會員中心</p>  </a>';
+ $c =             '<a href="php/dereout.php" class="link-secondary">
+             <p class="h5">登出</p></a>
+             ';
 }
 ?>
+
+
 <?php
 // Turn off all error reporting
 error_reporting(0);
 ?> 
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -32,7 +36,6 @@ error_reporting(0);
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <title>SpeaCup有話直說</title>
       <link href="CSS/style.css" rel="stylesheet" />
-      <link rel="stylesheet" href="./css/style_chat.css">
       <link rel="icon" type="image/x-icon" href="assets/fav.ico" />
       <script src="JS/scripts.js"></script>
       <script src="js/jquery-3.6.0.js"></script>
@@ -46,6 +49,7 @@ error_reporting(0);
       <script src="https://kit.fontawesome.com/993da95711.js" crossorigin="anonymous"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
       <script src="script.js"></script>
+      <link rel="stylesheet" href="./css/style_chat.css">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
       <script language="javascript">
             function changeImageString(TargetID, FildAddres) {
@@ -70,19 +74,31 @@ error_reporting(0);
                   <span class="navbar-toggler-icon"></span>
             </button>
 
-            <div class="nav-navbar collapse navbar-collapse navbar-right " id="navbarSupportedContent">
+            <div class="nav-navbar  navbar-collapse navbar-right " id="navbarSupportedContent">
                   <ul class="navbar-nav ml-auto pl-1">
-                        <form class="form-inline">
-                              <input class="form-control mr-sm-1" type="search" placeholder="SpeaCup" aria-label="Search">
+                        <form class="form-inline" method="POST" action="searchresult.php">
+                              <input class="form-control mr-sm-1" type="search" placeholder="SpeaCup" aria-label="Search" name="searchcontent">
                               <button class="btn btn-outline-danger my-2 my-sm-0 " type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
                         </form>
                         <li class="nav-item pl-5 mr-5">
-                        <li><a href=""><i class="fa-solid fa-bell">&ensp;&ensp;</i></a></li>
-                        <li><a href="login.php" title="會員中心"><i class="fa-solid fa-user">&ensp;&ensp;</i></a></li>
+             
+                        <li><a class="fa-solid fa-user mt-2" onclick="doAnimateShow();">&ensp;&ensp;</a></li>
                         </li>
             </div>
 
-
+            <!-- 會員圖案click後的box -->
+            <div class="box" id="box">
+                  <div class="row">
+                        <p class="h5">&ensp;&ensp;HI!&ensp;&ensp;</p>
+                        <p class="h5 text-primary"><?php echo $a; ?></p>
+                  </div>
+                  <?php echo $b; ?>
+                  <?php echo $c; ?>
+            </div>
+            <!-- 小鈴鐺裡面的東西 -->
+            <div class="bell" id="bell">
+                  <p></p>
+            </div>
       </nav>
 
       <div id="siderbarleft" class="siderbarleft">
@@ -142,14 +158,7 @@ $resultIndexNew = $mysqli->query($sqlIndexNew);
 ?>
 <!--最新與熱門html-->
 <div id="siderbarindex">
-<?php
-date_default_timezone_set('Asia/Taipei');
-$DateAndTime = date('y-m-d h:i', time());  
-echo '<div class="d-flex flex-row-reverse ">
-      <p >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
-      <div>'.$DateAndTime.'</div>
-      </div>'
-?>
+
       <div class="w3-container hotnew" style="width: 100%">
             <div class="w3-bar w3-black row">
                   <button class="w3-bar-item w3-button tablink w3-red col-6"
