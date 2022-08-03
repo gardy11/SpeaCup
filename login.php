@@ -7,6 +7,7 @@ if (!isset($_SESSION['unique_id'])) { //未登入時顯示請登入
       $a = '<a href="login.php" class="link-secondary">
       <p class="h5">請登入</p> </a>';
       $b = "";
+      $c = "";
 } else {  //已登入時顯示會員暱稱及登出
       $sql = mysqli_query($conn, "SELECT * FROM users WHERE unique_id = {$_SESSION['unique_id']}");
       if (mysqli_num_rows($sql) > 0) {
@@ -16,9 +17,8 @@ if (!isset($_SESSION['unique_id'])) { //未登入時顯示請登入
       $a = $row['nickname'];
       $b = ' <a href="member.php" class="link-secondary">
              <p class="h5">會員中心</p>  </a>';
- $c =             '<a href="php/dereout.php" class="link-secondary">
-             <p class="h5">登出</p></a>
-             ';
+      $c = '<a href="php/dereout.php" class="link-secondary">
+             <p class="h5">登出</p></a>';
 }
 ?>
 
